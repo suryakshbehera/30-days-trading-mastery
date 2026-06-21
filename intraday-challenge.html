@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30 ଦିନରେ Intraday Trading — Discipline Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Oriya:wght@500;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0E11;
+    --ink-soft:#14181D;
+    --ink-line:#23282f;
+    --paper:#EDEAE3;
+    --paper-dim:#9aa0a8;
+    --gold:#C9A227;
+    --gold-soft:#8a751f;
+    --green:#2BB673;
+    --red:#E2574C;
+    --r:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter','Noto Sans Oriya',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  .odia{ font-family:'Noto Sans Oriya','Inter',sans-serif; }
+  .display{ font-family:'Fraunces','Noto Serif Oriya',serif; }
+  .mono{ font-family:'JetBrains Mono',monospace; letter-spacing:0.02em; }
+
+  /* faint ledger grid texture */
+  .grid-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(237,234,227,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(237,234,227,0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 75%);
+  }
+
+  section{ position:relative; z-index:1; padding:120px 8vw; }
+  @media(max-width:700px){ section{ padding:80px 6vw; } }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 8vw; backdrop-filter:blur(10px);
+    background:rgba(11,14,17,0.65); border-bottom:1px solid var(--ink-line);
+  }
+  .brand{ font-family:'Fraunces',serif; font-weight:600; font-size:19px; letter-spacing:0.01em;}
+  .brand span{ color:var(--gold); }
+  .nav-links{ display:flex; gap:28px; font-size:13px; color:var(--paper-dim); }
+  .nav-links a{ color:var(--paper-dim); text-decoration:none; transition:color .2s; }
+  .nav-links a:hover{ color:var(--paper); }
+  @media(max-width:700px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+    padding-top:140px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12px; color:var(--gold); text-transform:uppercase; letter-spacing:0.18em;
+    margin-bottom:28px;
+  }
+  .eyebrow::before{ content:''; width:24px; height:1px; background:var(--gold); display:inline-block; }
+  .hero h1{
+    font-size:clamp(40px, 7vw, 92px);
+    font-weight:600; line-height:1.04; letter-spacing:-0.01em;
+    max-width:18ch;
+  }
+  .hero h1 .odia-big{ font-family:'Noto Serif Oriya', serif; font-weight:700; }
+  .hero h1 em{ font-style:normal; color:var(--gold); }
+  .hero-sub{
+    margin-top:28px; max-width:46ch; font-size:18px; color:var(--paper-dim);
+  }
+  .hero-line{
+    position:absolute; right:6vw; top:18%; width:34vw; max-width:480px; opacity:0.9;
+  }
+  @media(max-width:900px){ .hero-line{ display:none; } }
+  .hero-line path{ fill:none; stroke:var(--green); stroke-width:2; stroke-dasharray:600; stroke-dashoffset:600; animation:draw 2.4s ease forwards 0.4s; }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+
+  .cta-row{ display:flex; gap:16px; align-items:center; margin-top:46px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--gold); color:var(--ink); font-weight:600; font-size:14.5px;
+    padding:15px 26px; border-radius:999px; text-decoration:none;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(201,162,39,0.25); }
+  .btn-ghost{
+    color:var(--paper); border:1px solid var(--ink-line); background:transparent;
+    padding:14px 24px; border-radius:999px; font-size:14.5px; text-decoration:none;
+    transition:border-color .2s, color .2s;
+  }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); }
+
+  .scroll-cue{ position:absolute; bottom:46px; left:8vw; font-size:12px; color:var(--paper-dim); display:flex; gap:10px; align-items:center;}
+  .scroll-cue .bar{ width:1px; height:34px; background:linear-gradient(var(--paper-dim), transparent); animation:bob 1.8s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform:translateY(0); opacity:.4;} 50%{ transform:translateY(6px); opacity:1;} }
+
+  /* ---------- STATS ---------- */
+  .stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--ink-line); border:1px solid var(--ink-line); border-radius:var(--r);
+    overflow:hidden; padding:0;
+  }
+  @media(max-width:800px){ .stats{ grid-template-columns:repeat(2,1fr);} }
+  .stat{ background:var(--ink-soft); padding:34px 26px; }
+  .stat .num{ font-family:'JetBrains Mono',monospace; font-size:clamp(26px,3vw,38px); color:var(--gold); font-weight:700;}
+  .stat .lbl{ margin-top:8px; font-size:13.5px; color:var(--paper-dim); }
+
+  /* ---------- MENTOR ---------- */
+  .mentor{
+    display:grid; grid-template-columns:160px 1fr; gap:42px; align-items:center;
+    border-top:1px solid var(--ink-line); border-bottom:1px solid var(--ink-line);
+  }
+  @media(max-width:700px){ .mentor{ grid-template-columns:1fr; text-align:left; } }
+  .avatar{
+    width:140px; height:140px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:42px; font-weight:600; color:var(--ink);
+  }
+  .mentor blockquote{ font-family:'Fraunces',serif; font-size:clamp(20px,2.4vw,28px); font-weight:500; line-height:1.4; }
+  .mentor .who{ margin-top:18px; font-size:14px; color:var(--gold); }
+  .mentor .who span{ color:var(--paper-dim); }
+
+  /* ---------- SECTION HEAD ---------- */
+  .sec-head{ max-width:680px; margin-bottom:56px; }
+  .sec-eyebrow{ font-size:12px; color:var(--gold); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:14px; }
+  .sec-head h2{ font-family:'Fraunces',serif; font-size:clamp(28px,4vw,44px); font-weight:600; }
+  .sec-head p{ margin-top:14px; color:var(--paper-dim); font-size:16px; max-width:56ch; }
+
+  /* ---------- PHASES ---------- */
+  .phases{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:64px; }
+  @media(max-width:900px){ .phases{ grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:560px){ .phases{ grid-template-columns:1fr;} }
+  .phase-card{
+    background:var(--ink-soft); border:1px solid var(--ink-line); border-radius:var(--r);
+    padding:24px 20px; cursor:pointer; transition:border-color .2s, transform .2s;
+  }
+  .phase-card:hover{ border-color:var(--gold); transform:translateY(-3px); }
+  .phase-card .pnum{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--paper-dim); }
+  .phase-card h3{ font-family:'Fraunces',serif; font-size:18px; margin-top:10px; font-weight:600; }
+  .phase-card .days{ font-size:12.5px; color:var(--gold); margin-top:6px; }
+  .phase-card p{ font-size:13.5px; color:var(--paper-dim); margin-top:10px; }
+
+  /* ---------- CANDLE MAP (signature) ---------- */
+  .candle-wrap{
+    background:var(--ink-soft); border:1px solid var(--ink-line); border-radius:var(--r);
+    padding:36px 28px 24px; overflow-x:auto;
+  }
+  .candle-axis{ display:flex; align-items:flex-end; gap:7px; min-width:920px; height:200px; border-bottom:1px solid var(--ink-line); padding-bottom:4px; }
+  .candle{
+    flex:1; min-width:18px; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+    height:100%; cursor:pointer; position:relative;
+  }
+  .wick{ width:1.5px; background:var(--paper-dim); opacity:0.55; }
+  .body{
+    width:60%; border-radius:2px; transform-origin:bottom;
+    animation:grow .6s ease forwards; transform:scaleY(0);
+    box-shadow:0 0 0 1px rgba(0,0,0,0.2);
+  }
+  .body.up{ background:var(--green); }
+  .body.down{ background:var(--red); }
+  .candle.active .body{ box-shadow:0 0 0 2px var(--gold), 0 0 16px rgba(201,162,39,0.5); }
+  .candle.viewed::after{
+    content:''; position:absolute; top:-10px; width:5px; height:5px; border-radius:50%; background:var(--gold);
+  }
+  @keyframes grow{ to{ transform:scaleY(1); } }
+
+  .candle-labels{ display:flex; gap:7px; min-width:920px; margin-top:10px; }
+  .candle-labels span{ flex:1; min-width:18px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--paper-dim); }
+
+  .phase-legend{ display:flex; gap:24px; margin-top:22px; flex-wrap:wrap; font-size:12.5px; color:var(--paper-dim); }
+  .phase-legend .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:7px; }
+
+  /* ---------- DETAIL PANEL ---------- */
+  .detail-panel{
+    margin-top:28px; background:var(--ink-soft); border:1px solid var(--ink-line); border-radius:var(--r);
+    padding:38px 34px; transition:opacity .25s ease;
+  }
+  @media(max-width:700px){ .detail-panel{ padding:26px 22px; } }
+  .detail-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+  .detail-day{ font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:14px; }
+  .detail-phase{ font-size:12px; color:var(--paper-dim); margin-top:4px; text-transform:uppercase; letter-spacing:0.1em; }
+  .detail-panel h3{ font-family:'Fraunces',serif; font-size:clamp(22px,2.6vw,30px); margin-top:14px; font-weight:600; line-height:1.3; }
+  .detail-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:26px; }
+  @media(max-width:700px){ .detail-grid{ grid-template-columns:1fr; } }
+  .detail-block .lbl{ font-size:11.5px; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold); margin-bottom:8px; }
+  .detail-block p{ font-size:15px; color:var(--paper); line-height:1.6; }
+  .detail-block.full{ grid-column:1/-1; border-top:1px solid var(--ink-line); padding-top:20px; }
+  .detail-block.full p{ color:var(--paper-dim); font-style:italic; }
+  .detail-nav{ display:flex; gap:12px; margin-top:30px; }
+  .nav-btn{
+    background:transparent; border:1px solid var(--ink-line); color:var(--paper);
+    padding:10px 18px; border-radius:999px; font-size:13px; cursor:pointer; transition:border-color .2s, color .2s;
+    font-family:'Inter',sans-serif;
+  }
+  .nav-btn:hover{ border-color:var(--gold); color:var(--gold); }
+  .nav-btn:disabled{ opacity:0.3; cursor:not-allowed; }
+
+  /* ---------- PROGRESS ---------- */
+  .progress-row{ display:flex; align-items:center; gap:16px; margin-top:24px; }
+  .progress-track{ flex:1; height:4px; background:var(--ink-line); border-radius:2px; overflow:hidden; }
+  .progress-fill{ height:100%; background:var(--gold); width:0%; transition:width .4s ease; }
+  .progress-label{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--paper-dim); white-space:nowrap; }
+
+  /* ---------- WHO ---------- */
+  .who-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  @media(max-width:700px){ .who-grid{ grid-template-columns:1fr; } }
+  .who-col h4{ font-family:'Fraunces',serif; font-size:19px; margin-bottom:16px; color:var(--gold); }
+  .who-col ul{ list-style:none; }
+  .who-col li{ padding:10px 0; border-bottom:1px solid var(--ink-line); font-size:15px; color:var(--paper-dim); }
+  .who-col li::before{ content:'— '; color:var(--gold); }
+
+  /* ---------- FOOTER CTA ---------- */
+  .footer-cta{ text-align:center; padding:140px 8vw; }
+  .footer-cta h2{ font-family:'Fraunces',serif; font-size:clamp(30px,5vw,56px); font-weight:600; max-width:18ch; margin:0 auto; }
+  .footer-cta p{ color:var(--paper-dim); margin-top:18px; max-width:50ch; margin-left:auto; margin-right:auto; }
+  .footer-cta .cta-row{ justify-content:center; margin-top:38px; }
+  footer{ text-align:center; padding:30px 8vw 50px; color:var(--paper-dim); font-size:13px; border-top:1px solid var(--ink-line); }
+  footer .sig{ color:var(--gold); font-family:'Fraunces',serif; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+
+  ::-webkit-scrollbar{ height:8px; }
+  ::-webkit-scrollbar-thumb{ background:var(--ink-line); border-radius:4px; }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<nav>
+  <div class="brand">Intraday<span>.</span>30</div>
+  <div class="nav-links">
+    <a href="#map">Candle Map</a>
+    <a href="#phases">Phases</a>
+    <a href="#mentor">Mentor</a>
+    <a href="#who">କାହାପାଇଁ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-line" viewBox="0 0 400 220" preserveAspectRatio="none">
+    <path d="M0,200 L40,180 L70,190 L110,140 L150,150 L190,90 L230,110 L270,60 L310,70 L400,10" />
+  </svg>
+  <div class="eyebrow odia">30-Day Mentor-Led Challenge</div>
+  <h1><span class="odia-big">30 ଦିନରେ</span><br>ଶିଖନ୍ତୁ <em>Intraday Trading</em></h1>
+  <p class="hero-sub odia">ଏକ Professional Mentor ସହିତ, ପ୍ରତିଦିନ ଗୋଟିଏ habit — Discipline, Risk Management ଓ ଏକ Strategy ଯାହା ବାସ୍ତବରେ କାମ କରେ।</p>
+  <div class="cta-row">
+    <a href="#map" class="btn">Candle Map ଦେଖନ୍ତୁ ↓</a>
+    <a href="#mentor" class="btn-ghost">Mentor ବିଷୟରେ</a>
+  </div>
+  <div class="scroll-cue"><div class="bar"></div><span class="mono">SCROLL</span></div>
+</section>
+
+<!-- STATS -->
+<section style="padding-top:0;">
+  <div class="stats">
+    <div class="stat"><div class="num">90%</div><div class="lbl odia">Trader ହାରନ୍ତି — ଆମେ ସେଇ କାରଣ ଭାଙ୍ଗୁ</div></div>
+    <div class="stat"><div class="num">30</div><div class="lbl odia">ଦିନର Structured Challenge</div></div>
+    <div class="stat"><div class="num">04</div><div class="lbl odia">Phase — Foundation ରୁ Plan</div></div>
+    <div class="stat"><div class="num">1:2</div><div class="lbl odia">Minimum Risk-Reward Standard</div></div>
+  </div>
+</section>
+
+<!-- MENTOR -->
+<section id="mentor">
+  <div class="mentor">
+    <div class="avatar">M</div>
+    <div>
+      <blockquote class="odia">"Trading ଏକ skill, luck ନୁହେଁ। ଆପଣ ଯେତେବେଳେ emotion କୁ system ସହିତ replace କରିବେ, ସେତେବେଳେ market ଆପଣଙ୍କୁ ଡରାଇବ ନାହିଁ।"</blockquote>
+      <div class="who">Mentor Name <span class="odia">— 10+ ବର୍ଷର Intraday Trading ଅଭିଜ୍ଞତା</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section id="phases">
+  <div class="sec-head">
+    <div class="sec-eyebrow odia">ଚାରି ପର୍ଯ୍ୟାୟ</div>
+    <h2 class="odia">Foundation ରୁ Personal Plan ପର୍ଯ୍ୟନ୍ତ</h2>
+    <p class="odia">ପ୍ରତ୍ୟେକ ସପ୍ତାହ ଏକ ନୂଆ layer ଯୋଡ଼େ — knowledge, skill, strategy, ଓ ଶେଷରେ discipline।</p>
+  </div>
+  <div class="phases">
+    <div class="phase-card" onclick="jumpToPhase(1)">
+      <div class="pnum mono">PHASE 01</div>
+      <h3 class="odia">ମୌଳିକ ଭିତ୍ତି</h3>
+      <div class="days mono">DAY 01 — 07</div>
+      <p class="odia">Mindset, market mechanics ଓ journal habit ଗଢ଼ନ୍ତୁ।</p>
+    </div>
+    <div class="phase-card" onclick="jumpToPhase(2)">
+      <div class="pnum mono">PHASE 02</div>
+      <h3 class="odia">ଟେକ୍ନିକାଲ୍ ଦକ୍ଷତା</h3>
+      <div class="days mono">DAY 08 — 16</div>
+      <p class="odia">Chart, pattern ଓ timing — ବଜାର ପଢ଼ିବାର ଭାଷା।</p>
+    </div>
+    <div class="phase-card" onclick="jumpToPhase(3)">
+      <div class="pnum mono">PHASE 03</div>
+      <h3 class="odia">ରଣନୀତି ନିର୍ମାଣ</h3>
+      <div class="days mono">DAY 17 — 24</div>
+      <p class="odia">ନିଜର entry-exit system ତିଆରି ଓ backtest କରନ୍ତୁ।</p>
+    </div>
+    <div class="phase-card" onclick="jumpToPhase(4)">
+      <div class="pnum mono">PHASE 04</div>
+      <h3 class="odia">ଡିସିପ୍ଲିନ୍ ଓ ରିସ୍କ</h3>
+      <div class="days mono">DAY 25 — 30</div>
+      <p class="odia">Psychology, risk limit ଓ ଏକ ଜୀବନସାରା ଚଳିବାର plan।</p>
+    </div>
+  </div>
+</section>
+
+<!-- CANDLE MAP -->
+<section id="map">
+  <div class="sec-head">
+    <div class="sec-eyebrow odia">ଆପଣଙ୍କ ଯାତ୍ରା — ଏକ Chart ଭାବରେ</div>
+    <h2 class="odia">30-Day Candle Map</h2>
+    <p class="odia">ପ୍ରତ୍ୟେକ candle ଏକ ଦିନ। Click କରନ୍ତୁ ଓ ସେଦିନର concept, drill ଓ reflection ପଢ଼ନ୍ତୁ।</p>
+  </div>
+
+  <div class="candle-wrap">
+    <div class="candle-axis" id="candleAxis"></div>
+    <div class="candle-labels" id="candleLabels"></div>
+    <div class="phase-legend">
+      <span><i class="dot" style="background:#5b6470"></i><span class="odia">Phase 1 — Foundation</span></span>
+      <span><i class="dot" style="background:var(--green)"></i><span class="odia">Phase 2 — Technical</span></span>
+      <span><i class="dot" style="background:var(--gold)"></i><span class="odia">Phase 3 — Strategy</span></span>
+      <span><i class="dot" style="background:var(--red)"></i><span class="odia">Phase 4 — Discipline</span></span>
+    </div>
+  </div>
+
+  <div class="detail-panel" id="detailPanel">
+    <!-- filled by JS -->
+  </div>
+</section>
+
+<!-- WHO -->
+<section id="who">
+  <div class="sec-head">
+    <div class="sec-eyebrow odia">ଏହି Challenge କାହାପାଇଁ</div>
+    <h2 class="odia">ଆପଣ ଯଦି ଏମିତି, ଏହା ଆପଣଙ୍କ ପାଇଁ</h2>
+  </div>
+  <div class="who-grid">
+    <div class="who-col">
+      <h4 class="odia">ଉପଯୁକ୍ତ</h4>
+      <ul class="odia">
+        <li>Market ବିଷୟରେ basic ଜାଣିଛନ୍ତି, କିନ୍ତୁ consistent profit ନାହିଁ</li>
+        <li>Emotion-driven trade ବନ୍ଦ କରି, system ଚାହାଁନ୍ତି</li>
+        <li>ପ୍ରତିଦିନ 30–45 ମିନିଟ୍ ଦେବାକୁ ପ୍ରସ୍ତୁତ</li>
+        <li>Journal ରଖି, ନିଜର mistake ରୁ ଶିଖିବାକୁ ଚାହାଁନ୍ତି</li>
+      </ul>
+    </div>
+    <div class="who-col">
+      <h4 class="odia">ଉପଯୁକ୍ତ ନୁହେଁ</h4>
+      <ul class="odia">
+        <li>Overnight ଧନୀ ହେବାକୁ ଖୋଜୁଛନ୍ତି</li>
+        <li>"Tips" ଓ "Sure-shot calls" ଚାହାଁନ୍ତି</li>
+        <li>Risk management ବିନା trade କରିବାକୁ ଅଭ୍ୟସ୍ତ</li>
+        <li>Zero market exposure — ସମ୍ପୂର୍ଣ୍ଣ beginner (ଅଲଗା path ଦରକାର)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <h2 class="odia">ଆଜିଠାରୁ Day 1 ଆରମ୍ଭ କରନ୍ତୁ</h2>
+  <p class="odia">30 ଦିନ ପରେ, ଆପଣଙ୍କର ନିଜର trading system, journal, ଓ discipline ରହିବ — guesswork ନୁହେଁ।</p>
+  <div class="cta-row">
+    <a href="day-01.html" class="btn odia">Day 1 ଖୋଲନ୍ତୁ</a>
+  </div>
+</section>
+
+<footer>
+  <span class="odia">ଗଠିତ ହେଲା ଏକ Professional Mentor ପାଇଁ —</span> <span class="sig">Intraday.30</span>
+</footer>
+
+<script>
+const PHASE_META = {
+  1:{name:"ମୌଳିକ ଭିତ୍ତି", color:"#5b6470"},
+  2:{name:"ଟେକ୍ନିକାଲ୍ ଦକ୍ଷତା", color:"#2BB673"},
+  3:{name:"ରଣନୀତି ନିର୍ମାଣ", color:"#C9A227"},
+  4:{name:"ଡିସିପ୍ଲିନ୍ ଓ ରିସ୍କ", color:"#E2574C"}
+};
+
+const DAYS = [
+{d:1,p:1,title:"କାହିଁକି 90% Intraday Trader ହାରନ୍ତି",concept:"ଅଧିକାଂଶ trader strategy ଅଭାବରୁ ନୁହେଁ, discipline ଅଭାବରୁ ହାରନ୍ତି।",why:"ପ୍ରକୃତ କାରଣ ଜାଣିଲେ ଆପଣ ସେହି ଭୁଲ ପୁନରାବୃତ୍ତି କରିବେ ନାହିଁ।",drill:"ଆପଣଙ୍କ ଶେଷ 5ଟି ଲୋସିଂ ଟ୍ରେଡ୍ ମନେ ପକାନ୍ତୁ — emotion ନା strategy ଭୁଲ ଥିଲା?",reflect:"ମୁଁ ଗତ ଥର କାହିଁକି loss କରିଥିଲି?",link:"day-01.html"},
+{d:2,p:1,title:"Market କିପରି ଚାଲେ — Liquidity ଓ Volatility",concept:"Price movement Liquidity (buyer-seller) ଓ Volatility (price swing) ଉପରେ ନିର୍ଭର କରେ।",why:"Low-liquidity stock ରେ trade କଲେ slippage ଓ false signal ବଢ଼େ।",drill:"3ଟି high-volume stock ଓ 3ଟି low-volume stock ର chart compare କରନ୍ତୁ।",reflect:"ମୁଁ ଯେଉଁ stock ବାଛୁଛି, ତାହାର daily volume କେତେ?"},
+{d:3,p:1,title:"ଆପଣଙ୍କ Trading Style ବାଛନ୍ତୁ — Scalping vs Momentum vs Breakout",concept:"Style ଆପଣଙ୍କ ସ୍ୱଭାବ ସହିତ match ହେବା ଦରକାର — ସବୁଠାରୁ profitable style ନୁହେଁ।",why:"ଅସମଞ୍ଜସ style impatience ଓ overtrading ଆଣେ।",drill:"ତିନୋଟି style ର ଗୋଟିଏ-ଗୋଟିଏ ଲାଇନ୍ ବର୍ଣ୍ଣନା ଲେଖି, ନିଜ ସହିତ ସବୁଠାରୁ ମେଳ ଖାଉଥିବାଟି ଚିହ୍ନଟ କରନ୍ତୁ।",reflect:"ମୁଁ patient ନା quick decision ନେବାରେ comfortable?"},
+{d:4,p:1,title:"Stock Selection — 'Tradeable' Stock ର ଲକ୍ଷଣ",concept:"ଭଲ intraday stock ର ଥାଏ: high liquidity, clear trend, ଓ predictable range।",why:"ଭୁଲ stock ବାଛିଲେ ସବୁଠାରୁ ଭଲ strategy ବି fail ହୁଏ।",drill:"ଆଜି ପାଇଁ 5ଟି stock ର watchlist ତିଆରି କରନ୍ତୁ, ତିନୋଟି criteria ଲେଖି।",reflect:"ମୁଁ tip ଶୁଣି stock ବାଛୁଛି, ନା ନିଜର criteria ଅନୁସାରେ?"},
+{d:5,p:1,title:"Market Sessions ବୁଝନ୍ତୁ",concept:"Opening range (9:15–9:45), mid-day lull, ଓ closing hour — ତିନୋଟିର character ଅଲଗା।",why:"ସେହି ସମୟ ବୁଝି trade କଲେ false breakout ରୁ ବଞ୍ଚିପାରିବେ।",drill:"ଆଜି ବଜାର ଖୋଲିଲାବେଳେ price action 15 ମିନିଟ୍ ଧରି observe କରନ୍ତୁ, trade ନକରନ୍ତୁ।",reflect:"ମୁଁ କେଉଁ session ରେ ସବୁଠାରୁ ଭଲ decision ନେଇଥାଏ?"},
+{d:6,p:1,title:"Trading Journal ତିଆରି",concept:"Entry, exit, reason, emotion ଓ outcome — ପ୍ରତ୍ୟେକ trade ର 5ଟି column।",why:"Journal ବିନା ଆପଣ pattern ଚିହ୍ନଟ କରିପାରିବେ ନାହିଁ, କେବଳ ଅନୁମାନ କରିବେ।",drill:"ଆଜିଠାରୁ ଏକ simple journal sheet ତିଆରି କରନ୍ତୁ ଓ ପ୍ରଥମ entry ଲେଖନ୍ତୁ।",reflect:"ମୁଁ ବର୍ତ୍ତମାନ ସୁଦ୍ଧା ମୋ trade ର record ରଖୁଛି କି?"},
+{d:7,p:1,title:"Week 1 ସମୀକ୍ଷା — ଆପଣଙ୍କ Trader Identity",concept:"ଗତ 6 ଦିନର ଶିକ୍ଷାକୁ ଏକାଠି କରି ନିଜର trading identity ସ୍ଥିର କରନ୍ତୁ।",why:"Clear identity (style + risk appetite) ଆଗକୁ ସବୁ decision ସହଜ କରେ।",drill:"ଗୋଟିଏ paragraph ରେ ଲେଖନ୍ତୁ — 'ମୁଁ ଏକ ___ trader, ଯିଏ ___ style ବ୍ୟବହାର କରେ।'",reflect:"ଗତ ସପ୍ତାହର ସବୁଠାରୁ ବଡ଼ insight କଣ ଥିଲା?"},
+
+{d:8,p:2,title:"Candlestick Patterns — Engulfing, Pin Bar, Inside Bar",concept:"ଏହି ତିନୋଟି pattern reversal କିମ୍ବା continuation ର early signal ଦିଏ।",why:"Pattern ବୁଝିଲେ entry timing ସଠିକ ହୁଏ, blind ଭାବେ chase କରିବାକୁ ପଡ଼େ ନାହିଁ।",drill:"ଆଜିର chart ରେ 3ଟି pattern ଚିହ୍ନଟ କରି screenshot ସେଭ୍ କରନ୍ତୁ।",reflect:"ମୁଁ pattern confirm ହେବା ପୂର୍ବରୁ trade ନେଉଛି କି?"},
+{d:9,p:2,title:"Support ଓ Resistance — ଠିକ୍ ଲେଭେଲ୍ ଚିହ୍ନଟ",concept:"Multiple touches ଥିବା price level ହିଁ ବାସ୍ତବ support/resistance।",why:"ଭୁଲ level ଆଙ୍କିଲେ stop-loss ଓ target ଦୁଇଟି ବି ଭୁଲ ହୁଏ।",drill:"3ଟି stock ର chart ରେ ଗତ 1 ମାସର ମୁଖ୍ୟ support/resistance ଆଙ୍କନ୍ତୁ।",reflect:"ମୋ level ଗୁଡ଼ିକ price re-test ଦ୍ୱାରା confirm ହୋଇଛି କି?"},
+{d:10,p:2,title:"Trendlines ଓ Channels",concept:"Trendline ସିଧାସଳଖ momentum ଦେଖାଏ; channel range-bound move ଚିହ୍ନଟ କରେ।",why:"Trend ସହିତ trade କଲେ probability ବେଶି, against trend risky।",drill:"ଆଜିର 2ଟି active trend ସ୍ଟକରେ trendline ଆଙ୍କନ୍ତୁ।",reflect:"ମୁଁ trend ସହିତ ନା trend against ଚାଲୁଛି?"},
+{d:11,p:2,title:"Volume Analysis — Move Confirm କରନ୍ତୁ",concept:"Price move ସହିତ volume ବଢ଼ିଲେ ହିଁ ଗତିବିଧି ବାସ୍ତବ ବୋଲି ବିଚାର କରାଯାଏ।",why:"Low-volume breakout ଅଧିକାଂଶ ସମୟରେ false ହୋଇଥାଏ।",drill:"ଗତ 5ଟି breakout trade ର volume check କରନ୍ତୁ — କେତେଟି real volume ସହିତ ଥିଲା?",reflect:"ମୁଁ volume confirm ନକରି breakout chase କରୁଛି କି?"},
+{d:12,p:2,title:"Moving Averages — 9/15/50 EMA",concept:"EMA dynamic support/resistance ତିଆରି କରେ ଓ trend direction ଦେଖାଏ।",why:"EMA crossover entry timing ପାଇଁ ଏକ simple, reliable filter ଦିଏ।",drill:"ଆପଣଙ୍କ watchlist ର ସବୁ stock ରେ 9 ଓ 15 EMA ଲଗାନ୍ତୁ, crossover ନୋଟ୍ କରନ୍ତୁ।",reflect:"EMA ସହିତ ମୋ entry align ହେଉଛି କି?"},
+{d:13,p:2,title:"RSI ଓ MACD — Momentum Indicator",concept:"RSI overbought/oversold ଦେଖାଏ; MACD momentum shift ଚିହ୍ନଟ କରେ।",why:"Indicator alone ବ୍ୟବହାର କଲେ false signal ବେଶି — price action ସହିତ confirm କରନ୍ତୁ।",drill:"ଆଜି ଗୋଟିଏ trade RSI+price action ଦୁଇଟି confirm ହେଲେ ହିଁ ନିଅନ୍ତୁ (paper trade)।",reflect:"ମୁଁ indicator କୁ confirmation ପାଇଁ ବ୍ୟବହାର କରୁଛି, ନା sole signal ଭାବେ?"},
+{d:14,p:2,title:"Opening Range Breakout (ORB) Strategy",concept:"ପ୍ରଥମ 15–30 ମିନିଟ୍ ର high-low range break ହେଲେ ଏକ clear entry signal ମିଳେ।",why:"ORB ଏକ rule-based strategy — emotion କମ୍, clarity ବେଶି।",drill:"ଆଜିର ORB level ମାର୍କ କରି, breakout ହେଲେ ଏକ paper trade ନିଅନ୍ତୁ।",reflect:"Opening range ବାହାରେ ମୁଁ ସତରେ wait କରିଛି, ନା ଭିତରେ ହିଁ trade ନେଇଛି?"},
+{d:15,p:2,title:"Indicator ବିନା Price Action ପଢ଼ିବା",concept:"Candlestick body, wick ଓ structure ଦେଖି, indicator ବିନା ବି market ର mood ବୁଝିହୁଏ।",why:"Price action ସବୁ indicator ର root — ଏହାକୁ ବୁଝିଲେ ଯେକୌଣସି indicator ଭଲ ଲାଗେ।",drill:"ଆଜି indicator ବନ୍ଦ କରି, କେବଳ candle structure ଦେଖି ଗୋଟିଏ trend ଚିହ୍ନଟ କରନ୍ତୁ।",reflect:"Indicator ବିନା ମୁଁ trend ଚିହ୍ନଟ କରିପାରୁଛି କି?"},
+{d:16,p:2,title:"Week 2 ସମୀକ୍ଷା — Pre-Market Watchlist Routine",concept:"Market ଖୋଲିବା ପୂର୍ବରୁ ଏକ fixed routine ସେଟ୍ କରନ୍ତୁ — gainers, news, level।",why:"Pre-market preparation ଥିଲେ market hours ରେ impulsive decision କମ୍ ହୁଏ।",drill:"ଆସନ୍ତାକାଲି ପାଇଁ ଏକ pre-market checklist (5 point) ତିଆରି କରନ୍ତୁ।",reflect:"ମୁଁ market ଖୋଲିବା ପୂର୍ବରୁ ପ୍ରସ୍ତୁତ ହୋଇ ବସୁଛି କି?"},
+
+{d:17,p:3,title:"Entry Rules — Signal ର Confluence",concept:"ଗୋଟିଏ signal ଯଥେଷ୍ଟ ନୁହେଁ — pattern + level + volume, ତିନୋଟି align ହେଲେ ହିଁ entry।",why:"Confluence ଥିବା entry ର win-rate ସ୍ୱାଭାବିକ ଭାବେ ବେଶି।",drill:"ନିଜର entry checklist ଲେଖନ୍ତୁ — minimum 3 condition।",reflect:"ମୋ ଶେଷ entry ସବୁ condition ପୂରଣ କରିଥିଲା କି?"},
+{d:18,p:3,title:"Exit Rules — Stop-Loss ଓ Target",concept:"Entry ପୂର୍ବରୁ ହିଁ stop-loss ଓ target ସ୍ଥିର କରନ୍ତୁ, trade ଭିତରେ ନୁହେଁ।",why:"Pre-defined exit emotion କୁ decision ରୁ ବାହାର କରେ।",drill:"ଆଜିର ପ୍ରତ୍ୟେକ trade ପାଇଁ entry ପୂର୍ବରୁ SL ଓ target ଲେଖି ରଖନ୍ତୁ।",reflect:"ମୁଁ trade ଭିତରେ ମୋ stop-loss ବଦଳାଇଛି କି?"},
+{d:19,p:3,title:"Risk-Reward Ratio — କାହିଁକି 1:2 ଭଲ",concept:"High win-rate ଠାରୁ ଭଲ risk-reward ଅଧିକ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ — 40% win rate ରେ ବି 1:2 profitable।",why:"Poor risk-reward ଥିଲେ ଗୋଟିଏ ବଡ଼ loss ବହୁତ ଛୋଟ profit ଲୁଚାଇ ଦିଏ।",drill:"ଗତ 10ଟି trade ର average risk-reward ଗଣନା କରନ୍ତୁ।",reflect:"ମୋ target, SL ଠାରୁ ଅତି କମ୍ ସେଟ୍ ହେଉଛି କି?"},
+{d:20,p:3,title:"Position Sizing — Risk Per Trade ଗଣନା",concept:"Capital ର 1–2% ରୁ ଅଧିକ ଗୋଟିଏ trade ରେ risk କରନ୍ତୁ ନାହିଁ।",why:"Proper sizing ଥିଲେ ଏକ bad trade ଆପଣଙ୍କ ପୁରା capital ଶେଷ କରିପାରେ ନାହିଁ।",drill:"ଆପଣଙ୍କ capital ର 1% ଓ 2% ଗଣନା କରି ଏକ reference sheet ତିଆରି କରନ୍ତୁ।",reflect:"ମୁଁ ପ୍ରତ୍ୟେକ trade ରେ ସମାନ ପରିମାଣ risk କରୁଛି କି, ନା random?"},
+{d:21,p:3,title:"Manual Backtesting",concept:"ନିଜର strategy କୁ ଗତ 1 ମାସର chart ଉପରେ manually test କରନ୍ତୁ।",why:"Backtest ବିନା strategy ଉପରେ confidence ଠିକ୍ ଆଧାର ପାଏ ନାହିଁ।",drill:"ନିଜର ORB ବା entry strategy କୁ ଗତ 10 ଦିନର chart ରେ backtest କରନ୍ତୁ।",reflect:"Backtest result ମୋ strategy ଉପରେ confidence ବଢ଼ାଇଲା ନା କମାଇଲା?"},
+{d:22,p:3,title:"Paper Trading ସପ୍ତାହ",concept:"Real capital ବିନା, ସବୁ rule ସହିତ ସମ୍ପୂର୍ଣ୍ଣ ଭାବେ trade simulate କରନ୍ତୁ।",why:"Paper trading ରେ system ତିଆରି ହୁଏ, capital risk ଭିତରେ ନୁହେଁ।",drill:"ଆଜିଠାରୁ 3 ଦିନ ପାଇଁ ସମ୍ପୂର୍ଣ୍ଣ rule ସହିତ paper trade କରନ୍ତୁ।",reflect:"Real money ନଥିଲେ ବି ମୁଁ ସେତିକି discipline ରଖୁଛି କି?"},
+{d:23,p:3,title:"ସାଧାରଣ ଭୁଲ — Chasing, Revenge Trading, Overtrading",concept:"ତିନୋଟି ଭୁଲ ବି emotion ରୁ ଜନ୍ମ ନିଏ, strategy ରୁ ନୁହେଁ।",why:"ଏହି ତିନୋଟି ଚିହ୍ନଟ କରିପାରିଲେ ବେଶିଭାଗ loss ରୁ ବଞ୍ଚିପାରିବେ।",drill:"ଗତ ସପ୍ତାହର trade ରୁ ଏକ ଚିହ୍ନଟ କରନ୍ତୁ ଯାହା ଏହି ତିନୋଟି ମଧ୍ୟରୁ ଗୋଟିଏ ଥିଲା।",reflect:"ଆଜି ମୁଁ loss ପରେ revenge trade ନେବାକୁ feel କରିଲି କି?"},
+{d:24,p:3,title:"Week 3 ସମୀକ୍ଷା — 10 ଟ୍ରେଡ୍ ଉପରେ Stress Test",concept:"ନିଜର strategy କୁ ଅଧିକ ଚାପ ଥିବା market condition ରେ ବି verify କରନ୍ତୁ।",why:"ଏକ strategy ସବୁ market condition ରେ କାମ କରେ ନାହିଁ — ସୀମା ଜାଣିବା ଜରୁରୀ।",drill:"ନିଜର ଶେଷ 10 paper trade ର win-rate ଓ risk-reward ଗଣନା କରନ୍ତୁ।",reflect:"ମୋ strategy କେଉଁ ପ୍ରକାର market ରେ ସବୁଠାରୁ ଭଲ କାମ କରେ?"},
+
+{d:25,p:4,title:"Trading Psychology — Fear, Greed ଓ Discipline Gap",concept:"Knowledge ଓ action ମଧ୍ୟରେ ଥିବା gap ହିଁ 'discipline gap' — ଏହାକୁ ବନ୍ଦ କରିବା ହିଁ ଆସଲ challenge।",why:"ଅଧିକାଂଶ trader ଜାଣନ୍ତି କଣ କରିବା ଉଚିତ, କିନ୍ତୁ emotion ଠାରୁ ହାରନ୍ତି।",drill:"ଆଜି ଗୋଟିଏ ମୁହୂର୍ତ୍ତ ଚିହ୍ନଟ କରନ୍ତୁ ଯେତେବେଳେ fear କିମ୍ବା greed decision କୁ control କଲା।",reflect:"ମୋ ସବୁଠାରୁ ବଡ଼ emotional trigger କଣ?"},
+{d:26,p:4,title:"Daily Loss Limit ଓ Max Trades Per Day",concept:"ଦିନକୁ ଗୋଟିଏ fixed loss limit ଓ max trade count ସ୍ଥିର କରନ୍ତୁ, ତାହା ପହଞ୍ଚିଲେ stop।",why:"ଏହି ଦୁଇଟି rule ଗୋଟିଏ bad day କୁ disaster ହେବାରୁ ବଞ୍ଚାଏ।",drill:"ଆପଣଙ୍କ daily loss limit ଓ max trade number ଲେଖି ଚାର୍ଟ ସାମନାରେ ରଖନ୍ତୁ।",reflect:"ମୁଁ ମୋ loss limit ପହଞ୍ଚିବା ପରେ ବି trade ଜାରି ରଖିଛି କି?"},
+{d:27,p:4,title:"Performance Tracking — Win Rate, Expectancy, Drawdown",concept:"ଏହି ତିନୋଟି metric ଦ୍ୱାରା ଆପଣ ନିଜର strategy କୁ data ସହିତ measure କରିପାରିବେ।",why:"Feeling ଅନୁସାରେ ନୁହେଁ, number ଅନୁସାରେ improve କରିବାକୁ ପଡ଼ିବ।",drill:"ନିଜର journal ରୁ win-rate ଓ average risk-reward ଗଣନା କରନ୍ତୁ।",reflect:"ମୋ data କଣ କହୁଛି ଯାହା ମୋ feeling କହୁ ନଥିଲା?"},
+{d:28,p:4,title:"Losing Streak — System ନଭାଙ୍ଗି ରଖିବା",concept:"ଲଗାତାର loss ସମୟରେ strategy ବଦଳାଇବା ବଦଳରେ size କମାନ୍ତୁ ଓ process ରେ ରୁହନ୍ତୁ।",why:"ଅଧିକାଂଶ trader ଠିକ୍ strategy ବି losing streak ସମୟରେ ଛାଡ଼ି ଦିଅନ୍ତି।",drill:"ଏକ 'losing streak protocol' ଲେଖନ୍ତୁ — 3 continuous loss ପରେ କଣ କରିବେ।",reflect:"ମୁଁ ଗତ losing streak ସମୟରେ strategy ବଦଳାଇଥିଲି କି, ନା ସ୍ଥିର ରହିଥିଲି?"},
+{d:29,p:4,title:"Scaling Up — କେତେବେଳେ Capital ବଢ଼ାଇବେ",concept:"Consistent result (minimum 1 ମାସ profitable) ପରେ ହିଁ size ବଢ଼ାନ୍ତୁ, ଗୋଟିଏ ଭଲ ଦିନ ପରେ ନୁହେଁ।",why:"ତୁରନ୍ତ scaling ଗୋଟିଏ ବଡ଼ loss ର risk ବହୁତ ଗୁଣ ବଢ଼ାଇ ଦିଏ।",drill:"ନିଜର scaling rule ଲେଖନ୍ତୁ — କେତେ consistency ପରେ size ବଢ଼ିବ।",reflect:"ମୁଁ ଏବେ scale up ପାଇଁ ପ୍ରସ୍ତୁତ, ନା ଏକ lucky streak ରେ?"},
+{d:30,p:4,title:"ଆପଣଙ୍କ ବ୍ୟକ୍ତିଗତ Trading Plan",concept:"30 ଦିନର ସବୁ ଶିକ୍ଷାକୁ ଏକ 1-page plan ରେ ସଂକଳନ କରନ୍ତୁ — style, rule, risk limit, journal habit।",why:"ଏକ ଲିଖିତ plan ବିନା, ପୁରୁଣା habit ଫେରି ଆସିବାର ସମ୍ଭାବନା ଅଧିକ।",drill:"ନିଜର 1-page Trading Plan ଲେଖନ୍ତୁ ଓ ସେହାକୁ ଡେସ୍କ ଉପରେ ରଖନ୍ତୁ।",reflect:"ଏହି 30 ଦିନରେ ମୋର ସବୁଠାରୁ ବଡ଼ ପରିବର୍ତ୍ତନ କଣ ହେଲା?"}
+];
+
+const viewed = new Set();
+let activeIndex = 0;
+
+function buildCandles(){
+  const axis = document.getElementById('candleAxis');
+  const labels = document.getElementById('candleLabels');
+  // deterministic pseudo-random walk that drifts upward
+  let price = 40;
+  DAYS.forEach((day, i)=>{
+    const seed = (day.d * 9301 + 49297) % 233280;
+    const rnd = seed / 233280;
+    const drift = (day.p - 1) * 6; // later phases trend taller
+    const open = price;
+    const move = (rnd - 0.42) * 26 + drift*0.6;
+    let close = Math.max(14, Math.min(170, open + move));
+    const high = Math.max(open, close) + rnd*14 + 4;
+    const low = Math.min(open, close) - (1-rnd)*10 - 4;
+    price = close;
+
+    const totalRange = 190;
+    const bodyTop = totalRange - Math.max(open, close);
+    const bodyHeight = Math.max(4, Math.abs(close-open));
+    const wickHeight = (high-low);
+    const wickTop = totalRange - high;
+
+    const c = document.createElement('div');
+    c.className = 'candle';
+    c.dataset.index = i;
+    c.style.height = totalRange + 'px';
+    c.innerHTML = `
+      <div class="wick" style="height:${wickHeight}px; margin-bottom:${totalRange-high - (totalRange-high)}px;"></div>
+      <div class="body ${close>=open?'up':'down'}" style="height:${bodyHeight}px; animation-delay:${i*0.02}s;"></div>
+    `;
+    // position wick centered behind body using absolute positioning instead
+    c.innerHTML = '';
+    const wick = document.createElement('div');
+    wick.className = 'wick';
+    wick.style.position = 'absolute';
+    wick.style.bottom = ((low/220)*190) + 'px';
+    wick.style.height = (wickHeight/220*190) + 'px';
+    const body = document.createElement('div');
+    body.className = 'body ' + (close>=open?'up':'down');
+    body.style.position = 'absolute';
+    body.style.bottom = ((Math.min(open,close))/220*190) + 'px';
+    body.style.height = Math.max(4,(bodyHeight/220*190)) + 'px';
+    body.style.animationDelay = (i*0.02)+'s';
+    body.style.background = PHASE_META[day.p].color;
+    if(day.p===2) body.style.background = close>=open ? 'var(--green)' : '#1f7a4f';
+    if(day.p===4) body.style.background = close>=open ? 'var(--gold)' : 'var(--red)';
+    c.style.position = 'relative';
+    c.appendChild(wick);
+    c.appendChild(body);
+    c.addEventListener('click', ()=>selectDay(i));
+    axis.appendChild(c);
+
+    const lbl = document.createElement('span');
+    lbl.textContent = day.d;
+    labels.appendChild(lbl);
+  });
+}
+
+function jumpToPhase(p){
+  document.getElementById('map').scrollIntoView({behavior:'smooth'});
+  const idx = DAYS.findIndex(d=>d.p===p);
+  setTimeout(()=>selectDay(idx), 400);
+}
+
+function selectDay(i){
+  activeIndex = i;
+  viewed.add(i);
+  document.querySelectorAll('.candle').forEach(c=>c.classList.remove('active'));
+  const el = document.querySelector('.candle[data-index="'+i+'"]');
+  if(el){ el.classList.add('active'); el.classList.add('viewed'); el.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); }
+  renderDetail();
+}
+
+function renderDetail(){
+  const day = DAYS[activeIndex];
+  const panel = document.getElementById('detailPanel');
+  panel.style.opacity = 0;
+  setTimeout(()=>{
+    panel.innerHTML = `
+      <div class="detail-top">
+        <div>
+          <div class="detail-day">DAY ${String(day.d).padStart(2,'0')} / 30</div>
+          <div class="detail-phase odia">${PHASE_META[day.p].name}</div>
+          <h3 class="odia">${day.title}</h3>
+        </div>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-block odia"><div class="lbl">ମୂଳ ଧାରଣା</div><p>${day.concept}</p></div>
+        <div class="detail-block odia"><div class="lbl">ଏହାର ଗୁରୁତ୍ୱ</div><p>${day.why}</p></div>
+        <div class="detail-block odia"><div class="lbl">ଆଜିର Drill</div><p>${day.drill}</p></div>
+        <div class="detail-block full odia"><div class="lbl">ଚିନ୍ତନ ପ୍ରଶ୍ନ</div><p>"${day.reflect}"</p></div>
+      </div>
+      <div class="detail-nav">
+        <button class="nav-btn odia" onclick="selectDay(${Math.max(0,activeIndex-1)})" ${activeIndex===0?'disabled':''}>← ଆଗ ଦିନ</button>
+        <button class="nav-btn odia" onclick="selectDay(${Math.min(29,activeIndex+1)})" ${activeIndex===29?'disabled':''}>ପର ଦିନ →</button>
+        ${day.link ? `<a href="${day.link}" class="nav-btn odia" style="text-decoration:none; display:inline-flex; align-items:center; border-color:var(--gold); color:var(--gold);">ସମ୍ପୂର୍ଣ୍ଣ ପାଠ ପଢ଼ନ୍ତୁ →</a>` : ''}
+      </div>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" style="width:${(viewed.size/30*100).toFixed(0)}%"></div></div>
+        <div class="progress-label mono">${viewed.size}/30 VIEWED</div>
+      </div>
+    `;
+    panel.style.opacity = 1;
+  }, 120);
+}
+
+buildCandles();
+selectDay(0);
+</script>
+
+</body>
+</html>
