@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }</script>
 <title>ଦିନ ୧ : ବଜାରକୁ ବୁଝନ୍ତୁ — Intraday.30</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
@@ -234,6 +235,9 @@
 </main>
 
 <script>
+window.scrollTo(0,0);
+window.addEventListener('pageshow', ()=> window.scrollTo(0,0));
+
 function bindCheckbox(id){
   const el = document.getElementById(id);
   if(!el) return;
