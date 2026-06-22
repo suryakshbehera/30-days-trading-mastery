@@ -36,6 +36,7 @@
       <div class="day-progress-track"><div class="day-progress-fill" style="width:3.3%"></div></div>
       <div class="day-progress-label mono">1/30</div>
     </div>
+    <div class="day-jump" id="dayJumpStrip"></div>
   </section>
 
   <section>
@@ -226,7 +227,7 @@
   <div class="day-nav">
     <span class="disabled odia">← ଦିନ ୦ (ନାହିଁ)</span>
     <a href="index.html#map" class="home-link odia">Candle Map କୁ ଫେରନ୍ତୁ</a>
-    <span class="disabled odia">ଦିନ ୨ — ଆସୁଛି →</span>
+    <a href="day-02.html" class="odia">ଦିନ ୨ →</a>
   </div>
 
   <footer class="book-footer">
@@ -283,6 +284,8 @@ if('serviceWorker' in navigator){
   window.addEventListener('load', ()=> navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 }
 </script>
+<script src="js/daynav.js"></script>
+<script>renderDayStrip('dayJumpStrip', 1);</script>
 <script src="js/notify.js"></script>
 
 </body>

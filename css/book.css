@@ -86,6 +86,18 @@ section{ padding:64px 8vw; max-width:880px; margin:0 auto; }
 .day-progress-fill{ height:100%; background:var(--gold); }
 .day-progress-label{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--paper-dim); white-space:nowrap; }
 
+/* ---------- DAY JUMP STRIP ---------- */
+.day-jump{ display:flex; gap:8px; overflow-x:auto; padding:22px 0 6px; scrollbar-width:thin; }
+.day-jump-pill{
+  flex:0 0 auto; display:flex; align-items:center; justify-content:center;
+  width:34px; height:34px; border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:12.5px;
+  background:var(--ink-soft); border:1px solid var(--ink-line); color:var(--gold); text-decoration:none;
+  transition:border-color .2s ease;
+}
+.day-jump-pill:hover{ border-color:var(--gold); }
+.day-jump-pill.active{ background:var(--gold); color:var(--ink); border-color:var(--gold); font-weight:700; }
+.day-jump-pill.locked{ color:var(--paper-dim); opacity:0.4; cursor:not-allowed; }
+
 /* ---------- MENTOR MESSAGE ---------- */
 .mentor-msg{
   background:var(--ink-soft); border:1px solid var(--ink-line); border-left:3px solid var(--gold);
@@ -134,6 +146,24 @@ section{ padding:64px 8vw; max-width:880px; margin:0 auto; }
 .mini-chart .pt{ fill:var(--gold); }
 .mini-chart text{ font-family:'JetBrains Mono',monospace; font-size:10px; fill:var(--paper-dim); }
 .mini-chart .profit{ font-family:'JetBrains Mono',monospace; font-size:13px; fill:var(--green); font-weight:700; }
+
+/* compare bars (e.g. two outcomes over time) */
+.compare-wrap{ display:flex; gap:48px; justify-content:center; align-items:flex-end; min-height:220px; flex-wrap:wrap; }
+.compare-col{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+.compare-bars{ display:flex; gap:10px; align-items:flex-end; }
+.compare-bar{ width:46px; border-radius:6px 6px 0 0; transition:height .3s ease; }
+.compare-bar.start{ background:var(--paper-dim); }
+.compare-bar.bad{ background:var(--red); }
+.compare-bar.good{ background:var(--green); }
+.compare-amt{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--paper-dim); }
+.compare-name{ font-family:'Fraunces',serif; font-size:15px; margin-top:4px; }
+
+/* chain of escalating events (e.g. revenge trading sequence) */
+.chain-row{ display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; }
+.chain-box{ background:var(--ink); border:1px solid var(--ink-line); border-radius:10px; padding:14px 18px; text-align:center; min-width:110px; }
+.chain-box .lbl{ font-size:11.5px; color:var(--paper-dim); }
+.chain-box .amt{ font-family:'JetBrains Mono',monospace; font-size:15px; margin-top:6px; color:var(--red); font-weight:700; }
+.chain-arrow{ font-size:18px; color:var(--gold); }
 
 /* zero-sum transfer */
 .transfer-row{ display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap; }

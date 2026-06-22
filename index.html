@@ -230,6 +230,19 @@
   .progress-fill{ height:100%; background:var(--gold); width:0%; transition:width .4s ease; }
   .progress-label{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--paper-dim); white-space:nowrap; }
 
+  /* ---------- DAY GRID ---------- */
+  .day-grid{ display:grid; grid-template-columns:repeat(10,1fr); gap:10px; }
+  @media(max-width:900px){ .day-grid{ grid-template-columns:repeat(6,1fr); } }
+  @media(max-width:560px){ .day-grid{ grid-template-columns:repeat(5,1fr); gap:8px; } }
+  .day-grid-item{
+    display:flex; align-items:center; justify-content:center;
+    aspect-ratio:1; border-radius:10px; font-family:'JetBrains Mono',monospace; font-size:14px;
+    background:var(--ink-soft); border:1px solid var(--ink-line); color:var(--gold); text-decoration:none;
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .day-grid-item:hover{ transform:translateY(-2px); border-color:var(--gold); }
+  .day-grid-item.locked{ color:var(--paper-dim); opacity:0.4; cursor:not-allowed; }
+
   /* ---------- WHO ---------- */
   .who-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
   @media(max-width:700px){ .who-grid{ grid-template-columns:1fr; } }
@@ -263,6 +276,7 @@
   <div class="nav-right">
     <div class="nav-links">
       <a href="#map">Candle Map</a>
+      <a href="#days">ସବୁ ଦିନ</a>
       <a href="#phases">Phases</a>
       <a href="#mentor">Mentor</a>
       <a href="#who">କାହାପାଇଁ</a>
@@ -367,6 +381,16 @@
   </div>
 </section>
 
+<!-- DAY GRID -->
+<section id="days">
+  <div class="sec-head">
+    <div class="sec-eyebrow odia">ସିଧାସଳଖ ଯାଆନ୍ତୁ</div>
+    <h2 class="odia">ସମସ୍ତ 30 ଦିନ</h2>
+    <p class="odia">ଯେକୌଣସି ଦିନରେ ସିଧାସଳଖ ଯାଆନ୍ତୁ। Gold ବଟନ୍ ଖୋଲିଛି, ଗ୍ରେ ବଟନ୍ ଆସୁଛି।</p>
+  </div>
+  <div class="day-grid" id="dayGrid"></div>
+</section>
+
 <!-- WHO -->
 <section id="who">
   <div class="sec-head">
@@ -421,7 +445,7 @@ const PHASE_META = {
 
 const DAYS = [
 {d:1,p:1,title:"କାହିଁକି 90% Intraday Trader ହାରନ୍ତି",concept:"ଅଧିକାଂଶ trader strategy ଅଭାବରୁ ନୁହେଁ, discipline ଅଭାବରୁ ହାରନ୍ତି।",why:"ପ୍ରକୃତ କାରଣ ଜାଣିଲେ ଆପଣ ସେହି ଭୁଲ ପୁନରାବୃତ୍ତି କରିବେ ନାହିଁ।",drill:"ଆପଣଙ୍କ ଶେଷ 5ଟି ଲୋସିଂ ଟ୍ରେଡ୍ ମନେ ପକାନ୍ତୁ — emotion ନା strategy ଭୁଲ ଥିଲା?",reflect:"ମୁଁ ଗତ ଥର କାହିଁକି loss କରିଥିଲି?",link:"day-01.html"},
-{d:2,p:1,title:"Market କିପରି ଚାଲେ — Liquidity ଓ Volatility",concept:"Price movement Liquidity (buyer-seller) ଓ Volatility (price swing) ଉପରେ ନିର୍ଭର କରେ।",why:"Low-liquidity stock ରେ trade କଲେ slippage ଓ false signal ବଢ଼େ।",drill:"3ଟି high-volume stock ଓ 3ଟି low-volume stock ର chart compare କରନ୍ତୁ।",reflect:"ମୁଁ ଯେଉଁ stock ବାଛୁଛି, ତାହାର daily volume କେତେ?"},
+{d:2,p:1,title:"କାହିଁକି 90% ଟ୍ରେଡର କ୍ଷତି କରନ୍ତି?",concept:"Strategy ଠାରୁ ଅଧିକ ଜରୁରୀ ହେଉଛି Mindset — Greed, Fear ଓ Revenge Trading ହିଁ ସବୁଠାରୁ ବଡ଼ ସତ୍ରୁ।",why:"ସଠିକ୍ mindset ବିନା, ସବୁଠାରୁ ଭଲ strategy ବି ବିଫଳ ହୁଏ।",drill:"ନିଜର 3ଟି ବଡ଼ ଦୁର୍ବଳତା ଲେଖନ୍ତୁ ଓ ନିଜର Trading Rules ତିଆରି କରନ୍ତୁ।",reflect:"ମୁଁ Trading ରୁ ଟଙ୍କା ଚାହୁଁଛି, ନା Skill ଚାହୁଁଛି?",link:"day-02.html"},
 {d:3,p:1,title:"ଆପଣଙ୍କ Trading Style ବାଛନ୍ତୁ — Scalping vs Momentum vs Breakout",concept:"Style ଆପଣଙ୍କ ସ୍ୱଭାବ ସହିତ match ହେବା ଦରକାର — ସବୁଠାରୁ profitable style ନୁହେଁ।",why:"ଅସମଞ୍ଜସ style impatience ଓ overtrading ଆଣେ।",drill:"ତିନୋଟି style ର ଗୋଟିଏ-ଗୋଟିଏ ଲାଇନ୍ ବର୍ଣ୍ଣନା ଲେଖି, ନିଜ ସହିତ ସବୁଠାରୁ ମେଳ ଖାଉଥିବାଟି ଚିହ୍ନଟ କରନ୍ତୁ।",reflect:"ମୁଁ patient ନା quick decision ନେବାରେ comfortable?"},
 {d:4,p:1,title:"Stock Selection — 'Tradeable' Stock ର ଲକ୍ଷଣ",concept:"ଭଲ intraday stock ର ଥାଏ: high liquidity, clear trend, ଓ predictable range।",why:"ଭୁଲ stock ବାଛିଲେ ସବୁଠାରୁ ଭଲ strategy ବି fail ହୁଏ।",drill:"ଆଜି ପାଇଁ 5ଟି stock ର watchlist ତିଆରି କରନ୍ତୁ, ତିନୋଟି criteria ଲେଖି।",reflect:"ମୁଁ tip ଶୁଣି stock ବାଛୁଛି, ନା ନିଜର criteria ଅନୁସାରେ?"},
 {d:5,p:1,title:"Market Sessions ବୁଝନ୍ତୁ",concept:"Opening range (9:15–9:45), mid-day lull, ଓ closing hour — ତିନୋଟିର character ଅଲଗା।",why:"ସେହି ସମୟ ବୁଝି trade କଲେ false breakout ରୁ ବଞ୍ଚିପାରିବେ।",drill:"ଆଜି ବଜାର ଖୋଲିଲାବେଳେ price action 15 ମିନିଟ୍ ଧରି observe କରନ୍ତୁ, trade ନକରନ୍ତୁ।",reflect:"ମୁଁ କେଉଁ session ରେ ସବୁଠାରୁ ଭଲ decision ନେଇଥାଏ?"},
@@ -587,6 +611,8 @@ installBtn.addEventListener('click', async ()=>{
 });
 window.addEventListener('appinstalled', ()=>{ installBtn.hidden = true; });
 </script>
+<script src="js/daynav.js"></script>
+<script>renderDayGrid('dayGrid');</script>
 <script src="js/notify.js"></script>
 
 </body>
