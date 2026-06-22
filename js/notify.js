@@ -10,7 +10,8 @@
     const opts = { body, icon: 'icons/icon-192.png', badge: 'icons/icon-192.png' };
     if(navigator.serviceWorker){
       try{
-        const reg = await navigator.serviceWorker.ready;
+        const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('sw-timeout')), 1500));
+        const reg = await Promise.race([navigator.serviceWorker.ready, timeout]);
         if(reg && reg.showNotification){ reg.showNotification(title, opts); return; }
       }catch(e){}
     }
