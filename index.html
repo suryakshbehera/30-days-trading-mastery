@@ -72,6 +72,8 @@
     white-space:nowrap;
   }
   .install-btn:hover{ transform:translateY(-1px); }
+  .install-btn--ghost{ background:transparent; border:1px solid var(--ink-line); color:var(--paper-dim); }
+  .install-btn--ghost:hover{ border-color:var(--gold); color:var(--gold); }
   @media(max-width:380px){ .install-btn{ font-size:11.5px; padding:8px 12px; } }
 
   /* ---------- HERO ---------- */
@@ -265,6 +267,7 @@
       <a href="#mentor">Mentor</a>
       <a href="#who">କାହାପାଇଁ</a>
     </div>
+    <button id="notifBtn" class="install-btn install-btn--ghost"></button>
     <button id="installBtn" class="install-btn odia" hidden>App Install କରନ୍ତୁ</button>
   </div>
 </nav>
@@ -584,6 +587,7 @@ installBtn.addEventListener('click', async ()=>{
 });
 window.addEventListener('appinstalled', ()=>{ installBtn.hidden = true; });
 </script>
+<script src="js/notify.js"></script>
 
 </body>
 </html>

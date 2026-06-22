@@ -23,6 +23,7 @@
   <div class="nav-links">
     <span class="day-pill mono">DAY 01 / 30</span>
     <a href="index.html#map">Candle Map</a>
+    <button id="notifBtn" class="notif-btn"></button>
   </div>
 </nav>
 
@@ -282,6 +283,7 @@ if('serviceWorker' in navigator){
   window.addEventListener('load', ()=> navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 }
 </script>
+<script src="js/notify.js"></script>
 
 </body>
 </html>
