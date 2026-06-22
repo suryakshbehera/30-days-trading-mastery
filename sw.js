@@ -1,4 +1,4 @@
-const CACHE = 'intraday30-v2';
+const CACHE = 'intraday30-v3';
 const ASSETS = ['/index.html', '/day-01.html', '/day-02.html', '/css/book.css', '/js/notify.js', '/js/daynav.js', '/manifest.json'];
 
 self.addEventListener('install', (e) => {

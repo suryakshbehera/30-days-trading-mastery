@@ -2,9 +2,27 @@
   const KEY_LAST = 'i30-last-visit';
   const KEY_STREAK = 'i30-streak';
   const KEY_PREF = 'i30-notif-enabled';
+  const KEY_LAST_DAY = 'i30-last-day';
+
+  const ODIA_DIGITS = ['୦','୧','୨','୩','୪','୫','୬','୭','୮','୯'];
+  function toOdiaNumber(n){ return String(n).split('').map(c => ODIA_DIGITS[c] || c).join(''); }
 
   function todayStr(){ return new Date().toISOString().slice(0,10); }
   function yesterdayStr(){ const d = new Date(); d.setDate(d.getDate()-1); return d.toISOString().slice(0,10); }
+
+  if(typeof window.CURRENT_DAY === 'number'){
+    localStorage.setItem(KEY_LAST_DAY, String(window.CURRENT_DAY));
+  }
+
+  function nextDayMessage(streak){
+    const lastDay = parseInt(localStorage.getItem(KEY_LAST_DAY) || '0', 10);
+    const nextDay = lastDay + 1;
+    const builtDays = window.BUILT_DAYS || [];
+    if(builtDays.includes(nextDay)){
+      return `ଦିନ ${toOdiaNumber(nextDay)} ଆପଣଙ୍କୁ ଅପେକ୍ଷା କରୁଛି! 🔥`;
+    }
+    return 'ନୂଆ ଦିନ ଆସିଛି! 🔥';
+  }
 
   async function showNotif(title, body){
     const opts = { body, icon: 'icons/icon-192.png', badge: 'icons/icon-192.png' };
@@ -31,7 +49,7 @@
     localStorage.setItem(KEY_STREAK, String(streak));
 
     if(last && prefOn()){
-      showNotif('ନୂଆ ଦିନ ଆସିଛି! 🔥', `ଆପଣଙ୍କ streak: ${streak} ଦିନ — ଆଜିର challenge ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ।`);
+      showNotif(nextDayMessage(streak), `ଆପଣଙ୍କ streak: ${toOdiaNumber(streak)} ଦିନ — ଆଜିର challenge ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ।`);
     }
     localStorage.setItem(KEY_LAST, today);
   }
