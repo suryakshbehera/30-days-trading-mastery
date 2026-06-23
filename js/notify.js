@@ -3,6 +3,10 @@
   const KEY_STREAK = 'i30-streak';
   const KEY_PREF = 'i30-notif-enabled';
   const KEY_LAST_DAY = 'i30-last-day';
+  const KEY_NOTIF_SENT = 'i30-notif-sent-date';
+
+  const REMIND_HOUR = 7;
+  const REMIND_MIN = 30;
 
   const ODIA_DIGITS = ['୦','୧','୨','୩','୪','୫','୬','୭','୮','୯'];
   function toOdiaNumber(n){ return String(n).split('').map(c => ODIA_DIGITS[c] || c).join(''); }
@@ -40,18 +44,41 @@
     return localStorage.getItem(KEY_PREF) === '1' && 'Notification' in window && Notification.permission === 'granted';
   }
 
-  function trackVisitAndMaybeRemind(){
+  function trackVisit(){
     const today = todayStr();
     const last = localStorage.getItem(KEY_LAST);
-    if(last === today) return;
+    if(last === today) return { streak: parseInt(localStorage.getItem(KEY_STREAK) || '0', 10), hadPriorVisit: !!last };
 
     const streak = (last === yesterdayStr()) ? (parseInt(localStorage.getItem(KEY_STREAK) || '0', 10) + 1) : 1;
     localStorage.setItem(KEY_STREAK, String(streak));
-
-    if(last && prefOn()){
-      showNotif(nextDayMessage(streak), `ଆପଣଙ୍କ streak: ${toOdiaNumber(streak)} ଦିନ — ଆଜିର challenge ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ।`);
-    }
     localStorage.setItem(KEY_LAST, today);
+    return { streak, hadPriorVisit: !!last };
+  }
+
+  function remindTimeToday(){
+    const t = new Date();
+    t.setHours(REMIND_HOUR, REMIND_MIN, 0, 0);
+    return t;
+  }
+
+  function fireDailyReminder(streak){
+    const today = todayStr();
+    if(localStorage.getItem(KEY_NOTIF_SENT) === today) return;
+    localStorage.setItem(KEY_NOTIF_SENT, today);
+    showNotif(nextDayMessage(streak), `ଆପଣଙ୍କ streak: ${toOdiaNumber(streak)} ଦିନ — ଆଜିର challenge ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ।`);
+  }
+
+  function maybeRemind(streak){
+    if(!prefOn()) return;
+    if(localStorage.getItem(KEY_NOTIF_SENT) === todayStr()) return;
+
+    const now = new Date();
+    const target = remindTimeToday();
+    if(now >= target){
+      fireDailyReminder(streak);
+    }else{
+      setTimeout(() => fireDailyReminder(streak), target - now);
+    }
   }
 
   function bindNotifButton(){
@@ -79,6 +106,7 @@
     });
   }
 
-  trackVisitAndMaybeRemind();
+  const visit = trackVisit();
+  if(visit.hadPriorVisit) maybeRemind(visit.streak);
   bindNotifButton();
 })();
