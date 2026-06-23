@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+</script>
+<title>ଦିନ ୩ : Market Structure — Trend କୁ ଚିହ୍ନିବା — Intraday.30</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Oriya:wght@500;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="read-progress" id="readProgress"></div>
+
+<nav>
+  <a href="index.html" class="brand">Intraday<span>.</span>30</a>
+  <div class="nav-links">
+    <span class="day-pill mono">DAY 03 / 30</span>
+    <a href="index.html#map">Candle Map</a>
+    <button id="notifBtn" class="notif-btn"></button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="day-hero">
+    <div class="day-eyebrow odia">ଫେଜ୍ ୦୧ — ମୌଳିକ ଭିତ୍ତି</div>
+    <h1 class="odia">ଦିନ ୩ : Market Structure — Trend କୁ ଚିହ୍ନିବା</h1>
+    <div class="day-progress-row">
+      <div class="day-progress-track"><div class="day-progress-fill" style="width:10%"></div></div>
+      <div class="day-progress-label mono">3/30</div>
+    </div>
+    <div class="day-jump" id="dayJumpStrip"></div>
+  </section>
+
+  <section>
+    <div class="mentor-msg odia">
+      <div class="salutation">ମେଣ୍ଟରଙ୍କ ବାର୍ତ୍ତା — ଜୀବନ,</div>
+      <p>ଅଧିକାଂଶ ନୂଆ ଟ୍ରେଡର ଚାର୍ଟରେ Indicator ଖୋଜନ୍ତି। Professional Trader ପ୍ରଥମେ <strong>Trend</strong> ଖୋଜନ୍ତି।</p>
+      <p>କାରଣ — "Trend ହେଉଛି Market ର ଭାଷା।" ଯଦି ତୁମେ Trend ବୁଝିପାରିବ, ତେବେ Trading ର <strong>50% ଯୁଦ୍ଧ</strong> ଜିତିଯିବ।</p>
+    </div>
+
+    <!-- LESSON 1 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୧</div>
+      <h2>Trend କଣ?</h2>
+      <p>Trend ର ଅର୍ଥ ହେଉଛି — Market କେଉଁ Direction କୁ ଯାଉଛି। ଠିକ୍ ନଦୀର ପାଣି ଭଳି। ନଦୀ ଯେଉଁ ଦିଗକୁ ବହୁଛି, ସେହି ଦିଗକୁ ପହଁରିବା ସହଜ। ବିପରୀତ ଦିଗକୁ ପହଁରିବା କଷ୍ଟକର। Market ରେ ମଧ୍ୟ ସେହି ନିୟମ।</p>
+
+      <div class="visual">
+        <div class="vs-row">
+          <div class="vs-card buy">
+            <div class="icon">🌊</div>
+            <h4 class="odia">Trend ସହିତ</h4>
+            <p class="odia">ସହଜ — ପ୍ରବାହ ତୁମ ସାଙ୍ଗରେ ବହେ</p>
+          </div>
+          <div class="vs-mid">VS</div>
+          <div class="vs-card sell">
+            <div class="icon">🚧</div>
+            <h4 class="odia">Trend ବିପକ୍ଷରେ</h4>
+            <p class="odia">କଷ୍ଟକର — ପ୍ରବାହ ତୁମ ବିରୋଧରେ ବହେ</p>
+          </div>
+        </div>
+        <div class="visual-cap odia">ବଜାର ମଧ୍ୟ ନଦୀ ଭଳି — Trend ସହିତ ଚାଲିଲେ ଯାତ୍ରା ସହଜ ହୁଏ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୨</div>
+      <h2>Uptrend</h2>
+      <p>Uptrend ର ଅର୍ଥ — ଦାମ ଧୀରେ ଧୀରେ ଉପରକୁ ଯାଉଛି। Market ନୂଆ High କରୁଛି, ଏବଂ ପୁରୁଣା Low ଭାଙ୍ଗୁ ନାହିଁ।</p>
+      <p>ସରଳ ଭାଷାରେ — <strong>Higher High + Higher Low = Uptrend</strong></p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 160" preserveAspectRatio="xMidYMid meet">
+          <line x1="20" y1="140" x2="460" y2="140" stroke="#23282f" stroke-width="1"/>
+          <polyline class="line" points="30,110 110,90 190,100 270,65 350,80 430,35"/>
+          <circle class="pt" cx="110" cy="90" r="4"/>
+          <circle class="pt" cx="270" cy="65" r="4"/>
+          <circle class="pt" cx="430" cy="35" r="4"/>
+          <text x="14" y="125">₹100</text>
+          <text x="92" y="82">₹110</text>
+          <text x="172" y="115">₹105</text>
+          <text x="252" y="57">₹120</text>
+          <text x="324" y="95">₹115</text>
+          <text x="395" y="27">₹130</text>
+          <text class="profit" x="150" y="152">Higher High + Higher Low</text>
+        </svg>
+        <div class="visual-cap odia">₹100 → ₹110 → ₹105 → ₹120 → ₹115 → ₹130 — Buyer ମାନେ ଶକ୍ତିଶାଳୀ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୩</div>
+      <h2>Downtrend</h2>
+      <p>Downtrend ର ଅର୍ଥ — ଦାମ ଧୀରେ ଧୀରେ ତଳକୁ ଯାଉଛି। Market ନୂଆ Low କରୁଛି, ଏବଂ ପୁରୁଣା High ଭାଙ୍ଗୁ ନାହିଁ।</p>
+      <p>ସରଳ ଭାଷାରେ — <strong>Lower High + Lower Low = Downtrend</strong></p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 160" preserveAspectRatio="xMidYMid meet">
+          <line x1="20" y1="140" x2="460" y2="140" stroke="#23282f" stroke-width="1"/>
+          <polyline class="line down" points="30,35 110,65 190,50 270,95 350,80 430,115"/>
+          <circle class="pt" cx="110" cy="65" r="4"/>
+          <circle class="pt" cx="270" cy="95" r="4"/>
+          <circle class="pt" cx="430" cy="115" r="4"/>
+          <text x="14" y="27">₹130</text>
+          <text x="92" y="80">₹120</text>
+          <text x="172" y="42">₹125</text>
+          <text x="248" y="110">₹110</text>
+          <text x="324" y="95">₹115</text>
+          <text x="392" y="130">₹100</text>
+          <text x="150" y="152">Lower High + Lower Low</text>
+        </svg>
+        <div class="visual-cap odia">₹130 → ₹120 → ₹125 → ₹110 → ₹115 → ₹100 — Seller ମାନେ ଶକ୍ତିଶାଳୀ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 4 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୪</div>
+      <h2>Sideways Market</h2>
+      <p>କେବେ କେବେ Market କୌଣସି Direction ନେଉନାହିଁ। ସେ ଗୋଟିଏ Range ଭିତରେ ଘୁରେ। ଏଠାରେ Buyer ଓ Seller ଦୁହେଁ ସମାନ ଶକ୍ତିଶାଳୀ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 160" preserveAspectRatio="xMidYMid meet">
+          <line x1="20" y1="65" x2="460" y2="65" stroke="var(--paper-dim)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="20" y1="95" x2="460" y2="95" stroke="var(--paper-dim)" stroke-width="1" stroke-dasharray="4,4"/>
+          <polyline class="line" points="40,85 140,65 240,95 340,72 440,78"/>
+          <circle class="pt" cx="140" cy="65" r="4"/>
+          <circle class="pt" cx="240" cy="95" r="4"/>
+          <text x="14" y="61">₹103</text>
+          <text x="14" y="108">₹99</text>
+          <text x="350" y="118">Range-bound</text>
+        </svg>
+        <div class="visual-cap odia">₹100 → ₹103 → ₹99 → ₹102 → ₹101 — ନୂଆ Trader ମାନଙ୍କର ଅଧିକ Loss ଏହି Market ରେ ହୁଏ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 5 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୫</div>
+      <h2>Trend ବିପକ୍ଷରେ Trade କାହିଁକି ଜନ୍ତ୍ରଣାଦାୟକ?</h2>
+      <p>ଧର ଗୋଟିଏ Stock ଲଗାତାର Uptrend ରେ ଅଛି। ତୁମେ ଭାବିଲା — "ବହୁତ ବଢ଼ିଗଲା, ଏବେ ନିଶ୍ଚୟ ତଳକୁ ଆସିବ।" ତୁମେ Sell କଲା। କିନ୍ତୁ Stock ଆଉ 10% ବଢ଼ିଗଲା। ତୁମର Loss ହେଲା।</p>
+
+      <div class="visual">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">Stock</div><div class="amt" style="color:var(--green);">Uptrend ↑</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ତୁମେ ଭାବିଲ</div><div class="amt">SELL କଲ</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ପରିଣାମ</div><div class="amt">ଆଉ 10% ବଢ଼ି Loss</div></div>
+        </div>
+        <div class="visual-cap odia">ବଜାରର Famous Rule — "Trend is your friend." Trend ସହିତ ଯୁଦ୍ଧ କରନି, Trend ସହିତ ଚାଲ।</div>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <div class="story odia">
+      <div class="story-eyebrow">ପ୍ରକୃତ କାହାଣୀ</div>
+      <p>ଗୋଟିଏ ନୂଆ Trader ପ୍ରତିଦିନ Chart ରେ Top ଓ Bottom ଧରିବାକୁ ଚେଷ୍ଟା କରୁଥିଲା। Stock ଉପରକୁ ଯାଉଥିଲେ Sell କରୁଥିଲା। Stock ତଳକୁ ଯାଉଥିଲେ Buy କରୁଥିଲା।</p>
+      <p>3 ମାସ ପରେ ତାର Capital ର ଅଧା ଶେଷ ହୋଇଗଲା। ତାପରେ ସେ ମାତ୍ର ଗୋଟିଏ Rule Follow କଲା — "Uptrend ରେ Buy, Downtrend ରେ Sell।" ପରବର୍ତ୍ତୀ 6 ମାସରେ ତାର Trading ସମ୍ପୂର୍ଣ୍ଣ ବଦଳିଗଲା। <strong>କାରଣ ସେ Market ସହିତ ଲଢ଼ିବା ବନ୍ଦ କରିଦେଇଥିଲା।</strong></p>
+
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">3 ମାସ</div><div class="amt">Capital ଅଧା ଶେଷ</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">1 ନିୟମ</div><div class="amt" style="color:var(--gold); font-size:12.5px;">Trend ସହିତ ଚାଲ</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ପର 6 ମାସ</div><div class="amt" style="color:var(--green);">ସମ୍ପୂର୍ଣ୍ଣ ବଦଳିଗଲା</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <blockquote class="odia">"ବଜାର କେଉଁଠି ଯିବ ତାହା ଅନୁମାନ କରନି। ବଜାର ଯେଉଁଠି ଯାଉଛି ସେଠାରେ ଯୋଗ ଦିଅ।"</blockquote>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="challenge odia">
+      <div class="lesson-tag mono">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(22px,3vw,30px); font-weight:600; margin:10px 0 22px;">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ</h2>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task1chk" data-key="day3-task1-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୧</div>
+          <h4>କୌଣସି 5ଟି Stock ର Chart ଖୋଲ</h4>
+          <p>ପ୍ରତ୍ୟେକକୁ ଚିହ୍ନଟ କର — Uptrend, Downtrend, ନା Sideways।</p>
+          <div class="journal-box">
+            <textarea id="task1text" placeholder="ଉଦାହରଣ: TCS — Uptrend, INFY — Sideways..."></textarea>
+            <div class="save-note" id="task1save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task2chk" data-key="day3-task2-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୨</div>
+          <h4>ଖାତାରେ 3ଟି ଚିତ୍ର ଆଙ୍କ</h4>
+          <ul>
+            <li>Uptrend</li>
+            <li>Downtrend</li>
+            <li>Sideways Market</li>
+          </ul>
+          <p>ନିଜ ହାତରେ ଆଙ୍କିଲେ Trend ମନରେ ବସିଯିବ।</p>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task3chk" data-key="day3-task3-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୩</div>
+          <h4>ଆଜିଠାରୁ ଗୋଟିଏ Rule ଲେଖ</h4>
+          <p>"ମୁଁ Trend ବିପକ୍ଷରେ Trade ନେବି ନାହିଁ।" ଏହାକୁ Trading Journal ର ପ୍ରଥମ ପୃଷ୍ଠାରେ ଲେଖ।</p>
+          <div class="journal-box">
+            <textarea id="task3text" placeholder="ଏଠାରେ ଲେଖନ୍ତୁ..."></textarea>
+            <div class="save-note" id="task3save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary odia">
+      <h3>ଦିନ ୩ ର ସାରାଂଶ — ଆଜି ତୁମେ ଶିଖିଲ</h3>
+      <ul>
+        <li>Trend କଣ</li>
+        <li>Uptrend କଣ</li>
+        <li>Downtrend କଣ</li>
+        <li>Sideways Market କଣ</li>
+        <li>Trend ସହିତ Trade କାହିଁକି କରିବା ଉଚିତ</li>
+      </ul>
+    </div>
+
+    <div class="golden-rule odia">
+      <div class="tag mono">ସୁବର୍ଣ୍ଣ ନିୟମ #୩</div>
+      <strong>"Trend ତୁମର <span>ବନ୍ଧୁ</span>। Trend ବିରୋଧରେ ଯୁଦ୍ଧ କରନି।"</strong>
+    </div>
+
+  </section>
+
+  <div class="day-nav">
+    <a href="day-02.html" class="odia">← ଦିନ ୨</a>
+    <a href="index.html#map" class="home-link odia">Candle Map କୁ ଫେରନ୍ତୁ</a>
+    <span class="disabled odia">ଦିନ ୪ — ଆସୁଛି →</span>
+  </div>
+
+  <footer class="book-footer">
+    <span class="odia">ଗଠିତ ହେଲା ଏକ Professional Mentor ପାଇଁ —</span> <span class="sig">Intraday.30</span>
+  </footer>
+
+</main>
+
+<script>
+window.scrollTo(0,0);
+window.addEventListener('pageshow', ()=> window.scrollTo(0,0));
+
+function bindCheckbox(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const key = el.dataset.key;
+  el.checked = localStorage.getItem(key) === '1';
+  el.addEventListener('change', ()=> localStorage.setItem(key, el.checked ? '1' : '0'));
+}
+['task1chk','task2chk','task3chk'].forEach(bindCheckbox);
+
+function bindJournal(textId, saveId, key){
+  const t = document.getElementById(textId);
+  const save = document.getElementById(saveId);
+  if(!t) return;
+  t.value = localStorage.getItem(key) || '';
+  let timer;
+  t.addEventListener('input', ()=>{
+    clearTimeout(timer);
+    save.classList.remove('saved');
+    timer = setTimeout(()=>{
+      localStorage.setItem(key, t.value);
+      save.textContent = 'ସେଭ୍ ହୋଇଗଲା ✓';
+      save.classList.add('saved');
+    }, 500);
+  });
+}
+bindJournal('task1text','task1save','day3-task1-text');
+bindJournal('task3text','task3save','day3-task3-text');
+
+function updateProgress(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (scrolled / max) * 100 : 0;
+  document.getElementById('readProgress').style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=> navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+<script src="js/daynav.js"></script>
+<script>renderDayStrip('dayJumpStrip', 3); window.CURRENT_DAY = 3;</script>
+<script src="js/notify.js"></script>
+
+</body>
+</html>
