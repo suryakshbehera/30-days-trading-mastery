@@ -3,10 +3,10 @@
   const KEY_STREAK = 'i30-streak';
   const KEY_PREF = 'i30-notif-enabled';
   const KEY_LAST_DAY = 'i30-last-day';
-  const KEY_NOTIF_SENT = 'i30-notif-sent-date';
+  const KEY_SUB_ENDPOINT = 'i30-push-endpoint';
 
-  const REMIND_HOUR = 7;
-  const REMIND_MIN = 30;
+  const VAPID_PUBLIC_KEY = 'REPLACE_AFTER_DEPLOY';
+  const WORKER_URL = 'https://intraday30-push.REPLACE_AFTER_DEPLOY.workers.dev';
 
   const ODIA_DIGITS = ['୦','୧','୨','୩','୪','୫','୬','୭','୮','୯'];
   function toOdiaNumber(n){ return String(n).split('').map(c => ODIA_DIGITS[c] || c).join(''); }
@@ -14,18 +14,56 @@
   function todayStr(){ return new Date().toISOString().slice(0,10); }
   function yesterdayStr(){ const d = new Date(); d.setDate(d.getDate()-1); return d.toISOString().slice(0,10); }
 
-  if(typeof window.CURRENT_DAY === 'number'){
-    localStorage.setItem(KEY_LAST_DAY, String(window.CURRENT_DAY));
+  function urlBase64ToUint8Array(base64String){
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding).replace(/-/g,'+').replace(/_/g,'/');
+    const raw = atob(base64);
+    return Uint8Array.from([...raw].map(c => c.charCodeAt(0)));
   }
 
-  function nextDayMessage(streak){
-    const lastDay = parseInt(localStorage.getItem(KEY_LAST_DAY) || '0', 10);
-    const nextDay = lastDay + 1;
-    const builtDays = window.BUILT_DAYS || [];
-    if(builtDays.includes(nextDay)){
-      return `ଦିନ ${toOdiaNumber(nextDay)} ଆପଣଙ୍କୁ ଅପେକ୍ଷା କରୁଛି! 🔥`;
-    }
-    return 'ନୂଆ ଦିନ ଆସିଛି! 🔥';
+  async function getExistingSubscription(){
+    if(!('serviceWorker' in navigator)) return null;
+    const reg = await navigator.serviceWorker.ready;
+    return reg.pushManager.getSubscription();
+  }
+
+  async function subscribeToPush(){
+    const reg = await navigator.serviceWorker.ready;
+    const sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+    });
+    await fetch(WORKER_URL + '/subscribe', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(sub.toJSON()),
+    });
+    localStorage.setItem(KEY_SUB_ENDPOINT, sub.endpoint);
+    return sub;
+  }
+
+  async function unsubscribeFromPush(){
+    const sub = await getExistingSubscription();
+    if(!sub) return;
+    await fetch(WORKER_URL + '/unsubscribe', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ endpoint: sub.endpoint }),
+    }).catch(()=>{});
+    await sub.unsubscribe().catch(()=>{});
+    localStorage.removeItem(KEY_SUB_ENDPOINT);
+  }
+
+  function pingProgress(day){
+    const endpoint = localStorage.getItem(KEY_SUB_ENDPOINT);
+    if(!endpoint) return;
+    fetch(WORKER_URL + '/progress', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ endpoint, day }),
+    }).catch(()=>{});
+  }
+
+  if(typeof window.CURRENT_DAY === 'number'){
+    localStorage.setItem(KEY_LAST_DAY, String(window.CURRENT_DAY));
+    pingProgress(window.CURRENT_DAY);
   }
 
   async function showNotif(title, body){
@@ -47,38 +85,12 @@
   function trackVisit(){
     const today = todayStr();
     const last = localStorage.getItem(KEY_LAST);
-    if(last === today) return { streak: parseInt(localStorage.getItem(KEY_STREAK) || '0', 10), hadPriorVisit: !!last };
+    if(last === today) return parseInt(localStorage.getItem(KEY_STREAK) || '0', 10);
 
     const streak = (last === yesterdayStr()) ? (parseInt(localStorage.getItem(KEY_STREAK) || '0', 10) + 1) : 1;
     localStorage.setItem(KEY_STREAK, String(streak));
     localStorage.setItem(KEY_LAST, today);
-    return { streak, hadPriorVisit: !!last };
-  }
-
-  function remindTimeToday(){
-    const t = new Date();
-    t.setHours(REMIND_HOUR, REMIND_MIN, 0, 0);
-    return t;
-  }
-
-  function fireDailyReminder(streak){
-    const today = todayStr();
-    if(localStorage.getItem(KEY_NOTIF_SENT) === today) return;
-    localStorage.setItem(KEY_NOTIF_SENT, today);
-    showNotif(nextDayMessage(streak), `ଆପଣଙ୍କ streak: ${toOdiaNumber(streak)} ଦିନ — ଆଜିର challenge ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ।`);
-  }
-
-  function maybeRemind(streak){
-    if(!prefOn()) return;
-    if(localStorage.getItem(KEY_NOTIF_SENT) === todayStr()) return;
-
-    const now = new Date();
-    const target = remindTimeToday();
-    if(now >= target){
-      fireDailyReminder(streak);
-    }else{
-      setTimeout(() => fireDailyReminder(streak), target - now);
-    }
+    return streak;
   }
 
   function bindNotifButton(){
@@ -94,19 +106,20 @@
     btn.addEventListener('click', async ()=>{
       if(prefOn()){
         localStorage.setItem(KEY_PREF, '0');
+        await unsubscribeFromPush();
         render();
         return;
       }
       const perm = Notification.permission === 'granted' ? 'granted' : await Notification.requestPermission();
       if(perm === 'granted'){
         localStorage.setItem(KEY_PREF, '1');
-        showNotif('ସୂଚନା ଅନ୍ ହେଲା 🎉', 'ପ୍ରତିଦିନ ଆପଣ ଆସିଲେ, ଆପଣଙ୍କୁ ଏକ reminder ମିଳିବ।');
+        try{ await subscribeToPush(); }catch(e){ console.error('push subscribe failed', e); }
+        showNotif('ସୂଚନା ଅନ୍ ହେଲା 🎉', 'ପ୍ରତିଦିନ ନୂଆ ଦିନ ଖୋଲିଲେ, ଆପଣଙ୍କୁ ଏକ reminder ମିଳିବ।');
       }
       render();
     });
   }
 
-  const visit = trackVisit();
-  if(visit.hadPriorVisit) maybeRemind(visit.streak);
+  trackVisit();
   bindNotifButton();
 })();

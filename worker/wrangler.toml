@@ -1,0 +1,17 @@
+name = "intraday30-push"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Non-secret: the client also embeds this same public key.
+[vars]
+VAPID_PUBLIC_KEY = "REPLACE_WITH_GENERATED_PUBLIC_KEY"
+VAPID_SUBJECT = "mailto:jeebanb494@gmail.com"
+
+[[kv_namespaces]]
+binding = "SUBS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# 02:00 UTC = 07:30 IST daily.
+[triggers]
+crons = ["00 2 * * *"]

@@ -1,0 +1,11 @@
+{
+  "name": "intraday30-push",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "@block65/webcrypto-web-push": "^3.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
