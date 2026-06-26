@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+</script>
+<title>ଦିନ ୪ : Candlestick Psychology — Intraday.30</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Oriya:wght@500;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="read-progress" id="readProgress"></div>
+
+<nav>
+  <a href="index.html" class="brand">Intraday<span>.</span>30</a>
+  <div class="nav-links">
+    <span class="day-pill mono">DAY 04 / 30</span>
+    <a href="index.html#map">Candle Map</a>
+    <button id="notifBtn" class="notif-btn"></button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="day-hero">
+    <div class="day-eyebrow odia">ଫେଜ୍ ୦୧ — ମୌଳିକ ଭିତ୍ତି</div>
+    <h1 class="odia">ଦିନ ୪ : Candlestick Psychology — ଗୋଟିଏ Candle କଣ କାହାଣୀ କହେ?</h1>
+    <div class="day-progress-row">
+      <div class="day-progress-track"><div class="day-progress-fill" style="width:13.3%"></div></div>
+      <div class="day-progress-label mono">4/30</div>
+    </div>
+    <div class="day-jump" id="dayJumpStrip"></div>
+  </section>
+
+  <section>
+    <div class="mentor-msg odia">
+      <div class="salutation">ମେଣ୍ଟରଙ୍କ ବାର୍ତ୍ତା — ଜୀବନ,</div>
+      <p>ଆଜିଠାରୁ ତୁମେ <strong>Chart ପଢ଼ିବା</strong> ଆରମ୍ଭ କରିବ। ମନେ ରଖ — <strong>"Candlestick କେବଳ ଗୋଟିଏ ଆକୃତି ନୁହେଁ, ଏହା Buyer ଓ Seller ଙ୍କ ଯୁଦ୍ଧର କାହାଣୀ।"</strong></p>
+      <p>ଯଦି ତୁମେ Candlestick ର ଭାଷା ବୁଝିଗଲ, ତେବେ Chart ତୁମ ସହ କଥା ହେବା ଆରମ୍ଭ କରିବ।</p>
+    </div>
+
+    <!-- LESSON 1 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୧</div>
+      <h2>Candlestick କଣ?</h2>
+      <p>ପ୍ରତ୍ୟେକ Candle ଗୋଟିଏ ନିର୍ଦ୍ଦିଷ୍ଟ ସମୟର କାହାଣୀ କହେ। ଯଦି ତୁମେ 5 Minutes Chart ଦେଖୁଛ, ତେବେ ଗୋଟିଏ Candle = 5 Minutes। ସେହି ସମୟ ମଧ୍ୟରେ —</p>
+      <ul>
+        <li>Opening Price</li>
+        <li>Highest Price</li>
+        <li>Lowest Price</li>
+        <li>Closing Price</li>
+      </ul>
+      <p>ଏହି 4ଟି ତଥ୍ୟ ମିଶି ଗୋଟିଏ Candle ତିଆରି କରେ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 200" preserveAspectRatio="xMidYMid meet">
+          <line x1="240" y1="30" x2="240" y2="170" stroke="var(--paper-dim)" stroke-width="2"/>
+          <rect x="215" y="80" width="50" height="50" fill="var(--gold)"/>
+          <line x1="80" y1="30" x2="240" y2="30" stroke="var(--ink-line)" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="80" y1="80" x2="215" y2="80" stroke="var(--ink-line)" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="80" y1="130" x2="215" y2="130" stroke="var(--ink-line)" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="80" y1="170" x2="240" y2="170" stroke="var(--ink-line)" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="40" y="34">High</text>
+          <text x="36" y="84">Open</text>
+          <text x="32" y="134">Close</text>
+          <text x="44" y="174">Low</text>
+        </svg>
+        <div class="visual-cap odia">ଗୋଟିଏ Candle — Open, High, Low, Close (OHLC) ଚାରିଟି ତଥ୍ୟ ସହିତ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୨</div>
+      <h2>Bullish Candle</h2>
+      <p>Bullish Candle ର ଅର୍ଥ — Closing Price, Opening Price ଠାରୁ ଉପରେ। ଅର୍ଥାତ Buyer ମାନେ ଜିତିଛନ୍ତି।</p>
+      <p><strong>ଉଦାହରଣ:</strong> Opening Price = ₹100, Closing Price = ₹108। Buyer ମାନେ Seller ମାନଙ୍କୁ ପଛକୁ ଠେଲିଦେଲେ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 300 180" preserveAspectRatio="xMidYMid meet">
+          <line x1="150" y1="40" x2="150" y2="150" stroke="var(--green)" stroke-width="2"/>
+          <rect x="125" y="60" width="50" height="60" fill="var(--green)"/>
+          <text x="158" y="56">₹108 Close ↑</text>
+          <text x="158" y="146">₹100 Open</text>
+        </svg>
+        <div class="visual-cap odia">Market କହୁଛି — "ଆଜି Buyer ଙ୍କ ଶକ୍ତି ଅଧିକ ଥିଲା।"</div>
+      </div>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୩</div>
+      <h2>Bearish Candle</h2>
+      <p>Bearish Candle ର ଅର୍ଥ — Closing Price, Opening Price ଠାରୁ ତଳେ। ଅର୍ଥାତ Seller ମାନେ ଜିତିଛନ୍ତି।</p>
+      <p><strong>ଉଦାହରଣ:</strong> Opening Price = ₹100, Closing Price = ₹92।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 300 180" preserveAspectRatio="xMidYMid meet">
+          <line x1="150" y1="40" x2="150" y2="150" stroke="var(--red)" stroke-width="2"/>
+          <rect x="125" y="60" width="50" height="60" fill="var(--red)"/>
+          <text x="158" y="56">₹100 Open</text>
+          <text x="158" y="146">₹92 Close ↓</text>
+        </svg>
+        <div class="visual-cap odia">Market କହୁଛି — "ଆଜି Seller ମାନେ ଅଧିକ ଶକ୍ତିଶାଳୀ ଥିଲେ।"</div>
+      </div>
+    </div>
+
+    <!-- LESSON 4 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୪</div>
+      <h2>Candle ର ଅଂଶ</h2>
+      <p>ଗୋଟିଏ Candle ର 3ଟି ଅଂଶ ଅଛି।</p>
+      <p><strong>1. Body</strong> — Opening ଓ Closing ମଧ୍ୟର ଅଂଶ। ବଡ଼ Body = ଶକ୍ତିଶାଳୀ Buyer କିମ୍ବା Seller। ଛୋଟ Body = ଦ୍ୱନ୍ଦ୍ୱ (Indecision)।</p>
+      <p><strong>2. Upper Wick</strong> — ଏହା କହେ ଦାମ ଉପରକୁ ଯାଇଥିଲା, କିନ୍ତୁ Seller ମାନେ ତାକୁ ପୁଣି ତଳକୁ ଆଣିଲେ।</p>
+      <p><strong>3. Lower Wick</strong> — ଏହା କହେ ଦାମ ତଳକୁ ଯାଇଥିଲା, କିନ୍ତୁ Buyer ମାନେ ତାକୁ ପୁଣି ଉପରକୁ ଆଣିଲେ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 220" preserveAspectRatio="xMidYMid meet">
+          <line x1="200" y1="20" x2="200" y2="70" stroke="var(--gold)" stroke-width="2"/>
+          <rect x="175" y="70" width="50" height="70" fill="var(--gold)"/>
+          <line x1="200" y1="140" x2="200" y2="200" stroke="var(--gold)" stroke-width="2"/>
+          <line x1="225" y1="45" x2="270" y2="45" stroke="var(--paper-dim)" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="225" y1="105" x2="270" y2="105" stroke="var(--paper-dim)" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="225" y1="170" x2="270" y2="170" stroke="var(--paper-dim)" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="276" y="49">Upper Wick</text>
+          <text x="276" y="109">Body</text>
+          <text x="276" y="174">Lower Wick</text>
+        </svg>
+        <div class="visual-cap odia">3ଟି ଅଂଶ ମିଶି ଗୋଟିଏ Candle ର ସମ୍ପୂର୍ଣ୍ଣ କାହାଣୀ କହନ୍ତି</div>
+      </div>
+    </div>
+
+    <!-- LESSON 5 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୫</div>
+      <h2>Doji Candle</h2>
+      <p>କେବେ କେବେ Opening ଓ Closing ପ୍ରାୟ ସମାନ ଥାଏ। ଏହାକୁ Doji କୁହାଯାଏ। Doji ର ଅର୍ଥ — Buyer ଓ Seller ମଧ୍ୟରେ କେହି ଜିତିନାହାନ୍ତି। Market Confused ଅଛି।</p>
+      <p>ଏଭଳି ସମୟରେ ତୁରନ୍ତ Trade ନେବା ପରିବର୍ତ୍ତେ Confirmation ଅପେକ୍ଷା କରିବା ଭଲ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 300 180" preserveAspectRatio="xMidYMid meet">
+          <line x1="150" y1="30" x2="150" y2="150" stroke="var(--paper-dim)" stroke-width="2"/>
+          <rect x="125" y="85" width="50" height="10" fill="var(--paper-dim)"/>
+          <text x="158" y="60">Open</text>
+          <text x="158" y="130">Close</text>
+        </svg>
+        <div class="visual-cap odia">Open ≈ Close — ବଡ଼ Wick, ଛୋଟ Body = ଦ୍ୱନ୍ଦ୍ୱ</div>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <div class="story odia">
+      <div class="story-eyebrow">ପ୍ରକୃତ କାହାଣୀ</div>
+      <p>ସୁମନ ପ୍ରତିଦିନ Chart ଦେଖୁଥିଲା, କିନ୍ତୁ Candle କୁ ଦେଖୁନଥିଲା। ସେ କେବଳ Indicator ଉପରେ ନିର୍ଭର କରୁଥିଲା।</p>
+      <p>ଗୋଟିଏ ଦିନ ତାର Mentor କହିଲେ — "Indicator ପରେ ଆସିବ। ପ୍ରଥମେ Candle ପଢ଼ିବା ଶିଖ।" ସୁମନ 30 ଦିନ କେବଳ Candlestick Observation କଲା। ଧୀରେ ଧୀରେ ସେ ବୁଝିଲା — କେଉଁଠି Buyer ଶକ୍ତିଶାଳୀ, କେଉଁଠି Seller ଶକ୍ତିଶାଳୀ। <strong>ତାପରେ ତାର ଭୁଲ Trade କମିବା ଆରମ୍ଭ ହେଲା।</strong></p>
+
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">ପ୍ରଥମେ</div><div class="amt">Indicator ଉପରେ ନିର୍ଭର</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">30 ଦିନ</div><div class="amt" style="color:var(--gold);">Candle Observation</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ପରିଣାମ</div><div class="amt" style="color:var(--green);">ଭୁଲ Trade କମିଲା</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <blockquote class="odia">"Chart କେବେ ମିଛ କହେନି। ଆମେ ତାକୁ ଭୁଲ ବୁଝିଥାଉ।"</blockquote>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="challenge odia">
+      <div class="lesson-tag mono">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(22px,3vw,30px); font-weight:600; margin:10px 0 22px;">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ</h2>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task1chk" data-key="day4-task1-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୧</div>
+          <h4>10ଟି Candle ବିଶ୍ଳେଷଣ କର</h4>
+          <p>କୌଣସି ଗୋଟିଏ Stock ର 5 Minutes Chart ଖୋଲ। 10ଟି Candle ଦେଖ। ପ୍ରତ୍ୟେକ ପାଇଁ ଲେଖ — Bullish ନା Bearish? Body ବଡ଼ ନା ଛୋଟ? Upper/Lower Wick ଅଛି କି?</p>
+          <div class="journal-box">
+            <textarea id="task1text" placeholder="Candle 1: Bullish, Body ବଡ଼, Upper Wick ନାହିଁ..."></textarea>
+            <div class="save-note" id="task1save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task2chk" data-key="day4-task2-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୨</div>
+          <h4>ନିଜ ହାତରେ 3ଟି Candle ଆଙ୍କ</h4>
+          <ul>
+            <li>Bullish Candle</li>
+            <li>Bearish Candle</li>
+            <li>Doji Candle</li>
+          </ul>
+          <p>ତଳେ ତାହାର ଅର୍ଥ ଲେଖ।</p>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task3chk" data-key="day4-task3-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୩</div>
+          <h4>Trade ପୂର୍ବରୁ ନିଜକୁ ପଚାର</h4>
+          <p>"ଏହି Candle ମୋତେ କଣ କହୁଛି?" — ଆଜିର Trade ପୂର୍ବରୁ ଏହି ପ୍ରଶ୍ନ ପଚାରି ଉତ୍ତର ଲେଖ।</p>
+          <div class="journal-box">
+            <textarea id="task3text" placeholder="ଏଠାରେ ଲେଖନ୍ତୁ..."></textarea>
+            <div class="save-note" id="task3save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary odia">
+      <h3>ଦିନ ୪ ର ସାରାଂଶ — ଆଜି ତୁମେ ଶିଖିଲ</h3>
+      <ul>
+        <li>Candlestick କଣ</li>
+        <li>Bullish Candle</li>
+        <li>Bearish Candle</li>
+        <li>Body, Upper Wick ଓ Lower Wick</li>
+        <li>Doji Candle ର ଅର୍ଥ</li>
+        <li>Candle ର Psychology</li>
+      </ul>
+    </div>
+
+    <div class="golden-rule odia">
+      <div class="tag mono">ସୁବର୍ଣ୍ଣ ନିୟମ #୪</div>
+      <strong>"ପ୍ରଥମେ <span>Candle</span> କୁ ପଢ଼, ପରେ Trade କର।"</strong>
+    </div>
+
+    <div class="story odia" style="margin-top:40px;">
+      <div class="story-eyebrow">ଆସନ୍ତାକାଲି — DAY 05</div>
+      <p><strong>Support ଓ Resistance</strong> — Market ବାରମ୍ବାର ସେହି ଜାଗାରୁ କାହିଁକି ଫେରିଯାଏ? କିପରି Professional Trader ମାନେ ଏହି Level ବ୍ୟବହାର କରି Entry ଓ Exit ନିଷ୍ପତ୍ତି ନିଅନ୍ତି?</p>
+    </div>
+
+  </section>
+
+  <div class="day-nav">
+    <a href="day-03.html" class="odia">← ଦିନ ୩</a>
+    <a href="index.html#map" class="home-link odia">Candle Map କୁ ଫେରନ୍ତୁ</a>
+    <span class="disabled odia">ଦିନ ୫ — ଆସୁଛି →</span>
+  </div>
+
+  <footer class="book-footer">
+    <span class="odia">ଗଠିତ ହେଲା ଏକ Professional Mentor ପାଇଁ —</span> <span class="sig">Intraday.30</span>
+  </footer>
+
+</main>
+
+<script>
+window.scrollTo(0,0);
+window.addEventListener('pageshow', ()=> window.scrollTo(0,0));
+
+function bindCheckbox(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const key = el.dataset.key;
+  el.checked = localStorage.getItem(key) === '1';
+  el.addEventListener('change', ()=> localStorage.setItem(key, el.checked ? '1' : '0'));
+}
+['task1chk','task2chk','task3chk'].forEach(bindCheckbox);
+
+function bindJournal(textId, saveId, key){
+  const t = document.getElementById(textId);
+  const save = document.getElementById(saveId);
+  if(!t) return;
+  t.value = localStorage.getItem(key) || '';
+  let timer;
+  t.addEventListener('input', ()=>{
+    clearTimeout(timer);
+    save.classList.remove('saved');
+    timer = setTimeout(()=>{
+      localStorage.setItem(key, t.value);
+      save.textContent = 'ସେଭ୍ ହୋଇଗଲା ✓';
+      save.classList.add('saved');
+    }, 500);
+  });
+}
+bindJournal('task1text','task1save','day4-task1-text');
+bindJournal('task3text','task3save','day4-task3-text');
+
+function updateProgress(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (scrolled / max) * 100 : 0;
+  document.getElementById('readProgress').style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=> navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+<script src="js/daynav.js"></script>
+<script>renderDayStrip('dayJumpStrip', 4); window.CURRENT_DAY = 4;</script>
+<script src="js/notify.js"></script>
+
+</body>
+</html>

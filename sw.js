@@ -1,5 +1,5 @@
-const CACHE = 'intraday30-v4';
-const ASSETS = ['/index.html', '/day-01.html', '/day-02.html', '/day-03.html', '/css/book.css', '/js/notify.js', '/js/daynav.js', '/manifest.json'];
+const CACHE = 'intraday30-v5';
+const ASSETS = ['/index.html', '/day-01.html', '/day-02.html', '/day-03.html', '/day-04.html', '/css/book.css', '/js/notify.js', '/js/daynav.js', '/manifest.json'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
