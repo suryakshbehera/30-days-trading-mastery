@@ -1,6 +1,6 @@
 (function(){
   const TOTAL_DAYS = 30;
-  const BUILT_DAYS = [1, 2, 3, 4, 5];
+  const BUILT_DAYS = [1, 2, 3, 4, 5, 6];
   window.BUILT_DAYS = BUILT_DAYS;
 
   function pad(n){ return String(n).padStart(2, '0'); }

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+</script>
+<title>ଦିନ ୬ : Volume Analysis — Intraday.30</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Oriya:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="read-progress" id="readProgress"></div>
+
+<nav>
+  <a href="index.html" class="brand">Intraday<span>.</span>30</a>
+  <div class="nav-links">
+    <span class="day-pill mono">DAY 06 / 30</span>
+    <a href="index.html#map">Candle Map</a>
+    <button id="notifBtn" class="notif-btn"></button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="day-hero">
+    <div class="day-eyebrow odia">ଫେଜ୍ ୦୧ — ମୌଳିକ ଭିତ୍ତି</div>
+    <h1 class="odia">ଦିନ ୬ : Volume Analysis — Smart Money କୁ କେମିତି ଚିହ୍ନିବେ?</h1>
+    <div class="day-progress-row">
+      <div class="day-progress-track"><div class="day-progress-fill" style="width:20%"></div></div>
+      <div class="day-progress-label mono">6/30</div>
+    </div>
+    <div class="day-jump" id="dayJumpStrip"></div>
+  </section>
+
+  <section>
+    <div class="mentor-msg odia">
+      <div class="salutation">ମେଣ୍ଟରଙ୍କ ବାର୍ତ୍ତା — ବାପି,</div>
+      <p>ଆଜି ତୁମେ Trading ର ଗୋଟିଏ ବହୁତ ଶକ୍ତିଶାଳୀ ରହସ୍ୟ ଶିଖିବ। ଅନେକ ନୂଆ Trader କେବଳ Price ଦେଖନ୍ତି। Professional Trader Price ସହିତ <strong>Volume</strong> ମଧ୍ୟ ଦେଖନ୍ତି।</p>
+      <p>କାରଣ — <strong>"Price କହେ କଣ ଘଟିଲା। Volume କହେ ସେହି Move କେତେ ଶକ୍ତିଶାଳୀ।"</strong></p>
+    </div>
+
+    <!-- LESSON 1 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୧</div>
+      <h2>Volume କଣ?</h2>
+      <p>Volume ର ଅର୍ଥ ହେଉଛି — ନିର୍ଦ୍ଦିଷ୍ଟ ସମୟ ମଧ୍ୟରେ କେତେ Share କିଣାବିକା ହେଲା।</p>
+      <p><strong>ଉଦାହରଣ:</strong> ଗୋଟିଏ Stock ରେ 10 ଲକ୍ଷ Share Buy ଓ Sell ହେଲା। ତେବେ ସେହି Stock ର Volume = 10 ଲକ୍ଷ। ଅଧିକ Volume ର ଅର୍ଥ — ଅଧିକ ଲୋକ Market ରେ ସକ୍ରିୟ ଅଛନ୍ତି।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 140" preserveAspectRatio="xMidYMid meet">
+          <line x1="20" y1="100" x2="460" y2="100" stroke="#23282f" stroke-width="1"/>
+          <rect x="60" y="60" width="40" height="40" fill="var(--gold)" fill-opacity="0.7"/>
+          <rect x="160" y="40" width="40" height="60" fill="var(--gold)" fill-opacity="0.7"/>
+          <rect x="260" y="20" width="40" height="80" fill="var(--gold)" fill-opacity="0.7"/>
+          <rect x="360" y="70" width="40" height="30" fill="var(--gold)" fill-opacity="0.7"/>
+          <text x="58" y="115">5L</text>
+          <text x="158" y="115">8L</text>
+          <text x="258" y="115">12L</text>
+          <text x="358" y="115">4L</text>
+          <text x="20" y="20">Volume Bars</text>
+        </svg>
+        <div class="visual-cap odia">ବଡ଼ Bar = ଅଧିକ Share କିଣାବିକା = ଅଧିକ ଲୋକ ସକ୍ରିୟ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୨</div>
+      <h2>Price ବଢ଼ୁଛି + Volume ବଢ଼ୁଛି</h2>
+      <p>ଏହା ସାଧାରଣତଃ ଏକ ଶକ୍ତିଶାଳୀ ସଙ୍କେତ। ଏହାର ଅର୍ଥ — Buyer ମାନେ ବିଶ୍ୱାସ ସହିତ Buy କରୁଛନ୍ତି। ଏଭଳି Move ଅଧିକ ସମୟ ଚାଲିପାରେ। ଏହାକୁ କୁହାଯାଏ <strong>Healthy Move</strong>।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 190" preserveAspectRatio="xMidYMid meet">
+          <line x1="20" y1="115" x2="460" y2="115" stroke="#23282f" stroke-width="1"/>
+          <polyline class="line" points="30,100 130,80 230,60 330,40 430,20"/>
+          <rect x="18" y="170" width="24" height="20" fill="var(--green)" fill-opacity="0.6"/>
+          <rect x="118" y="160" width="24" height="30" fill="var(--green)" fill-opacity="0.6"/>
+          <rect x="218" y="150" width="24" height="40" fill="var(--green)" fill-opacity="0.6"/>
+          <rect x="318" y="140" width="24" height="50" fill="var(--green)" fill-opacity="0.6"/>
+          <rect x="418" y="130" width="24" height="60" fill="var(--green)" fill-opacity="0.6"/>
+          <text x="170" y="125">Volume ବଢ଼ୁଛି ↑</text>
+        </svg>
+        <div class="visual-cap odia">Price ଓ Volume ଏକାଠି ବଢ଼ୁଛି — Healthy Move</div>
+      </div>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୩</div>
+      <h2>Price ବଢ଼ୁଛି + Volume କମୁଛି</h2>
+      <p>ଧର ଦାମ ବଢ଼ୁଛି, କିନ୍ତୁ Volume ଧୀରେ ଧୀରେ କମୁଛି। ଏହାର ଅର୍ଥ — ଅନେକ Buyer ଆଉ Market ରେ ନାହାନ୍ତି। Move ଦୁର୍ବଳ ହୋଇପାରେ। ଏହା ଗୋଟିଏ <strong>Warning Signal</strong>।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 190" preserveAspectRatio="xMidYMid meet">
+          <line x1="20" y1="115" x2="460" y2="115" stroke="#23282f" stroke-width="1"/>
+          <polyline class="line" points="30,100 130,80 230,60 330,40 430,20"/>
+          <rect x="18" y="130" width="24" height="60" fill="var(--red)" fill-opacity="0.55"/>
+          <rect x="118" y="140" width="24" height="50" fill="var(--red)" fill-opacity="0.55"/>
+          <rect x="218" y="155" width="24" height="35" fill="var(--red)" fill-opacity="0.55"/>
+          <rect x="318" y="165" width="24" height="25" fill="var(--red)" fill-opacity="0.55"/>
+          <rect x="418" y="175" width="24" height="15" fill="var(--red)" fill-opacity="0.55"/>
+          <text x="160" y="125">Volume କମୁଛି ↓</text>
+        </svg>
+        <div class="visual-cap odia">Price ବଢ଼ୁଛି କିନ୍ତୁ Volume କମୁଛି — Buyer ଦୁର୍ବଳ ହେଉଛନ୍ତି</div>
+      </div>
+    </div>
+
+    <!-- LESSON 4 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୪</div>
+      <h2>Breakout ସମୟରେ Volume</h2>
+      <p>ଧର ଗୋଟିଏ Stock ବହୁଦିନ ଧରି ₹500 Resistance ରେ ଅଟକିଥିଲା। ଆଜି ସେ ₹500 ଭାଙ୍ଗିଲା। ଯଦି ସେହି Breakout ସହିତ Volume ବହୁତ ବଢ଼ିଛି, ତେବେ Breakout ଶକ୍ତିଶାଳୀ ହୋଇପାରେ। କିନ୍ତୁ ଯଦି Volume କମ୍ ଅଛି, ତେବେ ଏହା False Breakout ମଧ୍ୟ ହୋଇପାରେ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 200" preserveAspectRatio="xMidYMid meet">
+          <line x1="240" y1="10" x2="240" y2="190" stroke="var(--ink-line)" stroke-width="1"/>
+          <line x1="20" y1="70" x2="220" y2="70" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,4"/>
+          <polyline class="line" points="30,100 90,75 150,68 210,30"/>
+          <rect x="20" y="170" width="20" height="20" fill="var(--green)" fill-opacity="0.6"/>
+          <rect x="80" y="160" width="20" height="30" fill="var(--green)" fill-opacity="0.6"/>
+          <rect x="140" y="145" width="20" height="45" fill="var(--green)" fill-opacity="0.6"/>
+          <rect x="200" y="125" width="20" height="65" fill="var(--green)" fill-opacity="0.6"/>
+          <text x="20" y="22">ବେଶି Volume → ଶକ୍ତିଶାଳୀ</text>
+
+          <line x1="260" y1="70" x2="460" y2="70" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4,4"/>
+          <polyline class="line down" points="270,100 330,68 390,72 450,110"/>
+          <rect x="260" y="175" width="20" height="15" fill="var(--red)" fill-opacity="0.55"/>
+          <rect x="320" y="172" width="20" height="18" fill="var(--red)" fill-opacity="0.55"/>
+          <rect x="380" y="175" width="20" height="15" fill="var(--red)" fill-opacity="0.55"/>
+          <rect x="440" y="178" width="20" height="12" fill="var(--red)" fill-opacity="0.55"/>
+          <text x="260" y="22">କମ୍ Volume → False</text>
+        </svg>
+        <div class="visual-cap odia">ସମାନ Breakout, ଭିନ୍ନ Volume — ବାମରେ ଶକ୍ତିଶାଳୀ, ଡାହାଣରେ False</div>
+      </div>
+    </div>
+
+    <!-- LESSON 5 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୫</div>
+      <h2>Volume ଏକାକୀ ପର୍ଯ୍ୟାପ୍ତ ନୁହେଁ</h2>
+      <p>ନୂଆ Trader ଙ୍କର ଭୁଲ — ବଡ଼ Volume ଦେଖି ସଙ୍ଗେ ସଙ୍ଗେ Trade ନେବା। ଏହା ଠିକ୍ ନୁହେଁ। ସବୁବେଳେ ଦେଖ —</p>
+
+      <div class="visual">
+        <div style="display:flex; flex-direction:column; gap:10px; max-width:340px; margin:0 auto;">
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Trend କଣ?</div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Support/Resistance କେଉଁଠି?</div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Candle କଣ କହୁଛି?</div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Volume କଣ କହୁଛି?</div>
+        </div>
+        <div class="visual-cap odia">ଏହି 4ଟି ଏକାଠି ହେଲେ Decision ନିଅ</div>
+      </div>
+    </div>
+
+    <!-- MENTOR'S MISTAKE -->
+    <div class="story odia">
+      <div class="story-eyebrow">ମେଣ୍ଟରଙ୍କ ଭୁଲ</div>
+      <p>ମୁଁ Trading ର ପ୍ରଥମ ଦିନରେ ଭାବୁଥିଲି — "ବଡ଼ Green Candle ମାନେ Buy।" ଗୋଟିଏ ଦିନ ବହୁତ ବଡ଼ Green Candle ଦେଖି Buy କଲି। କିନ୍ତୁ ସେହି Candle ରେ Volume ବହୁତ କମ୍ ଥିଲା। କିଛି ମିନିଟ୍ ପରେ Price Reverse କଲା।</p>
+      <p>ସେହି ଦିନ ବୁଝିଲି — <strong>Price ଏକାକୀ କେବେ ସମ୍ପୂର୍ଣ୍ଣ କାହାଣୀ କହେନାହିଁ।</strong></p>
+
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <svg class="mini-chart" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid meet">
+          <line x1="150" y1="30" x2="150" y2="140" stroke="var(--green)" stroke-width="2"/>
+          <rect x="125" y="40" width="50" height="80" fill="var(--green)"/>
+          <line x1="20" y1="170" x2="280" y2="170" stroke="#23282f" stroke-width="1"/>
+          <rect x="130" y="160" width="40" height="10" fill="var(--red)" fill-opacity="0.6"/>
+          <text x="20" y="185">Volume ବହୁତ କମ୍ — Trap</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <div class="story odia">
+      <div class="story-eyebrow">ପ୍ରକୃତ କାହାଣୀ</div>
+      <p>ରୀନା ନାମକ ଜଣେ Trader ପ୍ରତିଦିନ Breakout Trade କରୁଥିଲେ। କିନ୍ତୁ ପ୍ରାୟ ସବୁବେଳେ Loss ହେଉଥିଲା। ତାଙ୍କ Mentor ଗୋଟିଏ ପ୍ରଶ୍ନ ପଚାରିଲେ — "ତୁମେ Volume ଦେଖୁଛ କି?" ସେ କହିଲେ — "ନା।"</p>
+      <p>ପରବର୍ତ୍ତୀ ମାସରୁ ସେ Rule କଲେ — <strong>"Volume Confirmation ଛଡ଼ା କୌଣସି Breakout Trade ନୁହେଁ।"</strong> ତାପରେ ତାଙ୍କର False Entry ଧୀରେ ଧୀରେ କମିଗଲା।</p>
+
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">ପ୍ରଥମେ</div><div class="amt">ସବୁବେଳେ Breakout — Loss</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ପ୍ରଶ୍ନ</div><div class="amt" style="color:var(--gold); font-size:12.5px;">"Volume ଦେଖୁଛ କି?" — ନା</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">Rule ପରେ</div><div class="amt" style="color:var(--green);">False Entry କମିଗଲା</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <blockquote class="odia">"Volume ହେଉଛି Market ର ହୃଦସ୍ପନ୍ଦନ। ହୃଦସ୍ପନ୍ଦନ ବୁଝିନଥିଲେ Market କୁ ବୁଝିହେବ ନାହିଁ।"</blockquote>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="challenge odia">
+      <div class="lesson-tag mono">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(22px,3vw,30px); font-weight:600; margin:10px 0 22px;">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ</h2>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task1chk" data-key="day6-task1-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୧</div>
+          <h4>Price ଓ Volume ର ସମ୍ପର୍କ ଦେଖ</h4>
+          <p>କୌଣସି 5ଟି Stock ର Chart ଖୋଲ। ଦେଖ — Price ବଢ଼ୁଛି କି? Volume ବଢ଼ୁଛି କି? ନିଜ Observation ଲେଖ।</p>
+          <div class="journal-box">
+            <textarea id="task1text" placeholder="Stock 1: Price ↑, Volume ↑ — Healthy..."></textarea>
+            <div class="save-note" id="task1save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task2chk" data-key="day6-task2-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୨</div>
+          <h4>Green ଓ Red Candle ର Volume ତୁଳନା</h4>
+          <p>3ଟି ବଡ଼ Green Candle ଓ 3ଟି ବଡ଼ Red Candle ଖୋଜ। ସେମାନଙ୍କର Volume ତୁଳନା କର। କେଉଁଠି Buyer ଅଧିକ ଶକ୍ତିଶାଳୀ? କେଉଁଠି Seller ଅଧିକ ଶକ୍ତିଶାଳୀ?</p>
+          <div class="journal-box">
+            <textarea id="task2text" placeholder="ଏଠାରେ ଲେଖନ୍ତୁ..."></textarea>
+            <div class="save-note" id="task2save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task3chk" data-key="day6-task3-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୩</div>
+          <h4>Trading Journal ରେ ନୂଆ Checklist ଯୋଡ଼</h4>
+          <p>ଏହି 4ଟିରେ ✓ ନଥିଲେ Trade ନେବି ନାହିଁ।</p>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top:14px;">
+            <label style="display:flex; gap:10px; align-items:center; font-size:14.5px;">
+              <input type="checkbox" class="task-check" id="day6c1" data-key="day6-checklist-trend"> Trend ଦେଖିଛି
+            </label>
+            <label style="display:flex; gap:10px; align-items:center; font-size:14.5px;">
+              <input type="checkbox" class="task-check" id="day6c2" data-key="day6-checklist-sr"> Support/Resistance ଦେଖିଛି
+            </label>
+            <label style="display:flex; gap:10px; align-items:center; font-size:14.5px;">
+              <input type="checkbox" class="task-check" id="day6c3" data-key="day6-checklist-candle"> Candle ଦେଖିଛି
+            </label>
+            <label style="display:flex; gap:10px; align-items:center; font-size:14.5px;">
+              <input type="checkbox" class="task-check" id="day6c4" data-key="day6-checklist-volume"> Volume ଦେଖିଛି
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary odia">
+      <h3>ଦିନ ୬ ର ସାରାଂଶ — ଆଜି ତୁମେ ଶିଖିଲ</h3>
+      <ul>
+        <li>Volume କଣ</li>
+        <li>Price ଓ Volume ର ସମ୍ପର୍କ</li>
+        <li>Strong Breakout କିପରି ଚିହ୍ନିବେ</li>
+        <li>False Breakout ର Warning</li>
+        <li>Volume କାହିଁକି Confirmation Tool</li>
+      </ul>
+    </div>
+
+    <div class="golden-rule odia">
+      <div class="tag mono">ସୁବର୍ଣ୍ଣ ନିୟମ #୬</div>
+      <strong>"Price ତୁମର ଆଖି, କିନ୍ତୁ <span>Volume</span> ହେଉଛି ତୁମର ବିଶ୍ୱାସ। ଦୁଇଟିକୁ ଏକାଠି ବ୍ୟବହାର କର।"</strong>
+    </div>
+
+  </section>
+
+  <div class="day-nav">
+    <a href="day-05.html" class="odia">← ଦିନ ୫</a>
+    <a href="index.html#map" class="home-link odia">Candle Map କୁ ଫେରନ୍ତୁ</a>
+    <span class="disabled odia">ଦିନ ୭ — ଆସୁଛି →</span>
+  </div>
+
+  <footer class="book-footer">
+    <span class="odia">ଗଠିତ ହେଲା ଏକ Professional Mentor ପାଇଁ —</span> <span class="sig">Intraday.30</span>
+  </footer>
+
+</main>
+
+<script>
+window.scrollTo(0,0);
+window.addEventListener('pageshow', ()=> window.scrollTo(0,0));
+
+function bindCheckbox(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const key = el.dataset.key;
+  el.checked = localStorage.getItem(key) === '1';
+  el.addEventListener('change', ()=> localStorage.setItem(key, el.checked ? '1' : '0'));
+}
+['task1chk','task2chk','task3chk','day6c1','day6c2','day6c3','day6c4'].forEach(bindCheckbox);
+
+function bindJournal(textId, saveId, key){
+  const t = document.getElementById(textId);
+  const save = document.getElementById(saveId);
+  if(!t) return;
+  t.value = localStorage.getItem(key) || '';
+  let timer;
+  t.addEventListener('input', ()=>{
+    clearTimeout(timer);
+    save.classList.remove('saved');
+    timer = setTimeout(()=>{
+      localStorage.setItem(key, t.value);
+      save.textContent = 'ସେଭ୍ ହୋଇଗଲା ✓';
+      save.classList.add('saved');
+    }, 500);
+  });
+}
+bindJournal('task1text','task1save','day6-task1-text');
+bindJournal('task2text','task2save','day6-task2-text');
+
+function updateProgress(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (scrolled / max) * 100 : 0;
+  document.getElementById('readProgress').style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=> navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+<script src="js/daynav.js"></script>
+<script>renderDayStrip('dayJumpStrip', 6); window.CURRENT_DAY = 6;</script>
+<script src="js/notify.js"></script>
+
+</body>
+</html>
