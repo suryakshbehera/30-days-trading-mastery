@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+</script>
+<title>ଦିନ ୭ : ସପ୍ତାହ–୧ ରିଭିଜନ୍ — Intraday.30</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Oriya:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="read-progress" id="readProgress"></div>
+
+<nav>
+  <a href="index.html" class="brand">Intraday<span>.</span>30</a>
+  <div class="nav-links">
+    <span class="day-pill mono">DAY 07 / 30</span>
+    <a href="index.html#map">Candle Map</a>
+    <button id="notifBtn" class="notif-btn"></button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="day-hero">
+    <div class="day-eyebrow odia">ଫେଜ୍ ୦୧ — ମୌଳିକ ଭିତ୍ତି</div>
+    <h1 class="odia">ଦିନ ୭ : ସପ୍ତାହ–୧ ରିଭିଜନ୍ ଓ ଗ୍ରାଜୁଏସନ୍ ଟେଷ୍ଟ</h1>
+    <div class="day-progress-row">
+      <div class="day-progress-track"><div class="day-progress-fill" style="width:23.3%"></div></div>
+      <div class="day-progress-label mono">7/30</div>
+    </div>
+    <div class="day-jump" id="dayJumpStrip"></div>
+  </section>
+
+  <section>
+    <div class="mentor-msg odia">
+      <div class="salutation">ମେଣ୍ଟରଙ୍କ ବାର୍ତ୍ତା — ବାପି,</div>
+      <p>ଅଭିନନ୍ଦନ! ତୁମେ Trading Journey ର ପ୍ରଥମ ସପ୍ତାହ ସମାପ୍ତ କରିଛ।</p>
+      <p>କିନ୍ତୁ ମନେ ରଖ — <strong>Knowledge ସଂଗ୍ରହ କରିବା ସହଜ। Knowledge କୁ ପ୍ରୟୋଗ କରିବା କଷ୍ଟକର।</strong></p>
+      <p>ଆଜି କୌଣସି ନୂଆ Topic ନାହିଁ। ଆଜି ତୁମେ ନିଜକୁ ପରୀକ୍ଷା କରିବ।</p>
+      <blockquote style="margin:16px 0 0; font-style:italic; color:var(--gold); border-left:3px solid var(--gold); padding-left:14px;">"Professional Trader ପ୍ରତି ସପ୍ତାହରେ Market କୁ ନୁହେଁ, ପ୍ରଥମେ ନିଜକୁ Evaluate କରନ୍ତି।"</blockquote>
+    </div>
+
+    <!-- WEEK 1 RECAP -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ସପ୍ତାହ ୧ ସାରାଂଶ</div>
+      <h2>ସପ୍ତାହ–୧ ରେ ଆମେ କଣ ଶିଖିଲୁ?</h2>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 90" preserveAspectRatio="xMidYMid meet">
+          <line x1="40" y1="28" x2="440" y2="28" stroke="var(--gold)" stroke-width="1.5"/>
+          <circle cx="40"  cy="28" r="14" fill="var(--gold)" fill-opacity="0.9"/>
+          <circle cx="120" cy="28" r="14" fill="var(--gold)" fill-opacity="0.9"/>
+          <circle cx="200" cy="28" r="14" fill="var(--gold)" fill-opacity="0.9"/>
+          <circle cx="280" cy="28" r="14" fill="var(--gold)" fill-opacity="0.9"/>
+          <circle cx="360" cy="28" r="14" fill="var(--gold)" fill-opacity="0.9"/>
+          <circle cx="440" cy="28" r="14" fill="var(--gold)" fill-opacity="0.9"/>
+          <text x="40"  y="33" text-anchor="middle" font-size="11" fill="#0B0E11" font-weight="bold">D1</text>
+          <text x="120" y="33" text-anchor="middle" font-size="11" fill="#0B0E11" font-weight="bold">D2</text>
+          <text x="200" y="33" text-anchor="middle" font-size="11" fill="#0B0E11" font-weight="bold">D3</text>
+          <text x="280" y="33" text-anchor="middle" font-size="11" fill="#0B0E11" font-weight="bold">D4</text>
+          <text x="360" y="33" text-anchor="middle" font-size="11" fill="#0B0E11" font-weight="bold">D5</text>
+          <text x="440" y="33" text-anchor="middle" font-size="11" fill="#0B0E11" font-weight="bold">D6</text>
+          <text x="40"  y="56" text-anchor="middle" font-size="10" fill="var(--muted)">Market</text>
+          <text x="120" y="56" text-anchor="middle" font-size="10" fill="var(--muted)">Mindset</text>
+          <text x="200" y="56" text-anchor="middle" font-size="10" fill="var(--muted)">Trend</text>
+          <text x="280" y="56" text-anchor="middle" font-size="10" fill="var(--muted)">Candle</text>
+          <text x="360" y="56" text-anchor="middle" font-size="10" fill="var(--muted)">S&amp;R</text>
+          <text x="440" y="56" text-anchor="middle" font-size="10" fill="var(--muted)">Volume</text>
+          <text x="40"  y="70" text-anchor="middle" font-size="10" fill="var(--muted)">Basics</text>
+          <text x="120" y="70" text-anchor="middle" font-size="10" fill="var(--muted)">&amp; Fear</text>
+          <text x="200" y="70" text-anchor="middle" font-size="10" fill="var(--muted)">Structure</text>
+          <text x="280" y="70" text-anchor="middle" font-size="10" fill="var(--muted)">Psychology</text>
+          <text x="360" y="70" text-anchor="middle" font-size="10" fill="var(--muted)">Support</text>
+          <text x="440" y="70" text-anchor="middle" font-size="10" fill="var(--muted)">Analysis</text>
+        </svg>
+        <div class="visual-cap odia">ସ୍ୱର୍ଣ୍ଣ ଚକ୍ର ✓ — ଦିନ ୧ ରୁ ୬ ସଫଳଭାବେ ସମ୍ପୂର୍ଣ୍ଣ</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px;">
+        <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px;">
+          <div style="color:var(--gold); font-size:11px; font-family:'JetBrains Mono',monospace; margin-bottom:6px;">ଦିନ ୧</div>
+          <div style="font-size:13px;">✓ Share Market କଣ?</div>
+          <div style="font-size:13px;">✓ Intraday Trading</div>
+          <div style="font-size:13px;">✓ Buyer ଓ Seller</div>
+        </div>
+        <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px;">
+          <div style="color:var(--gold); font-size:11px; font-family:'JetBrains Mono',monospace; margin-bottom:6px;">ଦିନ ୨</div>
+          <div style="font-size:13px;">✓ Trader Mindset</div>
+          <div style="font-size:13px;">✓ Greed ଓ Fear</div>
+          <div style="font-size:13px;">✓ Revenge Trading</div>
+        </div>
+        <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px;">
+          <div style="color:var(--gold); font-size:11px; font-family:'JetBrains Mono',monospace; margin-bottom:6px;">ଦିନ ୩</div>
+          <div style="font-size:13px;">✓ Uptrend</div>
+          <div style="font-size:13px;">✓ Downtrend</div>
+          <div style="font-size:13px;">✓ Sideways</div>
+        </div>
+        <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px;">
+          <div style="color:var(--gold); font-size:11px; font-family:'JetBrains Mono',monospace; margin-bottom:6px;">ଦିନ ୪</div>
+          <div style="font-size:13px;">✓ Bullish Candle</div>
+          <div style="font-size:13px;">✓ Bearish Candle</div>
+          <div style="font-size:13px;">✓ Doji</div>
+        </div>
+        <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px;">
+          <div style="color:var(--gold); font-size:11px; font-family:'JetBrains Mono',monospace; margin-bottom:6px;">ଦିନ ୫</div>
+          <div style="font-size:13px;">✓ Support</div>
+          <div style="font-size:13px;">✓ Resistance</div>
+          <div style="font-size:13px;">✓ Confirmation</div>
+        </div>
+        <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px;">
+          <div style="color:var(--gold); font-size:11px; font-family:'JetBrains Mono',monospace; margin-bottom:6px;">ଦିନ ୬</div>
+          <div style="font-size:13px;">✓ Volume</div>
+          <div style="font-size:13px;">✓ Strong Move</div>
+          <div style="font-size:13px;">✓ False Breakout</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENTOR'S MISTAKE -->
+    <div class="story odia">
+      <div class="story-eyebrow">ମେଣ୍ଟରଙ୍କ ଭୁଲ</div>
+      <p>Trading ଆରମ୍ଭ ସମୟରେ ମୁଁ ପ୍ରତିଦିନ ନୂଆ Indicator ଶିଖୁଥିଲି। RSI... MACD... Moving Average... Supertrend... କିନ୍ତୁ ଗୋଟିଏ କଥା ଶିଖିନଥିଲି — <strong>Price Action</strong>।</p>
+      <p>3 ମାସ ପରେ ବୁଝିଲି — Indicator ପୂର୍ବରୁ Market ର Foundation ବୁଝିବା ଦରକାର। ସେଥିପାଇଁ ଏହି ପୁସ୍ତକର ପ୍ରଥମ ସପ୍ତାହରେ ଆମେ କେବଳ Foundation ଉପରେ Focus କରିଛୁ।</p>
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">ଭୁଲ ରାସ୍ତା</div><div class="amt" style="color:var(--red); font-size:12px;">RSI+MACD+MA+ST…</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">3 ମାସ</div><div class="amt" style="color:var(--red);">Foundation ❌</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ଠିକ୍ ରାସ୍ତା</div><div class="amt" style="color:var(--green);">Foundation ✓ ପ୍ରଥମ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 1 TEST -->
+    <div class="challenge odia">
+      <div class="lesson-tag mono">ସପ୍ତାହ–୧ ପରୀକ୍ଷା</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(22px,3vw,30px); font-weight:600; margin:10px 0 8px;">୭ ପ୍ରଶ୍ନ — ଆପଣ ଏବେ ଜାଣନ୍ତି?</h2>
+      <p style="color:var(--muted); font-size:14px; margin-bottom:20px;">ପ୍ରତ୍ୟେକ ପ୍ରଶ୍ନର ଉତ୍ତର ନିଜ ଭାଷାରେ ଲେଖ। Google ନ ଦେଖ।</p>
+
+      <div class="task-card" style="flex-direction:column; align-items:flex-start;">
+        <div class="task-num">ପ୍ରଶ୍ନ ୧</div>
+        <h4>Share Market କଣ?</h4>
+        <div class="journal-box" style="width:100%; box-sizing:border-box;">
+          <textarea id="q1text" placeholder="ତୁମର ନିଜ ଭାଷାରେ ଲେଖ..."></textarea>
+          <div class="save-note" id="q1save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+        </div>
+      </div>
+
+      <div class="task-card" style="flex-direction:column; align-items:flex-start;">
+        <div class="task-num">ପ୍ରଶ୍ନ ୨</div>
+        <h4>Intraday Trading ଓ Investing ମଧ୍ୟରେ ପାର୍ଥକ୍ୟ କଣ?</h4>
+        <div class="journal-box" style="width:100%; box-sizing:border-box;">
+          <textarea id="q2text" placeholder="ତୁମର ନିଜ ଭାଷାରେ ଲେଖ..."></textarea>
+          <div class="save-note" id="q2save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+        </div>
+      </div>
+
+      <div class="task-card" style="flex-direction:column; align-items:flex-start;">
+        <div class="task-num">ପ୍ରଶ୍ନ ୩</div>
+        <h4>Uptrend କେମିତି ଚିହ୍ନିବ?</h4>
+        <div class="journal-box" style="width:100%; box-sizing:border-box;">
+          <textarea id="q3text" placeholder="ତୁମର ନିଜ ଭାଷାରେ ଲେଖ..."></textarea>
+          <div class="save-note" id="q3save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+        </div>
+      </div>
+
+      <div class="task-card" style="flex-direction:column; align-items:flex-start;">
+        <div class="task-num">ପ୍ରଶ୍ନ ୪</div>
+        <h4>Doji Candle କଣ ସୂଚନା ଦିଏ?</h4>
+        <div class="journal-box" style="width:100%; box-sizing:border-box;">
+          <textarea id="q4text" placeholder="ତୁମର ନିଜ ଭାଷାରେ ଲେଖ..."></textarea>
+          <div class="save-note" id="q4save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+        </div>
+      </div>
+
+      <div class="task-card" style="flex-direction:column; align-items:flex-start;">
+        <div class="task-num">ପ୍ରଶ୍ନ ୫</div>
+        <h4>Support ଓ Resistance କଣ?</h4>
+        <div class="journal-box" style="width:100%; box-sizing:border-box;">
+          <textarea id="q5text" placeholder="ତୁମର ନିଜ ଭାଷାରେ ଲେଖ..."></textarea>
+          <div class="save-note" id="q5save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+        </div>
+      </div>
+
+      <div class="task-card" style="flex-direction:column; align-items:flex-start;">
+        <div class="task-num">ପ୍ରଶ୍ନ ୬</div>
+        <h4>Volume କାହିଁକି ଜରୁରୀ?</h4>
+        <div class="journal-box" style="width:100%; box-sizing:border-box;">
+          <textarea id="q6text" placeholder="ତୁମର ନିଜ ଭାଷାରେ ଲେଖ..."></textarea>
+          <div class="save-note" id="q6save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+        </div>
+      </div>
+
+      <div class="task-card" style="flex-direction:column; align-items:flex-start;">
+        <div class="task-num">ପ୍ରଶ୍ନ ୭</div>
+        <h4>Trading ର ସବୁଠାରୁ ବଡ଼ ଶତ୍ରୁ କିଏ?</h4>
+        <div class="journal-box" style="width:100%; box-sizing:border-box;">
+          <textarea id="q7text" placeholder="ତୁମର ନିଜ ଭାଷାରେ ଲେଖ..."></textarea>
+          <div class="save-note" id="q7save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRACTICAL CHALLENGE -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପ୍ରାକ୍ଟିକାଲ୍ ଚ୍ୟାଲେଞ୍ଜ</div>
+      <h2>ଗୋଟିଏ Stock ବାଛ — ୬ ପ୍ରଶ୍ନ ଉତ୍ତର ଦିଅ</h2>
+      <p>ଆଜି କୌଣସି Trade କରନି। ଗୋଟିଏ Stock ବାଛ। ନିମ୍ନଲିଖିତ ୬ଟି ପ୍ରଶ୍ନର ଉତ୍ତର ଯଦି ଦେଇ ପାରୁ ତେବେ ✓ ଦଅ। ଯଦି ପାରୁ ନ, Trade ନେବ ନାହିଁ।</p>
+
+      <div class="visual">
+        <div style="display:flex; flex-direction:column; gap:10px; max-width:380px; margin:0 auto;">
+          <label style="display:flex; gap:10px; align-items:center; background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 14px; font-size:14.5px; cursor:pointer;">
+            <input type="checkbox" class="task-check" id="prac1" data-key="day7-prac1"> ✅ Trend କଣ?
+          </label>
+          <label style="display:flex; gap:10px; align-items:center; background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 14px; font-size:14.5px; cursor:pointer;">
+            <input type="checkbox" class="task-check" id="prac2" data-key="day7-prac2"> ✅ Candle Bullish ନା Bearish?
+          </label>
+          <label style="display:flex; gap:10px; align-items:center; background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 14px; font-size:14.5px; cursor:pointer;">
+            <input type="checkbox" class="task-check" id="prac3" data-key="day7-prac3"> ✅ Support କେଉଁଠି?
+          </label>
+          <label style="display:flex; gap:10px; align-items:center; background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 14px; font-size:14.5px; cursor:pointer;">
+            <input type="checkbox" class="task-check" id="prac4" data-key="day7-prac4"> ✅ Resistance କେଉଁଠି?
+          </label>
+          <label style="display:flex; gap:10px; align-items:center; background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 14px; font-size:14.5px; cursor:pointer;">
+            <input type="checkbox" class="task-check" id="prac5" data-key="day7-prac5"> ✅ Volume କେମିତି ଅଛି?
+          </label>
+          <label style="display:flex; gap:10px; align-items:center; background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 14px; font-size:14.5px; cursor:pointer;">
+            <input type="checkbox" class="task-check" id="prac6" data-key="day7-prac6"> ✅ ଯଦି Trade ନେବ, କାହିଁକି ନେବ?
+          </label>
+        </div>
+        <div class="visual-cap odia">ଏହି ୬ ✓ ଛଡ଼ା Trade ନୁହେଁ</div>
+      </div>
+    </div>
+
+    <!-- TRADING IS / IS NOT -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ସପ୍ତାହ–୧ ର ସବୁଠାରୁ ବଡ଼ ଶିକ୍ଷା</div>
+      <h2>ଟ୍ରେଡ଼ିଂ ହେଉଛି କ'ଣ?</h2>
+
+      <div class="vs-row">
+        <div class="vs-card" style="border-color:var(--red);">
+          <div class="vs-label" style="color:var(--red);">ଟ୍ରେଡ଼ିଂ ନୁହେଁ</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
+            <li style="font-size:14px;">❌ ଭାଗ୍ୟର ଖେଳ</li>
+            <li style="font-size:14px;">❌ ଜୁଆ</li>
+            <li style="font-size:14px;">❌ ଶୀଘ୍ର ଧନୀ ହେବାର ଉପାୟ</li>
+          </ul>
+        </div>
+        <div class="vs-card" style="border-color:var(--green);">
+          <div class="vs-label" style="color:var(--green);">ଟ୍ରେଡ଼ିଂ ହେଉଛି</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
+            <li style="font-size:14px;">✅ ଶୃଙ୍ଖଳା (Discipline)</li>
+            <li style="font-size:14px;">✅ ଧୈର୍ଯ୍ୟ (Patience)</li>
+            <li style="font-size:14px;">✅ ଅଭ୍ୟାସ (Practice)</li>
+            <li style="font-size:14px;">✅ Risk Management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <blockquote class="odia">"Amateur Trader Profit ଖୋଜେ। Professional Trader Process କୁ ସୁଧାରେ। Profit ନିଜେ ଆସିଯାଏ।"</blockquote>
+    </div>
+
+    <!-- TODAY'S CHALLENGE -->
+    <div class="challenge odia">
+      <div class="lesson-tag mono">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(22px,3vw,30px); font-weight:600; margin:10px 0 22px;">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ</h2>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task1chk" data-key="day7-task1-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୧</div>
+          <h4>ଏହି ସପ୍ତାହର ସମସ୍ତ Note ପୁଣିଥରେ ପଢ଼</h4>
+          <p>ଦିନ ୧ ରୁ ଦିନ ୬ — ସମ୍ପୂର୍ଣ୍ଣ Notes ଥରେ ଦେଖ। ଯାହା ଭୁଲ ଯାଇଛ ତାହା ଚିହ୍ନ। ଉପରୁ ✓ ଦଇ ଦଅ।</p>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task2chk" data-key="day7-task2-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୨</div>
+          <h4>ନିଜ Journal ର ପ୍ରଥମ ପୃଷ୍ଠାରେ ଏହି ୬ Rule ଲେଖ</h4>
+          <div class="journal-box">
+            <textarea id="task2text" placeholder="1. Trend ବିରୋଧରେ Trade କରିବି ନାହିଁ।&#10;2. Stop Loss ଛଡ଼ା Trade କରିବି ନାହିଁ।&#10;3. Confirmation ଛଡ଼ା Entry ନେବି ନାହିଁ।&#10;4. Greed କୁ Control କରିବି।&#10;5. Revenge Trading କରିବି ନାହିଁ।&#10;6. ପ୍ରତି Trade ପରେ Journal ଲେଖିବି।"></textarea>
+            <div class="save-note" id="task2save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task3chk" data-key="day7-task3-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୩</div>
+          <h4>ନିଜକୁ 10 ରୁ Mark ଦିଅ</h4>
+          <p>ଯେଉଁଠାରେ ୭ ରୁ କମ୍ ଅଛି, ସେଠାରେ ଅଧିକ Practice କର।</p>
+          <div style="display:flex; flex-direction:column; gap:12px; margin-top:14px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <label style="flex:1; font-size:14.5px;">Market Knowledge</label>
+              <input type="number" id="score1" min="0" max="10" placeholder="—"
+                style="width:66px; background:var(--ink); border:1px solid var(--ink-line); border-radius:6px; color:var(--gold); font-size:16px; padding:6px 8px; text-align:center; font-family:'JetBrains Mono',monospace;">
+              <span style="color:var(--muted); font-size:13px;">/10</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <label style="flex:1; font-size:14.5px;">Discipline</label>
+              <input type="number" id="score2" min="0" max="10" placeholder="—"
+                style="width:66px; background:var(--ink); border:1px solid var(--ink-line); border-radius:6px; color:var(--gold); font-size:16px; padding:6px 8px; text-align:center; font-family:'JetBrains Mono',monospace;">
+              <span style="color:var(--muted); font-size:13px;">/10</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <label style="flex:1; font-size:14.5px;">Patience</label>
+              <input type="number" id="score3" min="0" max="10" placeholder="—"
+                style="width:66px; background:var(--ink); border:1px solid var(--ink-line); border-radius:6px; color:var(--gold); font-size:16px; padding:6px 8px; text-align:center; font-family:'JetBrains Mono',monospace;">
+              <span style="color:var(--muted); font-size:13px;">/10</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <label style="flex:1; font-size:14.5px;">Psychology</label>
+              <input type="number" id="score4" min="0" max="10" placeholder="—"
+                style="width:66px; background:var(--ink); border:1px solid var(--ink-line); border-radius:6px; color:var(--gold); font-size:16px; padding:6px 8px; text-align:center; font-family:'JetBrains Mono',monospace;">
+              <span style="color:var(--muted); font-size:13px;">/10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary odia">
+      <h3>ଦିନ ୭ ର ସାରାଂଶ — ଆଜି ତୁମେ ଶିଖିଲ</h3>
+      <ul>
+        <li>ସପ୍ତାହ–୧ ର ସମ୍ପୂର୍ଣ୍ଣ Foundation ଦୋହରାଇଲ</li>
+        <li>୭ ପ୍ରଶ୍ନର ଉତ୍ତର ନିଜ ଭାଷାରେ ଦେଲ</li>
+        <li>Practical 6-Point Framework ଚ୍ୟାଲେଞ୍ଜ ସମ୍ପୂର୍ଣ୍ଣ କଲ</li>
+        <li>Trading ଓ ଜୁଆ ର ଫରକ ବୁଝିଲ</li>
+        <li>ନିଜ Strength ଓ Weakness ଚିହ୍ନଲ</li>
+      </ul>
+    </div>
+
+    <div class="golden-rule odia">
+      <div class="tag mono">ସୁବର୍ଣ୍ଣ ନିୟମ #୭</div>
+      <strong>"ପ୍ରଥମେ <span>Foundation</span> ମଜବୁତ କର। ତାପରେ Strategy ଶିଖ। ମଜବୁତ Foundation ଉପରେ ହିଁ ଦୀର୍ଘସ୍ଥାୟୀ ସଫଳତା ଗଢ଼ାଯାଏ।"</strong>
+    </div>
+
+    <!-- WEEK 2 PREVIEW -->
+    <div class="story odia">
+      <div class="story-eyebrow">ପରବର୍ତ୍ତୀ ସପ୍ତାହ — Week 2</div>
+      <p>ଏବେ ଆରମ୍ଭ ହେବ Professional Tools। Foundation ଶেষ, ଏବେ Strategy ର ସময়।</p>
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div style="display:flex; flex-direction:column; gap:8px; max-width:340px; margin:0 auto;">
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:10px 14px; display:flex; gap:12px; align-items:center;">
+            <span style="color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px; min-width:38px;">D 08</span>
+            <span style="font-size:13.5px;">Moving Average (EMA &amp; SMA)</span>
+          </div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:10px 14px; display:flex; gap:12px; align-items:center;">
+            <span style="color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px; min-width:38px;">D 09</span>
+            <span style="font-size:13.5px;">VWAP</span>
+          </div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:10px 14px; display:flex; gap:12px; align-items:center;">
+            <span style="color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px; min-width:38px;">D 10</span>
+            <span style="font-size:13.5px;">RSI</span>
+          </div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:10px 14px; display:flex; gap:12px; align-items:center;">
+            <span style="color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px; min-width:38px;">D 11</span>
+            <span style="font-size:13.5px;">MACD</span>
+          </div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:10px 14px; display:flex; gap:12px; align-items:center;">
+            <span style="color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px; min-width:38px;">D 12</span>
+            <span style="font-size:13.5px;">Chart Patterns</span>
+          </div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:10px 14px; display:flex; gap:12px; align-items:center;">
+            <span style="color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px; min-width:38px;">D 13</span>
+            <span style="font-size:13.5px;">Gap Up &amp; Gap Down</span>
+          </div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:10px 14px; display:flex; gap:12px; align-items:center;">
+            <span style="color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:12px; min-width:38px;">D 14</span>
+            <span style="font-size:13.5px;">Week 2 Review &amp; Practical Test</span>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:18px; font-style:italic;">ଏବେଠାରୁ ତୁମେ କେବଳ Market କୁ ଦେଖିବ ନାହିଁ — <strong>Market କୁ ପଢ଼ିବା ଆରମ୍ଭ କରିବ।</strong></p>
+    </div>
+
+  </section>
+
+  <div class="day-nav">
+    <a href="day-06.html" class="odia">← ଦିନ ୬</a>
+    <a href="index.html#map" class="home-link odia">Candle Map କୁ ଫେରନ୍ତୁ</a>
+    <span class="disabled odia">ଦିନ ୮ — ଆସୁଛି →</span>
+  </div>
+
+  <footer class="book-footer">
+    <span class="odia">ଗଠିତ ହେଲା ଏକ Professional Mentor ପାଇଁ —</span> <span class="sig">Intraday.30</span>
+  </footer>
+
+</main>
+
+<script>
+window.scrollTo(0,0);
+window.addEventListener('pageshow', ()=> window.scrollTo(0,0));
+
+function bindCheckbox(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const key = el.dataset.key;
+  el.checked = localStorage.getItem(key) === '1';
+  el.addEventListener('change', ()=> localStorage.setItem(key, el.checked ? '1' : '0'));
+}
+['task1chk','task2chk','task3chk','prac1','prac2','prac3','prac4','prac5','prac6'].forEach(bindCheckbox);
+
+function bindJournal(textId, saveId, key){
+  const t = document.getElementById(textId);
+  const save = document.getElementById(saveId);
+  if(!t) return;
+  t.value = localStorage.getItem(key) || '';
+  let timer;
+  t.addEventListener('input', ()=>{
+    clearTimeout(timer);
+    save.classList.remove('saved');
+    timer = setTimeout(()=>{
+      localStorage.setItem(key, t.value);
+      save.textContent = 'ସେଭ୍ ହୋଇଗଲା ✓';
+      save.classList.add('saved');
+    }, 500);
+  });
+}
+bindJournal('q1text','q1save','day7-quiz1');
+bindJournal('q2text','q2save','day7-quiz2');
+bindJournal('q3text','q3save','day7-quiz3');
+bindJournal('q4text','q4save','day7-quiz4');
+bindJournal('q5text','q5save','day7-quiz5');
+bindJournal('q6text','q6save','day7-quiz6');
+bindJournal('q7text','q7save','day7-quiz7');
+bindJournal('task2text','task2save','day7-task2-text');
+
+(function(){
+  const scores = [
+    {id:'score1', key:'day7-score-market'},
+    {id:'score2', key:'day7-score-discipline'},
+    {id:'score3', key:'day7-score-patience'},
+    {id:'score4', key:'day7-score-psychology'}
+  ];
+  scores.forEach(function(s){
+    const el = document.getElementById(s.id);
+    if(!el) return;
+    el.value = localStorage.getItem(s.key) || '';
+    el.addEventListener('change', function(){ localStorage.setItem(s.key, el.value); });
+  });
+})();
+
+function updateProgress(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (scrolled / max) * 100 : 0;
+  document.getElementById('readProgress').style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=> navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+<script src="js/daynav.js"></script>
+<script>renderDayStrip('dayJumpStrip', 7); window.CURRENT_DAY = 7;</script>
+<script src="js/notify.js"></script>
+
+</body>
+</html>
