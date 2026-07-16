@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+</script>
+<title>ଦିନ ୧୦ : RSI — Intraday.30</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Oriya:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="read-progress" id="readProgress"></div>
+
+<nav>
+  <a href="index.html" class="brand">Intraday<span>.</span>30</a>
+  <div class="nav-links">
+    <span class="day-pill mono">DAY 10 / 30</span>
+    <a href="index.html#map">Candle Map</a>
+    <button id="notifBtn" class="notif-btn"></button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="day-hero">
+    <div class="day-eyebrow odia">ଫେଜ୍ ୦୨ — Professional Tools</div>
+    <h1 class="odia">ଦିନ ୧୦ : RSI — Momentum ବୁଝ, କେବଳ Number ନୁହେଁ</h1>
+    <div class="day-progress-row">
+      <div class="day-progress-track"><div class="day-progress-fill" style="width:33.3%"></div></div>
+      <div class="day-progress-label mono">10/30</div>
+    </div>
+    <div class="day-jump" id="dayJumpStrip"></div>
+  </section>
+
+  <section>
+    <div class="mentor-msg odia">
+      <div class="salutation">ମେଣ୍ଟରଙ୍କ ବାର୍ତ୍ତା — ବାପି,</div>
+      <p>ଆଜି ଆମେ RSI ଶିଖିବା। YouTube ରେ ତୁମେ ବହୁତଥର ଶୁଣିଥିବ —</p>
+      <p style="color:var(--muted); font-style:italic;">"RSI 70 ଉପରେ ଗଲେ Sell।" &nbsp;|&nbsp; "RSI 30 ତଳକୁ ଆସିଲେ Buy।"</p>
+      <p>ଯଦି Trading ଏତେ ସହଜ ହୋଇଥାନ୍ତା, ସମସ୍ତେ କୋଟିପତି ହୋଇଯାଇଥାନ୍ତେ। ଆଜି ଶିଖ — <strong>Professional Trader RSI କୁ ବାସ୍ତବରେ କେମିତି ବ୍ୟବହାର କରନ୍ତି।</strong></p>
+    </div>
+
+    <!-- LESSON 1 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୧</div>
+      <h2>RSI କଣ?</h2>
+      <p>RSI = <strong>Relative Strength Index</strong>। ଏହା ଗୋଟିଏ Momentum Indicator — ଅର୍ଥାତ Price କେତେ ଜୋରରେ ଉପରକୁ ବା ତଳକୁ ଯାଉଛି ତାହା ବୁଝାଏ। RSI ର Value ସବୁବେଳେ <strong>0 ରୁ 100 ମଧ୍ୟରେ</strong> ଥାଏ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 150" preserveAspectRatio="xMidYMid meet">
+          <!-- Overbought zone (RSI 70-100) -->
+          <rect x="20" y="10" width="440" height="39" fill="var(--red)" fill-opacity="0.12"/>
+          <!-- Oversold zone (RSI 0-30) -->
+          <rect x="20" y="101" width="440" height="39" fill="var(--green)" fill-opacity="0.1"/>
+          <!-- Zone boundary lines -->
+          <line x1="20" y1="49" x2="460" y2="49" stroke="var(--red)" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="20" y1="75" x2="460" y2="75" stroke="var(--ink-line)" stroke-width="0.8"/>
+          <line x1="20" y1="101" x2="460" y2="101" stroke="var(--green)" stroke-width="1" stroke-dasharray="3,3"/>
+          <!-- RSI oscillator line -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="2.2"
+            points="20,82 64,62 108,46 152,39 196,56 240,75 284,82 328,99 372,108 416,88 460,69"/>
+          <!-- Y-axis labels -->
+          <text x="2" y="15" font-size="10" fill="var(--red)">100</text>
+          <text x="2" y="53" font-size="10" fill="var(--red)">70</text>
+          <text x="2" y="79" font-size="10" fill="var(--muted)">50</text>
+          <text x="2" y="105" font-size="10" fill="var(--green)">30</text>
+          <text x="5" y="142" font-size="10" fill="var(--muted)">0</text>
+          <!-- Zone labels on right -->
+          <text x="360" y="28" font-size="10" fill="var(--red)">Overbought</text>
+          <text x="370" y="78" font-size="10" fill="var(--muted)">Neutral</text>
+          <text x="363" y="133" font-size="10" fill="var(--green)">Oversold</text>
+          <text x="22" y="24" font-size="10" fill="var(--gold)">RSI</text>
+        </svg>
+        <div class="visual-cap odia">ସ୍ୱର୍ଣ୍ଣ ରେଖା = RSI — 0 ରୁ 100 ମଧ୍ୟରେ ଦୋହଲୁଥାଏ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୨</div>
+      <h2>RSI ର Level — ଏବଂ ଭ୍ରମ</h2>
+      <p>RSI ର ଦୁଇଟି ଗୁରୁତ୍ୱପୂର୍ଣ Level ଅଛି — ଏବଂ ଦୁଇଟି ସାଧାରଣ ଭ୍ରମ ମଧ୍ୟ ଅଛି।</p>
+
+      <div class="vs-row">
+        <div class="vs-card" style="border-color:var(--red);">
+          <div class="vs-label" style="color:var(--red);">RSI ≥ 70 — Overbought</div>
+          <p style="font-size:13.5px; margin:0 0 8px;">Price ବହୁତ ଶୀଘ୍ର ବଢ଼ିଛି।</p>
+          <p style="font-size:13.5px; font-weight:600; margin:0; color:var(--red);">≠ Sell Signal</p>
+          <p style="font-size:12px; color:var(--muted); margin-top:6px;">Strong Trend ରେ RSI ଦୀର୍ଘ ସମୟ 70 ଉପରେ ରହିପାରେ।</p>
+        </div>
+        <div class="vs-card" style="border-color:var(--green);">
+          <div class="vs-label" style="color:var(--green);">RSI ≤ 30 — Oversold</div>
+          <p style="font-size:13.5px; margin:0 0 8px;">Price ବହୁତ ଶୀଘ୍ର କମିଛି।</p>
+          <p style="font-size:13.5px; font-weight:600; margin:0; color:var(--green);">≠ Buy Signal</p>
+          <p style="font-size:12px; color:var(--muted); margin-top:6px;">Strong Downtrend ରେ RSI ଦୀର୍ଘ ସମୟ 30 ତଳେ ରହିପାରେ।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୩</div>
+      <h2>ସବୁଠାରୁ ବଡ଼ ଭୁଲ</h2>
+      <p>ନୂଆ Trader ଭାବନ୍ତି — RSI ≥ 70 = Sell ✓, RSI ≤ 30 = Buy ✓। ଏହା ସଂପୂର୍ଣ ଭୁଲ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 175" preserveAspectRatio="xMidYMid meet">
+          <line x1="240" y1="10" x2="240" y2="170" stroke="var(--ink-line)" stroke-width="1"/>
+
+          <!-- LEFT: Strong Uptrend — RSI stays high, price keeps rising -->
+          <!-- RSI 70 band (red shading) -->
+          <rect x="20" y="10" width="210" height="35" fill="var(--red)" fill-opacity="0.1"/>
+          <line x1="20" y1="45" x2="228" y2="45" stroke="var(--red)" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <!-- RSI line staying in overbought -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="1.8"
+            points="20,50 65,40 110,32 160,28 210,22"/>
+          <text x="22" y="22" font-size="10" fill="var(--gold)">RSI ≥ 70 (Overbought)</text>
+          <!-- Price line still rising -->
+          <polyline class="line" points="20,155 65,128 110,105 160,80 210,55"/>
+          <text x="22" y="168" font-size="10" fill="var(--green)">Price ↑ ଆଉ ବଢ଼ୁଛି</text>
+          <!-- SELL cross -->
+          <text x="88" y="90" font-size="13" fill="var(--red)" font-weight="bold">❌ Sell?</text>
+
+          <!-- RIGHT: Strong Downtrend — RSI stays low, price keeps falling -->
+          <rect x="252" y="135" width="210" height="35" fill="var(--green)" fill-opacity="0.1"/>
+          <line x1="252" y1="135" x2="460" y2="135" stroke="var(--green)" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <!-- RSI line staying in oversold -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="1.8"
+            points="255,148 300,158 350,162 400,165 455,168"/>
+          <text x="258" y="170" font-size="10" fill="var(--gold)">RSI ≤ 30 (Oversold)</text>
+          <!-- Price line still falling -->
+          <polyline class="line down" points="255,22 300,48 350,72 400,100 455,135"/>
+          <text x="258" y="18" font-size="10" fill="var(--red)">Price ↓ ଆଉ ପଡ଼ୁଛି</text>
+          <!-- BUY cross -->
+          <text x="320" y="88" font-size="13" fill="var(--red)" font-weight="bold">❌ Buy?</text>
+        </svg>
+        <div class="visual-cap odia">Strong Trend ରେ RSI ଗୋଟିଏ Zone ରେ ଦୀର୍ଘ ସମୟ ରହିପାରେ — ଏହା ସାଧାରଣ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 4 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୪</div>
+      <h2>RSI କୁ ସଠିକ ଭାବେ ବ୍ୟବହାର</h2>
+      <p>RSI ତୁମକୁ ପଚାରେ — <strong>"Market ର Momentum କେମିତି ଅଛି?"</strong> — ଏହା ଗୋଟିଏ ପ୍ରଶ୍ନ, ଉତ୍ତର ନୁହେଁ। ସବୁ ଜଣ ଏକାଠି ଦେଖ, ତାପରେ ନିଷ୍ପତ୍ତି ନିଅ।</p>
+
+      <div class="visual">
+        <div style="display:flex; flex-direction:column; gap:10px; max-width:360px; margin:0 auto;">
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Trend</div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Support / Resistance</div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Candlestick</div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Volume</div>
+          <div style="background:var(--ink); border:2px solid var(--gold); border-radius:8px; padding:12px 16px; font-size:14.5px; color:var(--gold);">☐ RSI (Momentum) ★</div>
+        </div>
+        <div class="visual-cap odia">ଏହି ୫ ଏକ ଦିଗ ଦେଖାଇଲେ ହିଁ Decision ନିଅ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 5 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୫</div>
+      <h2>RSI Divergence — ପରିଚୟ</h2>
+      <p> କେବେ କେବେ Price ଓ RSI ଭିନ୍ନ ଦିଗ ଦେଖାନ୍ତି — ଏହାକୁ <strong>Divergence</strong> କୁହାଯାଏ। ଏହା Trend ଦୁର୍ବଳ ହୋଇପାରେ ବୋଲି ଏକ ସଙ୍କେତ। <em>(ଆମେ ଏହାକୁ Advanced Chapter ରେ ବିସ୍ତାରରେ ଶିଖିବା।)</em></p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 185" preserveAspectRatio="xMidYMid meet">
+          <!-- Panel divider: vertical -->
+          <line x1="240" y1="10" x2="240" y2="180" stroke="var(--ink-line)" stroke-width="1"/>
+          <!-- Panel divider: horizontal (price/RSI separator) -->
+          <line x1="20" y1="90" x2="228" y2="90" stroke="var(--ink-line)" stroke-width="0.8" stroke-dasharray="2,3"/>
+          <line x1="252" y1="90" x2="460" y2="90" stroke="var(--ink-line)" stroke-width="0.8" stroke-dasharray="2,3"/>
+
+          <!-- LEFT: BEARISH DIVERGENCE -->
+          <!-- Price (top): H1 then H2 (H2 higher) — going UP -->
+          <polyline class="line"
+            points="20,72 50,48 75,30 105,56 135,44 168,18 200,55 225,52"/>
+          <!-- RSI (bottom): R1 then R2 (R2 LOWER despite H2 > H1) -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="1.8"
+            points="20,152 50,122 75,112 105,148 135,132 168,130 200,158 225,162"/>
+          <!-- Divergence lines (dashed) -->
+          <line x1="75" y1="30" x2="168" y2="18" stroke="var(--green)" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <line x1="75" y1="112" x2="168" y2="130" stroke="var(--red)" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <!-- Peak dots -->
+          <circle cx="75" cy="30" r="3.5" fill="var(--green)"/>
+          <circle cx="168" cy="18" r="3.5" fill="var(--green)"/>
+          <circle cx="75" cy="112" r="3.5" fill="var(--gold)"/>
+          <circle cx="168" cy="130" r="3.5" fill="var(--gold)"/>
+          <!-- Labels -->
+          <text x="22" y="22" font-size="10" fill="var(--green)">Price HH ↑</text>
+          <text x="22" y="105" font-size="10" fill="var(--gold)">RSI LH ↓</text>
+          <text x="30" y="178" font-size="11" fill="var(--red)" font-weight="600">Bearish Divergence ⚠</text>
+
+          <!-- RIGHT: BULLISH DIVERGENCE -->
+          <!-- Price (top): L1 then L2 (L2 lower) — going DOWN -->
+          <polyline class="line down"
+            points="255,22 285,48 310,68 340,46 368,58 395,78 425,55 458,52"/>
+          <!-- RSI (bottom): R1 then R2 (R2 HIGHER despite L2 < L1) -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="1.8"
+            points="255,125 285,158 310,168 340,148 368,158 395,148 425,162 458,160"/>
+          <!-- Divergence lines (dashed) -->
+          <line x1="310" y1="68" x2="395" y2="78" stroke="var(--red)" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <line x1="310" y1="168" x2="395" y2="148" stroke="var(--green)" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <!-- Trough dots -->
+          <circle cx="310" cy="68" r="3.5" fill="var(--red)"/>
+          <circle cx="395" cy="78" r="3.5" fill="var(--red)"/>
+          <circle cx="310" cy="168" r="3.5" fill="var(--gold)"/>
+          <circle cx="395" cy="148" r="3.5" fill="var(--gold)"/>
+          <!-- Labels -->
+          <text x="258" y="22" font-size="10" fill="var(--red)">Price LL ↓</text>
+          <text x="258" y="105" font-size="10" fill="var(--gold)">RSI HL ↑</text>
+          <text x="268" y="178" font-size="11" fill="var(--green)" font-weight="600">Bullish Divergence ⚠</text>
+        </svg>
+        <div class="visual-cap odia">ବିନ୍ଦୁ ଯୋଡ଼ୁଥିବା ରେଖା ଦ୍ୱାରା ଦୁଇ ଦିଗ ଦେଖ — ଏହିଁ Divergence</div>
+      </div>
+    </div>
+
+    <!-- MENTOR'S MISTAKE -->
+    <div class="story odia">
+      <div class="story-eyebrow">ମେଣ୍ଟରଙ୍କ ଭୁଲ</div>
+      <p>ଟ୍ରେଡ଼ିଂ ଆରମ୍ଭରେ ଆମେ RSI 75 ଦେଖି ସଙ୍ଗେ ସଙ୍ଗେ Sell (Short) କରୁଥିଲୁ। ଭାବୁଥିଲୁ — "ଏବେ ନିଶ୍ଚୟ Market ତଳକୁ ଆସିବ।" Stock ଆଉ 8% ବଢ଼ିଗଲା। Stop Loss Hit ହେଲା।</p>
+      <p>ସେ ଦିନ ଶିଖିଲୁ — <strong>"RSI Warning ଦିଏ, Order ଦିଏ ନାହିଁ।"</strong></p>
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">RSI = 75</div><div class="amt" style="color:var(--red);">Short (Sell) ↓</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">Stock</div><div class="amt" style="color:var(--green);">+8% ↑↑</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ଫଳ</div><div class="amt" style="color:var(--red);">Stop Loss Hit</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIYA'S STORY -->
+    <div class="story odia">
+      <div class="story-eyebrow">ପ୍ରକୃତ କାହାଣୀ</div>
+      <p>ପ୍ରିୟା ନାମକ ଜଣେ Trader RSI 30 ତଳକୁ ଆସିଲେ Buy କରୁଥିଲେ। ଗୋଟିଏ Stock ର RSI ଥିଲା 30... ତାପରେ 25... 20... 18। ସେ ପ୍ରତ୍ୟେକ ଥର Buy କଲେ — ପ୍ରତ୍ୟେକ ଥର Loss ହେଲା।</p>
+      <p>ପରେ ଶିଖିଲେ — RSI ନୁହେଁ, <strong>Trend ହିଁ ରାଜା।</strong> Downtrend ରେ RSI 30 ଏକ Stop ନୁହେଁ, ସତର୍କ ସଙ୍କେତ।</p>
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">RSI 30 → Buy</div><div class="amt" style="color:var(--red); font-size:11.5px;">25→20→18 ↓↓</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ବାରମ୍ବାର</div><div class="amt" style="color:var(--red);">Loss ×</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ଶିକ୍ଷା</div><div class="amt" style="color:var(--green);">Trend ✓ ଆଗ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <blockquote class="odia">"Indicator କୁ Follow କରନ। Market କୁ ବୁଝ। Indicator କେବଳ Market ର ଅନୁବାଦକ।"</blockquote>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="challenge odia">
+      <div class="lesson-tag mono">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(22px,3vw,30px); font-weight:600; margin:10px 0 22px;">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ</h2>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task1chk" data-key="day10-task1-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୧</div>
+          <h4>Chart ରେ RSI (14) Add କର</h4>
+          <p>5ଟି Stock ରେ ଦେଖ — RSI 70 ଉପରେ ଅଛି? 30 ତଳେ? ନା 30–70 ମଧ୍ୟରେ? ଓ Trend କ'ଣ? ଲେଖ।</p>
+          <div class="journal-box">
+            <textarea id="task1text" placeholder="Stock 1: TCS — RSI = 65 (Neutral), Trend ↑ — EMA ଉପରେ...&#10;Stock 2: ..."></textarea>
+            <div class="save-note" id="task1save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task2chk" data-key="day10-task2-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୨</div>
+          <h4>Uptrend ରେ RSI 70 ଉପରେ ଥିଲେ Price ଆଉ ବଢ଼ୁଛି?</h4>
+          <p>ଗୋଟିଏ Uptrend Stock ବାଛ। RSI 70 ଉପରେ ଥାଇ Price ଆଉ ବଢ଼ୁଛି? ଏହି Observation ଲେଖ।</p>
+          <div class="journal-box">
+            <textarea id="task2text" placeholder="Stock: ___&#10;Trend: Uptrend ↑&#10;RSI: ___ (70 ଉପରେ)&#10;Price: ___&#10;Observation: RSI 70 ଉପ‌ରେ ଥାଇ Price ___"></textarea>
+            <div class="save-note" id="task2save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task3chk" data-key="day10-task3-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୩</div>
+          <h4>Trading Journal ରେ ଆଜିର Rule ଯୋଡ଼</h4>
+          <p>ଏହି Rule ଲେଖ ଓ ନିଜ ଭାଷାରେ ବୁଝ।</p>
+          <div class="journal-box">
+            <textarea id="task3text" placeholder="Rule: &quot;RSI ଦେଖି ଏକୁଟିଆ Trade ନେବି ନାହିଁ। Trend, Price Action ଓ Volume ସହ ମିଶାଇ Decision ନେବି।&quot;&#10;&#10;ମୋ ଭାଷାରେ: ..."></textarea>
+            <div class="save-note" id="task3save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 11 TEASER -->
+    <div class="story odia">
+      <div class="story-eyebrow">ଆସନ୍ତାକାଲି — DAY 11</div>
+      <p><strong>MACD (Moving Average Convergence Divergence)</strong> — MACD Line, Signal Line ଓ Histogram କ'ଣ? Bullish Momentum କେଉଁଠି ଆରମ୍ଭ ଓ Bearish Momentum କେଉଁଠି ଦୁର୍ବଳ — Professional Trader ଭଳି ବୁଝ।</p>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary odia">
+      <h3>ଦିନ ୧୦ ର ସାରାଂଶ — ଆଜି ତୁମେ ଶିଖିଲ</h3>
+      <ul>
+        <li>RSI কণ — Momentum Indicator, 0–100 ମଧ୍ୟରେ</li>
+        <li>Overbought (≥70) ≠ Sell, Oversold (≤30) ≠ Buy</li>
+        <li>Strong Trend ରେ RSI ଗୋଟିଏ Zone ରେ ଦୀର୍ଘ ସମୟ ରହିପାରେ</li>
+        <li>RSI ଏକ Confirmation Tool — 5 Conditions ଏକାଠି</li>
+        <li>Divergence ର ପରିଚୟ — Price ଓ RSI ଭିନ୍ନ ଦିଗ</li>
+      </ul>
+    </div>
+
+    <div class="golden-rule odia">
+      <div class="tag mono">ସୁବର୍ଣ୍ଣ ନିୟମ #୧୦</div>
+      <strong>"<span>RSI</span> ତୁମକୁ Momentum ଦେଖାଏ — Trade ର ଅନୁମତି ନୁହେଁ। ଶେଷ ନିଷ୍ପତ୍ତି ସବୁବେଳେ <span>Price Action</span> ନେଇଥାଏ।"</strong>
+    </div>
+
+  </section>
+
+  <div class="day-nav">
+    <a href="day-09.html" class="odia">← ଦିନ ୯</a>
+    <a href="index.html#map" class="home-link odia">Candle Map କୁ ଫେରନ୍ତୁ</a>
+    <span class="disabled odia">ଦିନ ୧୧ — ଆସୁଛି →</span>
+  </div>
+
+  <footer class="book-footer">
+    <span class="odia">ଗଠିତ ହେଲା ଏକ Professional Mentor ପାଇଁ —</span> <span class="sig">Intraday.30</span>
+  </footer>
+
+</main>
+
+<script>
+window.scrollTo(0,0);
+window.addEventListener('pageshow', ()=> window.scrollTo(0,0));
+
+function bindCheckbox(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const key = el.dataset.key;
+  el.checked = localStorage.getItem(key) === '1';
+  el.addEventListener('change', ()=> localStorage.setItem(key, el.checked ? '1' : '0'));
+}
+['task1chk','task2chk','task3chk'].forEach(bindCheckbox);
+
+function bindJournal(textId, saveId, key){
+  const t = document.getElementById(textId);
+  const save = document.getElementById(saveId);
+  if(!t) return;
+  t.value = localStorage.getItem(key) || '';
+  let timer;
+  t.addEventListener('input', ()=>{
+    clearTimeout(timer);
+    save.classList.remove('saved');
+    timer = setTimeout(()=>{
+      localStorage.setItem(key, t.value);
+      save.textContent = 'ସେଭ୍ ହୋଇଗଲା ✓';
+      save.classList.add('saved');
+    }, 500);
+  });
+}
+bindJournal('task1text','task1save','day10-task1-text');
+bindJournal('task2text','task2save','day10-task2-text');
+bindJournal('task3text','task3save','day10-task3-text');
+
+function updateProgress(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (scrolled / max) * 100 : 0;
+  document.getElementById('readProgress').style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=> navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+<script src="js/daynav.js"></script>
+<script>renderDayStrip('dayJumpStrip', 10); window.CURRENT_DAY = 10;</script>
+<script src="js/notify.js"></script>
+
+</body>
+</html>
