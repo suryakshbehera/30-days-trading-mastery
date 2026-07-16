@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+</script>
+<title>ଦିନ ୮ : Moving Average (EMA &amp; SMA) — Intraday.30</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Oriya:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="read-progress" id="readProgress"></div>
+
+<nav>
+  <a href="index.html" class="brand">Intraday<span>.</span>30</a>
+  <div class="nav-links">
+    <span class="day-pill mono">DAY 08 / 30</span>
+    <a href="index.html#map">Candle Map</a>
+    <button id="notifBtn" class="notif-btn"></button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="day-hero">
+    <div class="day-eyebrow odia">ଫେଜ୍ ୦୨ — Professional Tools</div>
+    <h1 class="odia">ଦିନ ୮ : Moving Average (EMA &amp; SMA) — Trend କୁ ସହଜରେ ଚିହ୍ନନ୍ତୁ</h1>
+    <div class="day-progress-row">
+      <div class="day-progress-track"><div class="day-progress-fill" style="width:26.7%"></div></div>
+      <div class="day-progress-label mono">8/30</div>
+    </div>
+    <div class="day-jump" id="dayJumpStrip"></div>
+  </section>
+
+  <section>
+    <div class="mentor-msg odia">
+      <div class="salutation">ମେଣ୍ଟରଙ୍କ ବାର୍ତ୍ତା — ବାପି,</div>
+      <p>ଆଜିଠାରୁ ଆମେ Trading Tools ଶିଖିବା ଆରମ୍ଭ କରିବା। କିନ୍ତୁ ଗୋଟିଏ କଥା ସବୁବେଳେ ମନେ ରଖ —</p>
+      <p><strong>"Indicator ତୁମକୁ ସାହାଯ୍ୟ କରିବ, କିନ୍ତୁ ସିଦ୍ଧାନ୍ତ ନେବ Price Action।"</strong></p>
+      <p>ନୂଆ Trader ମାନଙ୍କର ସବୁଠାରୁ ବଡ଼ ଭୁଲ — Chart ରେ 8–10ଟି Indicator ଲଗାଇ ଦେବା। Chart ଏତେ ଭରିଯାଏ ଯେ Price ହିଁ ଦେଖାଯାଏ ନାହିଁ। Professional Trader ମାନେ ସାଧାରଣତଃ ଖୁବ କମ୍ Indicator ବ୍ୟବହାର କରନ୍ତି।</p>
+    </div>
+
+    <!-- LESSON 1 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୧</div>
+      <h2>Moving Average କଣ?</h2>
+      <p>Moving Average (MA) ହେଉଛି ଗୋଟିଏ Line, ଯାହା ପୂର୍ବରୁ ହୋଇଥିବା Price ର Average କୁ ଦେଖାଏ। ଏହା Market ର ଛୋଟ ଛୋଟ Noise କୁ କମାଇଦିଏ — ଫଳରେ Trend ସହଜରେ ବୁଝିହୁଏ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 130" preserveAspectRatio="xMidYMid meet">
+          <!-- Noisy price line -->
+          <polyline fill="none" stroke="var(--muted)" stroke-width="1.2"
+            points="20,90 60,45 100,100 140,30 180,80 220,18 260,58 300,22 340,60 380,12 420,50 455,22"/>
+          <!-- Smooth MA line -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="2.5"
+            points="20,82 100,70 180,58 260,46 340,36 455,26"/>
+          <text x="22" y="122" font-size="11" fill="var(--muted)">Price (Noise)</text>
+          <text x="250" y="122" font-size="11" fill="var(--gold)">Moving Average (Trend)</text>
+        </svg>
+        <div class="visual-cap odia">MA ଛୋଟ Noise ହଟାଇ Trend ର ଦିଗ ଦେଖାଏ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୨</div>
+      <h2>SMA — Simple Moving Average</h2>
+      <p>SMA ହେଉଛି ସବୁଠାରୁ ସରଳ Average। ଶେଷ N ଦିନ ର Closing Price ଯୋଗ କରି N ଦ୍ୱାରା ଭାଗ ଦିଅ।</p>
+      <p><strong>ଉଦାହରଣ — 5-Day SMA:</strong></p>
+
+      <div class="visual">
+        <div style="display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; margin:8px 0;">
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:6px; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:15px;">₹100</div>
+          <span style="color:var(--muted); font-size:18px;">+</span>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:6px; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:15px;">₹102</div>
+          <span style="color:var(--muted); font-size:18px;">+</span>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:6px; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:15px;">₹104</div>
+          <span style="color:var(--muted); font-size:18px;">+</span>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:6px; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:15px;">₹106</div>
+          <span style="color:var(--muted); font-size:18px;">+</span>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:6px; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:15px;">₹108</div>
+        </div>
+        <div style="text-align:center; margin-top:10px; font-size:14px; color:var(--muted);">÷ 5 ଦିନ</div>
+        <div style="text-align:center; margin-top:8px; font-family:'JetBrains Mono',monospace; font-size:22px; color:var(--gold); font-weight:700;">= ₹104 &nbsp; <span style="font-size:13px; color:var(--muted);">(5-Day SMA)</span></div>
+        <div class="visual-cap odia">SMA ଧୀରେ ପରିବର୍ତ୍ତନ ହୁଏ — Long-term Trend ପାଇଁ ଉପଯୋଗୀ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 3 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୩</div>
+      <h2>EMA — Exponential Moving Average</h2>
+      <p>EMA ମଧ୍ୟ Average, କିନ୍ତୁ ଏହା Recent Price କୁ ଅଧିକ Importance ଦିଏ। ଆଜିର Price ଗତ ସପ୍ତାହ ଠାରୁ ଅଧିକ ପ୍ରଭାବ ପକାଏ। ସେଥିପାଇଁ EMA, SMA ଠାରୁ ଶୀଘ୍ର Response କରେ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 140" preserveAspectRatio="xMidYMid meet">
+          <!-- Noisy price line (grey) -->
+          <polyline fill="none" stroke="var(--muted)" stroke-width="1.2"
+            points="20,105 70,55 110,100 150,40 190,82 230,22 270,55 310,18 360,52 410,14 450,38"/>
+          <!-- SMA - slow, dashed gold -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-dasharray="5,5"
+            points="20,95 110,82 190,68 270,54 360,42 450,32"/>
+          <!-- EMA - faster, solid green -->
+          <polyline class="line"
+            points="20,100 70,70 110,88 150,55 190,70 230,32 270,50 310,22 360,46 410,16 450,36"/>
+          <text x="22" y="130" font-size="11" fill="var(--muted)">Price</text>
+          <text x="140" y="130" font-size="11" fill="var(--gold)">SMA (ଧୀର)</text>
+          <text x="290" y="130" font-size="11" fill="var(--green)">EMA (ଶୀଘ୍ର)</text>
+        </svg>
+        <div class="visual-cap odia">EMA, SMA ଠାରୁ ଶୀଘ୍ର Price ଅନୁସରଣ କରେ — Intraday ପାଇଁ ଉପଯୋଗୀ</div>
+      </div>
+
+      <div class="vs-row">
+        <div class="vs-card">
+          <div class="vs-label">SMA</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; font-size:13.5px;">
+            <li>ଧୀର Response</li>
+            <li>ଅଧିକ Delay</li>
+            <li>Long-term Trend</li>
+          </ul>
+        </div>
+        <div class="vs-card">
+          <div class="vs-label">EMA</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; font-size:13.5px;">
+            <li>ଶୀଘ୍ର Response</li>
+            <li>Recent Price Important</li>
+            <li>Intraday Trading</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- LESSON 4 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୪</div>
+      <h2>20 EMA କୁ କିପରି ବ୍ୟବହାର କରିବ?</h2>
+      <p>Price ଓ 20 EMA ର ସମ୍ପର୍କ ଦେଖ — ଏହା Trend ର ଦିଗ ବୁଝିବାରେ ସାହାଯ୍ୟ କରେ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 200" preserveAspectRatio="xMidYMid meet">
+          <!-- Divider -->
+          <line x1="240" y1="10" x2="240" y2="195" stroke="var(--ink-line)" stroke-width="1"/>
+          <!-- LEFT: BULLISH — Price above rising EMA -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="2"
+            points="20,160 220,70"/>
+          <polyline class="line"
+            points="20,148 80,100 130,115 180,65 220,50"/>
+          <text x="25" y="22" font-size="11" fill="var(--green)">Price EMA ଉପରେ ↑</text>
+          <text x="55" y="36" font-size="11" fill="var(--gold)">20 EMA ↗</text>
+          <text x="70" y="185" font-size="13" fill="var(--green)" font-weight="bold">Bullish ✓</text>
+          <!-- RIGHT: BEARISH — Price below falling EMA -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="2"
+            points="260,70 460,160"/>
+          <polyline class="line down"
+            points="260,82 310,110 360,128 410,158 460,175"/>
+          <text x="264" y="22" font-size="11" fill="var(--red)">Price EMA ତଳେ ↓</text>
+          <text x="295" y="36" font-size="11" fill="var(--gold)">20 EMA ↘</text>
+          <text x="325" y="185" font-size="13" fill="var(--red)" font-weight="bold">Bearish ✗</text>
+        </svg>
+        <div class="visual-cap odia">EMA ର ଦିଗ ଓ Price ର Position — ଏହି ଦୁଇଟି ଏକାଠି ଦେଖ</div>
+      </div>
+
+      <p style="margin-top:8px; font-size:14.5px; color:var(--muted);">ମନେ ରଖ — EMA ଏକ <strong>Confirmation Tool</strong>। ଏହା ଏକାକୀ Buy ବା Sell Signal ନୁହେଁ।</p>
+    </div>
+
+    <!-- LESSON 5 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୫</div>
+      <h2>କେଉଁ EMA ବ୍ୟବହାର କରିବ?</h2>
+      <p>Intraday Trader ମାନଙ୍କ ମଧ୍ୟରେ ଏହି EMA ଗୁଡ଼ିକ ଲୋକପ୍ରିୟ। ଏହି ପୁସ୍ତକରେ ଆମେ <strong>20 EMA</strong> ଉପରେ Focus କରିବା — ଏହା Trend ବୁଝିବା ପାଇଁ ସହଜ ଓ ବ୍ୟବହାରିକ।</p>
+
+      <div class="visual">
+        <div style="display:flex; flex-direction:column; gap:10px; max-width:300px; margin:0 auto;">
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; display:flex; gap:14px; align-items:center;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--muted);">9 EMA</span>
+            <span style="font-size:13px; color:var(--muted);">— ଅତ୍ୟନ୍ତ ଦ୍ରୁତ, Scalping</span>
+          </div>
+          <div style="background:var(--ink); border:2px solid var(--gold); border-radius:8px; padding:12px 16px; display:flex; gap:14px; align-items:center;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--gold); font-weight:700;">20 EMA</span>
+            <span style="font-size:13px; color:var(--gold);">★ ଏହି ପୁସ୍ତକ — Trend Confirm</span>
+          </div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; display:flex; gap:14px; align-items:center;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--muted);">50 EMA</span>
+            <span style="font-size:13px; color:var(--muted);">— ଧୀର, Swing Trading</span>
+          </div>
+        </div>
+        <div class="visual-cap odia">20 EMA — Balance ଓ Practical</div>
+      </div>
+    </div>
+
+    <!-- MENTOR'S MISTAKE -->
+    <div class="story odia">
+      <div class="story-eyebrow">ମେଣ୍ଟରଙ୍କ ଭୁଲ</div>
+      <p>ମୁଁ ଥରେ Chart ରେ 5, 9, 13, 20, 34, 50, 100, 200 — ସମସ୍ତ EMA ଲଗାଇ ଦେଇଥିଲି। Chart ଠାରୁ ଅଧିକ ରଙ୍ଗ ଦେଖାଯାଉଥିଲା। ଗୋଟିଏ ସଠିକ୍ Decision ନେଇ ପାରୁ ନ ଥିଲି।</p>
+      <p>ସେହି ଦିନ ବୁଝିଲି — <strong>"ଅଧିକ Indicator ମାନେ ଅଧିକ Profit ନୁହେଁ। ଅଧିକ Confusion।"</strong></p>
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">Chart ରେ</div><div class="amt" style="color:var(--red); font-size:11.5px;">8ଟି EMA Lines</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ଫଳ</div><div class="amt" style="color:var(--red);">Confusion ↑↑</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ଶିକ୍ଷା</div><div class="amt" style="color:var(--green);">ଗୋଟିଏ EMA ✓</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIKASH'S STORY -->
+    <div class="story odia">
+      <div class="story-eyebrow">ପ୍ରକୃତ କାହାଣୀ</div>
+      <p>ବିକାଶ ନାମକ ଜଣେ Trader ପ୍ରତିଦିନ EMA Cross ଦେଖି Trade ନେଉଥିଲେ — କେବେ Profit, କେବେ Loss। ପରେ ସେ ଗୋଟିଏ Rule ଯୋଡ଼ିଲେ —</p>
+      <p><strong>"EMA ସହିତ Trend, Support, Candle ଓ Volume ମଧ୍ୟ ଦେଖିବି।"</strong></p>
+      <p>ତାଙ୍କ Trade Quality ବଢ଼ିଗଲା। କାରଣ ସେ Indicator ପଛରେ ନୁହେଁ, Market କୁ Follow କରିବା ଆରମ୍ଭ କଲେ।</p>
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">ପ୍ରଥମେ</div><div class="amt" style="color:var(--red);">EMA Cross ଏକୁଟିଆ</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">Rule ପରେ</div><div class="amt" style="font-size:11px; color:var(--gold);">EMA+Trend+S&amp;R+Volume</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ଫଳ</div><div class="amt" style="color:var(--green);">Quality ↑</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <blockquote class="odia">"Indicator ର ପଛରେ ଦୌଡ଼ନି। Price କୁ ବୁଝ, Indicator କେବଳ ତାହାର ସହାୟକ।"</blockquote>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="challenge odia">
+      <div class="lesson-tag mono">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(22px,3vw,30px); font-weight:600; margin:10px 0 22px;">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ</h2>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task1chk" data-key="day8-task1-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୧</div>
+          <h4>Chart ରେ 20 EMA Add କର</h4>
+          <p>5ଟି Stock ଖୋଲ। ଦେଖ — Price 20 EMA ଉପରେ ଅଛି କି ତଳେ? EMA ଉପରକୁ ଯାଉଛି କି ତଳକୁ? ନିଜ Observation ଲେଖ।</p>
+          <div class="journal-box">
+            <textarea id="task1text" placeholder="Stock 1: RELIANCE — Price EMA ଉପରେ, EMA ↑ — Bullish...&#10;Stock 2: ..."></textarea>
+            <div class="save-note" id="task1save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task2chk" data-key="day8-task2-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୨</div>
+          <h4>Uptrend ଓ Downtrend Stock ର 20 EMA ଦେଖ</h4>
+          <p>ଗୋଟିଏ Uptrend Stock ଓ ଗୋଟିଏ Downtrend Stock ବାଛ। 20 EMA ସେହି Trend କୁ Support କରୁଛି କି? ଲେଖ।</p>
+          <div class="journal-box">
+            <textarea id="task2text" placeholder="Uptrend Stock: ___ — EMA ↑, Price ଉପରେ ✓&#10;Downtrend Stock: ___ — EMA ↓, Price ତଳେ ✓"></textarea>
+            <div class="save-note" id="task2save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task3chk" data-key="day8-task3-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୩</div>
+          <h4>Trading Journal ରେ ଆଜିର Rule ଲେଖ</h4>
+          <p>ଏହି Rule ଲେଖ — ଏବଂ ନିଜ ଭାଷାରେ ବୁଝାଅ।</p>
+          <div class="journal-box">
+            <textarea id="task3text" placeholder="Rule: &quot;କେବଳ EMA ଦେଖି Trade ନେବି ନାହିଁ। EMA କୁ Confirmation Tool ଭାବେ ବ୍ୟବହାର କରିବି।&quot;&#10;&#10;ମୋ ଭାଷାରେ: ..."></textarea>
+            <div class="save-note" id="task3save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 9 TEASER -->
+    <div class="story odia">
+      <div class="story-eyebrow">ଆସନ୍ତାକାଲି — DAY 09</div>
+      <p><strong>VWAP (Volume Weighted Average Price)</strong> — ବଡ଼ ବଡ଼ Institutional Trader ମାନେ VWAP କୁ କାହିଁକି ଏତେ ଗୁରୁତ୍ୱ ଦିଅନ୍ତି? Intraday Trading ରେ VWAP କୁ କିପରି ସଠିକ୍ ଭାବେ ବ୍ୟବହାର କରିବ?</p>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary odia">
+      <h3>ଦିନ ୮ ର ସାରାଂଶ — ଆଜି ତୁମେ ଶିଖିଲ</h3>
+      <ul>
+        <li>Moving Average କଣ ଓ ଏହା Noise ହଟାଏ କିପରି</li>
+        <li>SMA ଓ EMA ମଧ୍ୟରେ ପାର୍ଥକ୍ୟ</li>
+        <li>EMA କିପରି Trend ବୁଝିବାରେ ସାହାଯ୍ୟ କରେ</li>
+        <li>Intraday ପାଇଁ 20 EMA କାହିଁକି ଲୋକପ୍ରିୟ</li>
+        <li>EMA କୁ ଏକାକୀ ନ ବ୍ୟବହାର କରି Confirmation Tool ଭାବେ ବ୍ୟବହାର</li>
+      </ul>
+    </div>
+
+    <div class="golden-rule odia">
+      <div class="tag mono">ସୁବର୍ଣ୍ଣ ନିୟମ #୮</div>
+      <strong>"<span>EMA</span> ତୁମକୁ Direction ଦେଖାଏ, କିନ୍ତୁ ସିଦ୍ଧାନ୍ତ ନେଉଛି <span>Price Action</span>।"</strong>
+    </div>
+
+  </section>
+
+  <div class="day-nav">
+    <a href="day-07.html" class="odia">← ଦିନ ୭</a>
+    <a href="index.html#map" class="home-link odia">Candle Map କୁ ଫେରନ୍ତୁ</a>
+    <span class="disabled odia">ଦିନ ୯ — ଆସୁଛି →</span>
+  </div>
+
+  <footer class="book-footer">
+    <span class="odia">ଗଠିତ ହେଲା ଏକ Professional Mentor ପାଇଁ —</span> <span class="sig">Intraday.30</span>
+  </footer>
+
+</main>
+
+<script>
+window.scrollTo(0,0);
+window.addEventListener('pageshow', ()=> window.scrollTo(0,0));
+
+function bindCheckbox(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const key = el.dataset.key;
+  el.checked = localStorage.getItem(key) === '1';
+  el.addEventListener('change', ()=> localStorage.setItem(key, el.checked ? '1' : '0'));
+}
+['task1chk','task2chk','task3chk'].forEach(bindCheckbox);
+
+function bindJournal(textId, saveId, key){
+  const t = document.getElementById(textId);
+  const save = document.getElementById(saveId);
+  if(!t) return;
+  t.value = localStorage.getItem(key) || '';
+  let timer;
+  t.addEventListener('input', ()=>{
+    clearTimeout(timer);
+    save.classList.remove('saved');
+    timer = setTimeout(()=>{
+      localStorage.setItem(key, t.value);
+      save.textContent = 'ସେଭ୍ ହୋଇଗଲା ✓';
+      save.classList.add('saved');
+    }, 500);
+  });
+}
+bindJournal('task1text','task1save','day8-task1-text');
+bindJournal('task2text','task2save','day8-task2-text');
+bindJournal('task3text','task3save','day8-task3-text');
+
+function updateProgress(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (scrolled / max) * 100 : 0;
+  document.getElementById('readProgress').style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=> navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+<script src="js/daynav.js"></script>
+<script>renderDayStrip('dayJumpStrip', 8); window.CURRENT_DAY = 8;</script>
+<script src="js/notify.js"></script>
+
+</body>
+</html>
