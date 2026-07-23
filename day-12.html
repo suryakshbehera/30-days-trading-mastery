@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+</script>
+<title>ଦିନ ୧୨ : Chart Patterns — Intraday.30</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Oriya:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="read-progress" id="readProgress"></div>
+
+<nav>
+  <a href="index.html" class="brand">Intraday<span>.</span>30</a>
+  <div class="nav-links">
+    <span class="day-pill mono">DAY 12 / 30</span>
+    <a href="index.html#map">Candle Map</a>
+    <button id="notifBtn" class="notif-btn"></button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="day-hero">
+    <div class="day-eyebrow odia">ଫେଜ୍ ୦୨ — Professional Tools</div>
+    <h1 class="odia">ଦିନ ୧୨ : Chart Patterns — Pattern ନୁହେଁ, Psychology ବୁଝ</h1>
+    <div class="day-progress-row">
+      <div class="day-progress-track"><div class="day-progress-fill" style="width:40.0%"></div></div>
+      <div class="day-progress-label mono">12/30</div>
+    </div>
+    <div class="day-jump" id="dayJumpStrip"></div>
+  </section>
+
+  <section>
+    <div class="mentor-msg odia">
+      <div class="salutation">ମେଣ୍ଟରଙ୍କ ବାର୍ତ୍ତା — ବାପି,</div>
+      <p>ଆଜି ଆମେ Chart Pattern ଶିଖିବା। କିନ୍ତୁ ମୁଁ ଚାହେଁ ତୁମେ କେବଳ Pattern ର ନାମ ମନେ ନ ରଖ।</p>
+      <p><strong>"Pattern ହେଉଛି Buyer ଓ Seller ଙ୍କ Psychology ର ଚିତ୍ର।"</strong></p>
+      <p>ଯଦି Psychology ବୁଝିଗଲ — Pattern କେବେ ଭୁଲିବ ନାହିଁ।</p>
+    </div>
+
+    <!-- LESSON 1 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୧</div>
+      <h2>Chart Pattern କଣ?</h2>
+      <p>Chart Pattern ହେଉଛି Price ର ବାରମ୍ବାର ଦେଖାଯାଉଥିବା ଆକୃତି। ଏହି ଆକୃତି ଗୋଟିଏ ଜିନିଷ କହେ —</p>
+
+      <div class="visual">
+        <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:8px 0;">
+          <div style="background:var(--ink); border:1px solid var(--green); border-radius:8px; padding:14px 16px; text-align:center; flex:1; min-width:110px;">
+            <div style="font-size:22px; margin-bottom:6px;">💪</div>
+            <div style="font-size:14px; color:var(--green); font-weight:600;">Buyer ଶକ୍ତ?</div>
+          </div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:14px 16px; text-align:center; flex:1; min-width:110px;">
+            <div style="font-size:22px; margin-bottom:6px;">⚖️</div>
+            <div style="font-size:14px; color:var(--muted); font-weight:600;">ଦୁହେଁ ଅପେକ୍ଷା?</div>
+          </div>
+          <div style="background:var(--ink); border:1px solid var(--red); border-radius:8px; padding:14px 16px; text-align:center; flex:1; min-width:110px;">
+            <div style="font-size:22px; margin-bottom:6px;">📉</div>
+            <div style="font-size:14px; color:var(--red); font-weight:600;">Seller ଶକ୍ତ?</div>
+          </div>
+        </div>
+        <div class="visual-cap odia">Pattern = Buyer ଓ Seller ଙ୍କ ମଧ୍ୟରେ ଯୁଦ୍ଧର ଚିତ୍ର</div>
+      </div>
+    </div>
+
+    <!-- LESSON 2 + 3: Triangle + Flag (split SVG) -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୨ ଓ ୩</div>
+      <h2>Triangle ଓ Flag Pattern</h2>
+      <p><strong>Triangle:</strong> Price ଧୀରେ ଧୀରେ ଛୋଟ Range ଭିତରକୁ ଆସେ — Buyer ଓ Seller ଦୁହେଁ ଶକ୍ତି ସଂଗ୍ରହ କରୁଛନ୍ତି। ଶେଷରେ ଗୋଟିଏ ପକ୍ଷ ଜିତେ।</p>
+      <p><strong>Flag:</strong> Strong Trend ପରେ ବିଶ୍ରାମ — ଦୌଡ଼ୁଥିବା ଲୋକ ପାଣି ପିଇ ପୁଣି ଦୌଡ଼ ଆରମ୍ଭ କଲା।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 152" preserveAspectRatio="xMidYMid meet">
+          <!-- Divider -->
+          <line x1="240" y1="8" x2="240" y2="148" stroke="var(--ink-line)" stroke-width="1"/>
+
+          <!-- LEFT: Triangle -->
+          <text x="14" y="22" font-size="12" fill="var(--gold)" font-weight="600">Triangle</text>
+
+          <!-- Resistance (red dashed, declining) -->
+          <line x1="14" y1="40" x2="188" y2="78" stroke="var(--red)" stroke-width="1.4" stroke-dasharray="5,4"/>
+          <!-- Support (green dashed, ascending) -->
+          <line x1="14" y1="118" x2="188" y2="78" stroke="var(--green)" stroke-width="1.4" stroke-dasharray="5,4"/>
+
+          <!-- Price inside triangle (muted) -->
+          <polyline fill="none" stroke="var(--muted)" stroke-width="1.6"
+            points="14,78 36,46 62,110 88,60 114,96 140,70 162,82 180,77"/>
+
+          <!-- Breakout (green strong) -->
+          <circle cx="186" cy="78" r="5" fill="var(--green)"/>
+          <polyline fill="none" stroke="var(--green)" stroke-width="2"
+            points="186,78 200,62 216,46 228,36"/>
+          <text x="208" y="34" font-size="10" fill="var(--green)">Breakout ↑</text>
+
+          <!-- Labels -->
+          <text x="162" y="36" font-size="9" fill="var(--red)">Seller</text>
+          <text x="18" y="132" font-size="9" fill="var(--green)">Buyer</text>
+
+          <!-- RIGHT: Flag -->
+          <text x="248" y="22" font-size="12" fill="var(--gold)" font-weight="600">Flag Pattern</text>
+
+          <!-- Pole (strong green line) -->
+          <line x1="254" y1="132" x2="292" y2="50" stroke="var(--green)" stroke-width="3" stroke-linecap="round"/>
+          <text x="248" y="146" font-size="9" fill="var(--muted)">Pole</text>
+
+          <!-- Flag channel (gold dashed) -->
+          <line x1="292" y1="50" x2="366" y2="63" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="4,4"/>
+          <line x1="298" y1="67" x2="370" y2="80" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="4,4"/>
+
+          <!-- Price inside flag (muted) -->
+          <polyline fill="none" stroke="var(--muted)" stroke-width="1.5"
+            points="292,50 305,65 320,57 336,72 352,63 365,74"/>
+
+          <!-- Continuation (green strong) -->
+          <circle cx="366" cy="72" r="5" fill="var(--green)"/>
+          <polyline fill="none" stroke="var(--green)" stroke-width="2"
+            points="366,72 386,52 408,36 426,24"/>
+          <text x="428" y="34" font-size="10" fill="var(--green)">↑</text>
+
+          <text x="312" y="46" font-size="9" fill="var(--gold)">Flag</text>
+        </svg>
+        <div class="visual-cap odia">Triangle: ଚାପ ଶेষ ରେ Breakout | Flag: ବିଶ୍ରାମ ପରେ Continuation</div>
+      </div>
+    </div>
+
+    <!-- LESSON 4 + 5: Rectangle + Cup & Handle (split SVG) -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୪ ଓ ୫</div>
+      <h2>Rectangle ଓ Cup &amp; Handle</h2>
+      <p><strong>Rectangle:</strong> Price ଗୋଟିଏ Range ଭିତରେ ଘୁରେ — Buyer ଓ Seller ଉଭୟ ସଶକ୍ତ। Range ଭାଙ୍ଗିଲେ ନୂଆ Trend।</p>
+      <p><strong>Cup &amp; Handle:</strong> U-ଆକୃତି Bullish Pattern। Confirmation ଦରକାର — ସବୁ Cup, Handle ଦେଇ Breakout ହୁଏ ନାହିଁ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 148" preserveAspectRatio="xMidYMid meet">
+          <!-- Divider -->
+          <line x1="240" y1="8" x2="240" y2="140" stroke="var(--ink-line)" stroke-width="1"/>
+
+          <!-- LEFT: Rectangle -->
+          <text x="14" y="20" font-size="12" fill="var(--gold)" font-weight="600">Rectangle</text>
+
+          <!-- Resistance (horizontal red dashed) -->
+          <line x1="14" y1="40" x2="208" y2="40" stroke="var(--red)" stroke-width="1.4" stroke-dasharray="5,4"/>
+          <!-- Support (horizontal green dashed) -->
+          <line x1="14" y1="110" x2="208" y2="110" stroke="var(--green)" stroke-width="1.4" stroke-dasharray="5,4"/>
+
+          <!-- Price zigzag inside range -->
+          <polyline fill="none" stroke="var(--muted)" stroke-width="1.6"
+            points="14,75 36,40 60,112 88,40 116,112 148,40 178,112 200,76"/>
+
+          <!-- Red circles at tops (Seller enters) -->
+          <circle cx="36"  cy="42" r="4" fill="var(--red)" fill-opacity="0.85"/>
+          <circle cx="88"  cy="42" r="4" fill="var(--red)" fill-opacity="0.85"/>
+          <circle cx="148" cy="42" r="4" fill="var(--red)" fill-opacity="0.85"/>
+
+          <!-- Green circles at bottoms (Buyer enters) -->
+          <circle cx="60"  cy="110" r="4" fill="var(--green)" fill-opacity="0.85"/>
+          <circle cx="116" cy="110" r="4" fill="var(--green)" fill-opacity="0.85"/>
+          <circle cx="178" cy="110" r="4" fill="var(--green)" fill-opacity="0.85"/>
+
+          <!-- Breakout up -->
+          <circle cx="206" cy="72" r="5" fill="var(--green)"/>
+          <polyline fill="none" stroke="var(--green)" stroke-width="2"
+            points="206,72 220,52 234,36"/>
+          <text x="215" y="34" font-size="9" fill="var(--green)">↑</text>
+
+          <!-- Labels -->
+          <text x="168" y="34" font-size="9" fill="var(--red)">Seller</text>
+          <text x="15" y="128" font-size="9" fill="var(--green)">Buyer</text>
+
+          <!-- RIGHT: Cup & Handle -->
+          <text x="248" y="20" font-size="12" fill="var(--gold)" font-weight="600">Cup &amp; Handle</text>
+
+          <!-- Rim line (gold dashed horizontal at y=38) -->
+          <line x1="248" y1="38" x2="476" y2="38" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="4,4"/>
+          <text x="400" y="34" font-size="9" fill="var(--gold)">Rim</text>
+
+          <!-- Cup U-shape polyline -->
+          <polyline fill="none" stroke="var(--muted)" stroke-width="1.8"
+            points="248,38 262,54 276,76 292,98 310,114 328,118 346,112 364,92 380,68 395,50 410,38 426,38"/>
+
+          <!-- Handle (small pullback) -->
+          <polyline fill="none" stroke="var(--muted)" stroke-width="1.8"
+            points="426,38 438,52 450,56"/>
+
+          <!-- Breakout -->
+          <circle cx="452" cy="55" r="5" fill="var(--green)"/>
+          <polyline fill="none" stroke="var(--green)" stroke-width="2"
+            points="452,55 464,40 474,28"/>
+          <text x="460" y="26" font-size="10" fill="var(--green)">↑</text>
+
+          <!-- Cup/Handle labels -->
+          <text x="322" y="135" font-size="9" fill="var(--muted)">Cup</text>
+          <text x="428" y="70" font-size="9" fill="var(--muted)">Handle</text>
+        </svg>
+        <div class="visual-cap odia">Rectangle: Range Break = New Trend | Cup &amp; Handle: U-Shape Bullish Setup</div>
+      </div>
+    </div>
+
+    <!-- MENTOR'S MISTAKE -->
+    <div class="story odia">
+      <div class="story-eyebrow">ମେଣ୍ଟରଙ୍କ ଭୁଲ</div>
+      <p>Trading ଆରମ୍ଭରେ ପ୍ରତ୍ୟେକ Triangle ଓ Flag ରେ ଆମେ Trade ନେଉଥିଲୁ। ଅନେକ False Breakout ଭୋଗ କଲୁ। ପରେ ବୁଝିଲୁ —</p>
+      <p><strong>"Pattern ଠାରୁ ଅଧିକ ଜରୁରୀ ହେଉଛି Confirmation।"</strong></p>
+
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <svg class="mini-chart" viewBox="0 0 480 125" preserveAspectRatio="xMidYMid meet">
+          <!-- Triangle lines -->
+          <line x1="18" y1="38" x2="235" y2="80" stroke="var(--red)" stroke-width="1.2" stroke-dasharray="5,4"/>
+          <line x1="18" y1="112" x2="235" y2="80" stroke="var(--green)" stroke-width="1.2" stroke-dasharray="5,4"/>
+
+          <!-- Price inside -->
+          <polyline fill="none" stroke="var(--muted)" stroke-width="1.4"
+            points="18,78 42,44 70,108 98,58 126,96 155,70 182,82 222,80"/>
+
+          <!-- False breakout (dashed grey, goes up but comes back) -->
+          <polyline fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-dasharray="4,3"
+            points="235,79 252,62 265,50"/>
+          <circle cx="265" cy="50" r="5" fill="var(--red)"/>
+          <text x="268" y="48" font-size="10" fill="var(--red)">✗ False Breakout</text>
+
+          <!-- Price returns back down -->
+          <polyline fill="none" stroke="var(--red)" stroke-width="1.8"
+            points="265,50 280,66 298,80 318,96 340,110"/>
+          <text x="344" y="112" font-size="10" fill="var(--red)">Breakdown ↓</text>
+
+          <text x="18" y="16" font-size="11" fill="var(--muted)">Confirmation ବିନା Triangle Trade — False Breakout</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- DEEPAK'S STORY -->
+    <div class="story odia">
+      <div class="story-eyebrow">ପ୍ରକୃତ କାହାଣୀ</div>
+      <p>ଦୀପକ ନାମକ ଜଣେ Trader Internet ରୁ 40ଟି Chart Pattern ମନେ ରଖିଥିଲେ। କିନ୍ତୁ Profit ହେଉ ନ ଥିଲା। ତାଙ୍କ Mentor କହିଲେ —</p>
+      <p><strong>"40ଟି Pattern ଦରକାର ନାହିଁ। 3ଟି Pattern କୁ ଗଭୀର ଭାବରେ ବୁଝ।"</strong></p>
+      <p>ଦୀପକ କେବଳ Triangle, Flag ଓ Rectangle ଉପରେ 2 ମାସ Practice କଲେ। Trading ବହୁତ Improve ହେଲା।</p>
+
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">40 Pattern</div><div class="amt" style="color:var(--red); font-size:11px;">Profit ନାହିଁ</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">Mentor Rule</div><div class="amt" style="color:var(--gold); font-size:11px;">3 Pattern ↓ Deep</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">2 ମାସ ପରେ</div><div class="amt" style="color:var(--green);">Quality ↑↑</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <blockquote class="odia">"Pattern କୁ ମନେ ରଖ ନି। Pattern ପଛରେ ଥିବା Psychology କୁ ବୁଝ।"</blockquote>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="challenge odia">
+      <div class="lesson-tag mono">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(22px,3vw,30px); font-weight:600; margin:10px 0 22px;">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ</h2>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task1chk" data-key="day12-task1-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୧</div>
+          <h4>10ଟି Stock ର Chart ଖୋଲ</h4>
+          <p>Triangle, Rectangle ବା Flag ଅଛି? ଯଦି ନାହିଁ — ଜବରଦସ୍ତି Pattern ଖୋଜିବାକୁ ଚେଷ୍ଟା କର ନି।</p>
+          <div class="journal-box">
+            <textarea id="task1text" placeholder="Stock 1: HDFC — Triangle ✓ (Converging, Breakout ଅଟକ ଅଛି)&#10;Stock 2: INFY — No clear pattern&#10;Stock 3: TCS — Flag ✓ (Uptrend + Pullback)&#10;..."></textarea>
+            <div class="save-note" id="task1save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task2chk" data-key="day12-task2-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୨</div>
+          <h4>Pattern ର Psychology ଲେଖ</h4>
+          <p>ଗୋଟିଏ Pattern ବାଛ। ଲେଖ — Buyer କଣ କରୁଛନ୍ତି? Seller କଣ କରୁଛନ୍ତି? Breakout କାହିଁକି ହୋଇପାରେ?</p>
+          <div class="journal-box">
+            <textarea id="task2text" placeholder="Pattern: Triangle (HDFC 15min)&#10;Buyer: Support ରେ Buy ହୋଇ ଉପରକୁ Push କରୁଛନ୍ତି&#10;Seller: Resistance ରେ Sell ହୋଇ ତଳକୁ Push କରୁଛନ୍ତି&#10;Breakout ହୋଇପାରେ ଯଦି: Volume ବଢ଼ୁ ଓ Strong Candle Close ହୋଇ Resistance ଭଙ୍ଗ ହୁଏ"></textarea>
+            <div class="save-note" id="task2save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task3chk" data-key="day12-task3-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୩</div>
+          <h4>Trading Journal ରେ ଆଜିର Rule ଲେଖ</h4>
+          <div class="journal-box">
+            <textarea id="task3text" placeholder="Rule: &quot;Pattern ଦେଖି ଏକୁଟିଆ Trade ନେବି ନାହିଁ। Trend, Volume ଓ Candlestick Confirmation ନେବି।&quot;&#10;&#10;ମୋ ଭାଷାରେ: ..."></textarea>
+            <div class="save-note" id="task3save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 13 TEASER -->
+    <div class="story odia">
+      <div class="story-eyebrow">ଆସନ୍ତାକାଲି — DAY 13</div>
+      <p><strong>Gap Up &amp; Gap Down Trading</strong> — Gap କାହିଁକି ହୁଏ? ସବୁ Gap କୁ Trade କରିବା ଉଚିତ୍ କି? Gap Fill, Breakaway Gap, Exhaustion Gap ଭଳି ଧାରଣାକୁ ସରଳ ଭାଷାରେ ବୁଝ।</p>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary odia">
+      <h3>ଦିନ ୧୨ ର ସାରାଂଶ — ଆଜି ତୁମେ ଶିଖିଲ</h3>
+      <ul>
+        <li>Chart Pattern = Buyer ଓ Seller ର Psychology ର ଚିତ୍ର</li>
+        <li>Triangle — ଚାପ ସଂଗ୍ରହ → Breakout</li>
+        <li>Flag — Strong Trend ପରେ ବିଶ୍ରାମ → Continuation</li>
+        <li>Rectangle — Range ଭିତରେ ଯୁଦ୍ଧ → Range Break = New Trend</li>
+        <li>Cup &amp; Handle — U-Shape Bullish, Confirmation ଦରକାର</li>
+        <li>Pattern ଠାରୁ ଅଧିକ ଜରୁରୀ — Confirmation</li>
+      </ul>
+    </div>
+
+    <div class="golden-rule odia">
+      <div class="tag mono">ସୁବର୍ଣ୍ଣ ନିୟମ #୧୨</div>
+      <strong>"Chart Pattern ହେଉଛି ଗୋଟିଏ <span>ସମ୍ଭାବନା</span>, ଗ୍ୟାରେଣ୍ଟି ନୁହେଁ। <span>Confirmation</span> ବିନା Trade କର ନି।"</strong>
+    </div>
+
+  </section>
+
+  <div class="day-nav">
+    <a href="day-11.html" class="odia">← ଦିନ ୧୧</a>
+    <a href="index.html#map" class="home-link odia">Candle Map କୁ ଫେରନ୍ତୁ</a>
+    <span class="disabled odia">ଦିନ ୧୩ — ଆସୁଛି →</span>
+  </div>
+
+  <footer class="book-footer">
+    <span class="odia">ଗଠିତ ହେଲା ଏକ Professional Mentor ପାଇଁ —</span> <span class="sig">Intraday.30</span>
+  </footer>
+
+</main>
+
+<script>
+window.scrollTo(0,0);
+window.addEventListener('pageshow', ()=> window.scrollTo(0,0));
+
+function bindCheckbox(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const key = el.dataset.key;
+  el.checked = localStorage.getItem(key) === '1';
+  el.addEventListener('change', ()=> localStorage.setItem(key, el.checked ? '1' : '0'));
+}
+['task1chk','task2chk','task3chk'].forEach(bindCheckbox);
+
+function bindJournal(textId, saveId, key){
+  const t = document.getElementById(textId);
+  const save = document.getElementById(saveId);
+  if(!t) return;
+  t.value = localStorage.getItem(key) || '';
+  let timer;
+  t.addEventListener('input', ()=>{
+    clearTimeout(timer);
+    save.classList.remove('saved');
+    timer = setTimeout(()=>{
+      localStorage.setItem(key, t.value);
+      save.textContent = 'ସେଭ୍ ହୋଇଗଲା ✓';
+      save.classList.add('saved');
+    }, 500);
+  });
+}
+bindJournal('task1text','task1save','day12-task1-text');
+bindJournal('task2text','task2save','day12-task2-text');
+bindJournal('task3text','task3save','day12-task3-text');
+
+function updateProgress(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (scrolled / max) * 100 : 0;
+  document.getElementById('readProgress').style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=> navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+<script src="js/daynav.js"></script>
+<script>renderDayStrip('dayJumpStrip', 12); window.CURRENT_DAY = 12;</script>
+<script src="js/notify.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+</script>
+<title>ଦିନ ୧୧ : MACD — Intraday.30</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+Oriya:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="read-progress" id="readProgress"></div>
+
+<nav>
+  <a href="index.html" class="brand">Intraday<span>.</span>30</a>
+  <div class="nav-links">
+    <span class="day-pill mono">DAY 11 / 30</span>
+    <a href="index.html#map">Candle Map</a>
+    <button id="notifBtn" class="notif-btn"></button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="day-hero">
+    <div class="day-eyebrow odia">ଫେଜ୍ ୦୨ — Professional Tools</div>
+    <h1 class="odia">ଦିନ ୧୧ : MACD — Trend ଓ Momentum ର ଲୁଚିଥିବା ସଙ୍କେତ</h1>
+    <div class="day-progress-row">
+      <div class="day-progress-track"><div class="day-progress-fill" style="width:36.7%"></div></div>
+      <div class="day-progress-label mono">11/30</div>
+    </div>
+    <div class="day-jump" id="dayJumpStrip"></div>
+  </section>
+
+  <section>
+    <div class="mentor-msg odia">
+      <div class="salutation">ମେଣ୍ଟରଙ୍କ ବାର୍ତ୍ତା — ବାପି,</div>
+      <p>ଆଜି ଆମେ <strong>MACD</strong> ଶିଖିବା। ଅନେକ Trader MACD କୁ କେବଳ "Line Cross ହେଲେ Buy, Cross ହେଲେ Sell" ଭାବନ୍ତି। Professional Trader ମାନେ ଏହାକୁ Momentum ବୁଝିବା ପାଇଁ ବ୍ୟବହାର କରନ୍ତି।</p>
+      <p><strong>"MACD ଭବିଷ୍ୟତ କହେ ନାହିଁ। ଏହା ବର୍ତ୍ତମାନର Momentum କୁ ବୁଝିବାରେ ସାହାଯ୍ୟ କରେ।"</strong></p>
+    </div>
+
+    <!-- LESSON 1 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୧</div>
+      <h2>MACD କଣ?</h2>
+      <p>MACD = <strong>Moving Average Convergence Divergence</strong>। ନାମଟି କଷ୍ଟକର ଲାଗିପାରେ, କିନ୍ତୁ ଏହାର କାମ ସରଳ — ଏହା ଦୁଇଟି ପ୍ରଶ୍ନ ର ଉତ୍ତର ଦିଏ।</p>
+
+      <div class="visual">
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:8px 0;">
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:14px 18px; text-align:center; flex:1; min-width:140px;">
+            <div style="color:var(--gold); font-size:20px; margin-bottom:6px;">📈</div>
+            <div style="font-size:14px; font-weight:600;">Trend ଶକ୍ତ କି?</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:4px;">Momentum ଶକ୍ତ ମାନେ Trend ଚଲୁଥାଏ</div>
+          </div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:14px 18px; text-align:center; flex:1; min-width:140px;">
+            <div style="color:var(--gold); font-size:20px; margin-bottom:6px;">⚡</div>
+            <div style="font-size:14px; font-weight:600;">Momentum ↑ ନା ↓?</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:4px;">Momentum କମୁଥିଲେ Trend ଶେଷ ହୋଇପାରେ</div>
+          </div>
+        </div>
+        <div class="visual-cap odia">MACD ଦୁଇଟି EMA ର ତୁଳନା ଦ୍ୱାରା Momentum ମାପ କରେ</div>
+      </div>
+    </div>
+
+    <!-- LESSON 2 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୨</div>
+      <h2>MACD ର ୩ ଟି ଅଂଶ</h2>
+      <p>MACD Indicator ରେ ୩ ଟି ଭାଗ ଅଛି — ପ୍ରତ୍ୟେକ ଭିନ୍ନ ତଥ୍ୟ ଦିଏ।</p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 190" preserveAspectRatio="xMidYMid meet">
+          <!-- Zero line -->
+          <line x1="16" y1="108" x2="460" y2="108" stroke="var(--ink-line)" stroke-width="1"/>
+          <text x="2" y="106" font-size="9" fill="var(--muted)">0</text>
+
+          <!-- Histogram: positive bars (green, above zero = y < 108) -->
+          <rect x="22"  y="72"  width="28" height="36" fill="var(--green)" fill-opacity="0.7"/>
+          <rect x="65"  y="58"  width="28" height="50" fill="var(--green)" fill-opacity="0.7"/>
+          <rect x="108" y="46"  width="28" height="62" fill="var(--green)" fill-opacity="0.7"/>
+          <rect x="151" y="66"  width="28" height="42" fill="var(--green)" fill-opacity="0.7"/>
+          <rect x="194" y="90"  width="28" height="18" fill="var(--green)" fill-opacity="0.7"/>
+
+          <!-- Histogram: negative bars (red, below zero = y > 108) -->
+          <rect x="250" y="108" width="28" height="18" fill="var(--red)" fill-opacity="0.65"/>
+          <rect x="293" y="108" width="28" height="38" fill="var(--red)" fill-opacity="0.65"/>
+          <rect x="336" y="108" width="28" height="55" fill="var(--red)" fill-opacity="0.65"/>
+          <rect x="379" y="108" width="28" height="34" fill="var(--red)" fill-opacity="0.65"/>
+          <rect x="422" y="108" width="28" height="14" fill="var(--red)" fill-opacity="0.65"/>
+
+          <!-- MACD Line (light, main) -->
+          <polyline fill="none" stroke="#c9cdd6" stroke-width="2"
+            points="20,90 50,76 90,56 132,48 174,82 210,106 245,112 280,118 320,135 358,128 398,114 438,108"/>
+
+          <!-- Signal Line (gold, dashed) -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-dasharray="5,4"
+            points="20,96 50,82 90,62 132,52 174,86 210,107 245,114 280,120 320,138 358,130 398,116 438,110"/>
+
+          <!-- Legend at bottom -->
+          <rect x="20"  y="170" width="12" height="8" fill="var(--green)" fill-opacity="0.7"/>
+          <text x="36"  y="178" font-size="10" fill="var(--green)">Histogram +</text>
+          <rect x="140" y="170" width="12" height="8" fill="var(--red)" fill-opacity="0.65"/>
+          <text x="156" y="178" font-size="10" fill="var(--red)">Histogram −</text>
+          <line x1="280" y1="174" x2="300" y2="174" stroke="#c9cdd6" stroke-width="2"/>
+          <text x="304" y="178" font-size="10" fill="#c9cdd6">MACD Line</text>
+          <line x1="385" y1="172" x2="400" y2="172" stroke="var(--gold)" stroke-width="1.8" stroke-dasharray="4,3"/>
+          <text x="404" y="178" font-size="10" fill="var(--gold)">Signal</text>
+        </svg>
+        <div class="visual-cap odia">ବଡ଼ Histogram = ଶକ୍ତ Momentum &nbsp;|&nbsp; ଛୋଟ Histogram = ଦୁର୍ବଳ Momentum</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px;">
+        <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px;">
+          <div style="font-size:11px; font-family:'JetBrains Mono',monospace; color:#c9cdd6; margin-bottom:4px;">MACD LINE</div>
+          <div style="font-size:14px;">ଦ୍ରୁତ EMA ଓ ଧୀର EMA ର ଫରକ — ମୁଖ୍ୟ Momentum Line</div>
+        </div>
+        <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px;">
+          <div style="font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--gold); margin-bottom:4px;">SIGNAL LINE</div>
+          <div style="font-size:14px;">MACD Line ର Smoothed Version — Confirmation ଦିଏ</div>
+        </div>
+        <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px;">
+          <div style="font-size:11px; font-family:'JetBrains Mono',monospace; color:var(--muted); margin-bottom:4px;">HISTOGRAM</div>
+          <div style="font-size:14px;">ଦୁଇ Line ର ଦୂରତା — ବଡ଼ Bar ମାନେ ଶକ୍ତ Momentum</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LESSON 3 + 4: CROSSOVERS (combined split) -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୩ ଓ ୪</div>
+      <h2>Bullish ଓ Bearish Crossover</h2>
+      <p>Crossover ଘଟେ ଯେତେବେଳେ MACD Line, Signal Line କୁ Cross କରେ। ଏହା Momentum ର ଦିଗ ବଦଳୁଛି ବୋଲି ସୂଚନା ଦିଏ — <strong>Trade Signal ନୁହେଁ।</strong></p>
+
+      <div class="visual">
+        <svg class="mini-chart" viewBox="0 0 480 165" preserveAspectRatio="xMidYMid meet">
+          <line x1="240" y1="10" x2="240" y2="160" stroke="var(--ink-line)" stroke-width="1"/>
+
+          <!-- LEFT: BULLISH CROSSOVER (MACD crosses Signal from below to above) -->
+          <!-- Zero line -->
+          <line x1="20" y1="120" x2="228" y2="120" stroke="var(--ink-line)" stroke-width="0.8" stroke-dasharray="2,3"/>
+          <!-- Signal (gold dashed) - MACD starts below it then crosses above -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-dasharray="5,4"
+            points="20,145 70,132 115,116 165,100 215,90"/>
+          <!-- MACD (light) - starts below Signal, crosses above -->
+          <polyline fill="none" stroke="#c9cdd6" stroke-width="2"
+            points="20,155 70,138 115,114 165,96 215,85"/>
+          <!-- Crossover circle -->
+          <circle cx="118" cy="115" r="6" fill="var(--green)" fill-opacity="0.9"/>
+          <!-- Arrow after cross -->
+          <line x1="145" y1="108" x2="145" y2="88" stroke="var(--green)" stroke-width="2" marker-end="url(#arrowUp)"/>
+          <!-- Labels -->
+          <text x="22" y="22" font-size="11" fill="var(--green)" font-weight="600">Bullish Crossover ↑</text>
+          <text x="22" y="36" font-size="10" fill="var(--muted)">MACD Signal ଉପରକୁ Cross</text>
+          <text x="128" y="110" font-size="10" fill="var(--green)">★</text>
+          <text x="152" y="85" font-size="10" fill="var(--green)">Momentum ↑</text>
+
+          <!-- RIGHT: BEARISH CROSSOVER (MACD crosses Signal from above to below) -->
+          <!-- Zero line -->
+          <line x1="252" y1="55" x2="460" y2="55" stroke="var(--ink-line)" stroke-width="0.8" stroke-dasharray="2,3"/>
+          <!-- Signal (gold dashed) -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-dasharray="5,4"
+            points="255,90 305,100 355,115 405,132 455,142"/>
+          <!-- MACD (light) - starts above Signal, crosses below -->
+          <polyline fill="none" stroke="#c9cdd6" stroke-width="2"
+            points="255,82 305,96 355,118 405,136 455,148"/>
+          <!-- Crossover circle -->
+          <circle cx="355" cy="116" r="6" fill="var(--red)" fill-opacity="0.9"/>
+          <!-- Labels -->
+          <text x="258" y="22" font-size="11" fill="var(--red)" font-weight="600">Bearish Crossover ↓</text>
+          <text x="258" y="36" font-size="10" fill="var(--muted)">MACD Signal ତଳକୁ Cross</text>
+          <text x="363" y="112" font-size="10" fill="var(--red)">★</text>
+          <text x="370" y="138" font-size="10" fill="var(--red)">Momentum ↓</text>
+        </svg>
+        <div class="visual-cap odia">★ = Crossover ବିନ୍ଦୁ — ଏହା ଏକ ସଙ୍କେତ, Trade Signal ନୁହେଁ</div>
+      </div>
+
+      <p style="margin-top:8px; font-size:14.5px; color:var(--muted);">ସବୁ Crossover ରେ Trade ନୁହେଁ — Trend ଓ Price Action ମଧ୍ୟ ଦେଖ।</p>
+    </div>
+
+    <!-- LESSON 5 -->
+    <div class="lesson odia">
+      <div class="lesson-tag mono">ପାଠ ୫</div>
+      <h2>MACD କୁ ସଠିକ ଭାବେ ବ୍ୟବହାର</h2>
+      <p>MACD ଏକ Filter — Trigger ନୁହେଁ। ଏହି 5ଟି ଏକ ଦିଗ ଦେଖାଇଲେ Trade ର Quality ବଢ଼େ।</p>
+
+      <div class="visual">
+        <div style="display:flex; flex-direction:column; gap:10px; max-width:380px; margin:0 auto;">
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Trend Uptrend ରେ ଅଛି</div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Price Support ଉପରେ ଅଛି</div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Bullish Candle ଅଛି</div>
+          <div style="background:var(--ink); border:1px solid var(--ink-line); border-radius:8px; padding:12px 16px; font-size:14.5px;">☐ Volume ଭଲ ଅଛି</div>
+          <div style="background:var(--ink); border:2px solid var(--gold); border-radius:8px; padding:12px 16px; font-size:14.5px; color:var(--gold);">☐ MACD Bullish ★</div>
+        </div>
+        <div class="visual-cap odia">ଏହି ୫ ଏକ ଦିଗ = High Quality Setup</div>
+      </div>
+    </div>
+
+    <!-- MENTOR'S MISTAKE -->
+    <div class="story odia">
+      <div class="story-eyebrow">ମେଣ୍ଟରଙ୍କ ଭୁଲ</div>
+      <p>Trading ଆରମ୍ଭ ରେ ଆମେ MACD Cross ଦେଖି ତୁରନ୍ତ Entry ନେଉଥିଲୁ। Sideways Market ରେ MACD ବାରମ୍ବାର Cross କଲା — ଆମେ ବାରମ୍ବାର Entry ନେଲୁ — ବାରମ୍ବାର Loss ହେଲା।</p>
+      <p>ତାପରେ ବୁଝିଲୁ — <strong>"Sideways Market ରେ MACD ର False Signal ଅଧିକ ଆସେ।"</strong></p>
+
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <svg class="mini-chart" viewBox="0 0 480 120" preserveAspectRatio="xMidYMid meet">
+          <!-- Sideways price (flat zigzag) -->
+          <polyline fill="none" stroke="var(--muted)" stroke-width="1.2"
+            points="20,60 60,45 100,62 140,44 180,60 220,43 260,61 300,46 340,60 380,44 440,60"/>
+          <!-- Range lines (Support/Resistance) -->
+          <line x1="20" y1="40" x2="460" y2="40" stroke="var(--red)" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <line x1="20" y1="65" x2="460" y2="65" stroke="var(--green)" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <!-- MACD false cross markers -->
+          <circle cx="85"  cy="53" r="4" fill="var(--red)" fill-opacity="0.8"/>
+          <circle cx="165" cy="52" r="4" fill="var(--red)" fill-opacity="0.8"/>
+          <circle cx="245" cy="52" r="4" fill="var(--red)" fill-opacity="0.8"/>
+          <circle cx="325" cy="53" r="4" fill="var(--red)" fill-opacity="0.8"/>
+          <text x="75"  y="44" font-size="9" fill="var(--red)">✗</text>
+          <text x="155" y="44" font-size="9" fill="var(--red)">✗</text>
+          <text x="235" y="44" font-size="9" fill="var(--red)">✗</text>
+          <text x="315" y="44" font-size="9" fill="var(--red)">✗</text>
+          <text x="22" y="18" font-size="11" fill="var(--muted)">Sideways Market — MACD ବାରମ୍ବାର Cross = False Signals</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- SANJAY'S STORY -->
+    <div class="story odia">
+      <div class="story-eyebrow">ପ୍ରକୃତ କାହାଣୀ</div>
+      <p>ସଞ୍ଜୟ ନାମକ ଜଣେ Trader ପ୍ରତ୍ୟେକ MACD Cross ରେ Trade ନେଉଥିଲେ। ଗୋଟିଏ ମାସରେ ୧୨୦ ଟି Trade — Profit ଠାରୁ Brokerage ଅଧିକ ଦେଲେ। ତାଙ୍କ Mentor କହିଲେ — <strong>"MACD କୁ Filter ଭାବେ ବ୍ୟବହାର କର, Trigger ଭାବେ ନୁହେଁ।"</strong></p>
+      <p>Trade ସଂଖ୍ୟା କମିଗଲା, Winning Trade ଓ Profit ଉଭୟ ବଢ଼ିଗଲା।</p>
+      <div class="visual" style="background:transparent; border:none; padding-top:8px;">
+        <div class="chain-row">
+          <div class="chain-box"><div class="lbl odia">120 Trade</div><div class="amt" style="color:var(--red); font-size:11.5px;">Brokerage &gt; Profit</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">Mentor Rule</div><div class="amt" style="font-size:11px; color:var(--gold);">MACD = Filter</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-box"><div class="lbl odia">ଫଳ</div><div class="amt" style="color:var(--green);">Quality ↑ Profit ↑</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <blockquote class="odia">"ଭଲ Trader Signal ର ପଛରେ ଦୌଡ଼େ ନାହିଁ। ଭଲ Setup ର ଅପେକ୍ଷା କରେ।"</blockquote>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="challenge odia">
+      <div class="lesson-tag mono">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ</div>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(22px,3vw,30px); font-weight:600; margin:10px 0 22px;">ଆଜିର ଚ୍ୟାଲେଞ୍ଜ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ</h2>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task1chk" data-key="day11-task1-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୧</div>
+          <h4>Chart ରେ MACD Add କର</h4>
+          <p>5ଟି Stock ଦେଖ। ଲେଖ — Bullish Crossover ଅଛି? Bearish? Histogram ବଡ଼ ନା ଛୋଟ?</p>
+          <div class="journal-box">
+            <textarea id="task1text" placeholder="Stock 1: HDFC — Bullish Crossover ✓, Histogram ↑, Trend Uptrend...&#10;Stock 2: ..."></textarea>
+            <div class="save-note" id="task1save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task2chk" data-key="day11-task2-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୨</div>
+          <h4>Uptrend ରେ MACD ଓ Price ଏକ ଦିଗ ଦେଖାଉଛନ୍ତି?</h4>
+          <p>ଗୋଟିଏ Uptrend Stock ବାଛ। MACD Bullish ଥିବା ସମୟରେ Price ମଧ୍ୟ Uptrend ରେ ଅଛି? Observation ଲେଖ।</p>
+          <div class="journal-box">
+            <textarea id="task2text" placeholder="Stock: ___&#10;Trend: ↑&#10;MACD: Bullish / MACD Line > Signal Line&#10;Histogram: বড় / ছোট&#10;Observation: ..."></textarea>
+            <div class="save-note" id="task2save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <input type="checkbox" class="task-check" id="task3chk" data-key="day11-task3-chk">
+        <div style="flex:1;">
+          <div class="task-num">କାର୍ଯ୍ୟ ୦୩</div>
+          <h4>Trading Journal ରେ ଆଜିର Rule ଲେଖ</h4>
+          <div class="journal-box">
+            <textarea id="task3text" placeholder="Rule: &quot;MACD Cross ଦେଖି ତୁରନ୍ତ Trade ନେବି ନାହିଁ। ପ୍ରଥମେ Trend, Price Action ଓ Volume ଯାଞ୍ଚ କରିବି।&quot;&#10;&#10;ମୋ ଭାଷାରେ: ..."></textarea>
+            <div class="save-note" id="task3save">ସ୍ୱୟଂଚାଳିତ ଭାବେ ଏହି ଡିଭାଇସରେ ସେଭ୍ ହେବ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 12 TEASER -->
+    <div class="story odia">
+      <div class="story-eyebrow">ଆସନ୍ତାକାଲି — DAY 12</div>
+      <p><strong>Chart Patterns</strong> — Triangle, Flag, Rectangle, Cup &amp; Handle ପରି Pattern କାହିଁକି ତିଆରି ହୁଏ? Pattern ପଛରେ ଥିବା Buyer–Seller Psychology ବୁଝ, ଯାହାଦ୍ୱାରା Pattern ମନେ ରଖିବ ନୁହେଁ — Pattern ର Reason ବୁଝିପାରିବ।</p>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary odia">
+      <h3>ଦିନ ୧୧ ର ସାରାଂଶ — ଆଜି ତୁମେ ଶିଖିଲ</h3>
+      <ul>
+        <li>MACD কণ — Moving Average Convergence Divergence</li>
+        <li>MACD Line, Signal Line ଓ Histogram — ୩ ଟି ଅଂଶ</li>
+        <li>Bullish Crossover ଓ Bearish Crossover ର ଅର୍ଥ</li>
+        <li>Sideways Market ରେ MACD ଅଧିକ False Signal ଦିଏ</li>
+        <li>MACD ଏକ Filter — Trigger ନୁହେଁ</li>
+        <li>5-Point Checklist ସହ MACD ବ୍ୟବହାର</li>
+      </ul>
+    </div>
+
+    <div class="golden-rule odia">
+      <div class="tag mono">ସୁବର୍ଣ୍ଣ ନିୟମ #୧୧</div>
+      <strong>"<span>MACD</span> Momentum ଦେଖାଏ। সঠিক Entry ସବୁବେଳେ <span>Price Action</span>, Trend ଓ Risk Management ଉପରେ ନିର୍ଭର କରେ।"</strong>
+    </div>
+
+  </section>
+
+  <div class="day-nav">
+    <a href="day-10.html" class="odia">← ଦିନ ୧୦</a>
+    <a href="index.html#map" class="home-link odia">Candle Map କୁ ଫେରନ୍ତୁ</a>
+    <a href="day-12.html" class="odia">ଦିନ ୧୨ →</a>
+  </div>
+
+  <footer class="book-footer">
+    <span class="odia">ଗଠିତ ହେଲା ଏକ Professional Mentor ପାଇଁ —</span> <span class="sig">Intraday.30</span>
+  </footer>
+
+</main>
+
+<script>
+window.scrollTo(0,0);
+window.addEventListener('pageshow', ()=> window.scrollTo(0,0));
+
+function bindCheckbox(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const key = el.dataset.key;
+  el.checked = localStorage.getItem(key) === '1';
+  el.addEventListener('change', ()=> localStorage.setItem(key, el.checked ? '1' : '0'));
+}
+['task1chk','task2chk','task3chk'].forEach(bindCheckbox);
+
+function bindJournal(textId, saveId, key){
+  const t = document.getElementById(textId);
+  const save = document.getElementById(saveId);
+  if(!t) return;
+  t.value = localStorage.getItem(key) || '';
+  let timer;
+  t.addEventListener('input', ()=>{
+    clearTimeout(timer);
+    save.classList.remove('saved');
+    timer = setTimeout(()=>{
+      localStorage.setItem(key, t.value);
+      save.textContent = 'ସେଭ୍ ହୋଇଗଲା ✓';
+      save.classList.add('saved');
+    }, 500);
+  });
+}
+bindJournal('task1text','task1save','day11-task1-text');
+bindJournal('task2text','task2save','day11-task2-text');
+bindJournal('task3text','task3save','day11-task3-text');
+
+function updateProgress(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = max > 0 ? (scrolled / max) * 100 : 0;
+  document.getElementById('readProgress').style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=> navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+<script src="js/daynav.js"></script>
+<script>renderDayStrip('dayJumpStrip', 11); window.CURRENT_DAY = 11;</script>
+<script src="js/notify.js"></script>
+
+</body>
+</html>
